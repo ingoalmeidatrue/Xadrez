@@ -15,6 +15,8 @@ public class Tabuleiro extends JFrame {
 
 	private String espacos;
 	
+	private JButton botaoBranco, botaoPreto;
+	
 	//imagem do tabuleiro
 	private Icon imagemTabuleiro;
 	
@@ -64,7 +66,10 @@ public class Tabuleiro extends JFrame {
 		
 	private Icon imagemReiBranco;
 	
+	private JLabel imagemLabelPeao1Branco;
+	private JLabel imagemLabelTorre1Preto;
 	
+	/*
 	//Label pretos
 	private JLabel imagemLabelPeao1Preto;
 	private JLabel imagemLabelPeao2Preto;
@@ -110,10 +115,8 @@ public class Tabuleiro extends JFrame {
 	private JLabel imagemLabelRainhaBranco;
 		
 	private JLabel imagemLabelReiBranco;
+	*/
 	
-	
-	
-	private JLabel imagemLabelTabuleiro;
 	
 	//tabuleiro
 	private  JPanel tabuleiro;
@@ -134,7 +137,10 @@ public class Tabuleiro extends JFrame {
 	//botao de sair
 	private JButton botaoSair;
 	
-	void addPeaoTabuleiro(){
+	//coordenadas iniciais
+	int xTabuleiro = 100, yTabuleiro = 100, xPeca = 46, yPeca = 47;
+	
+	/*void addPeaoTabuleiro(){
 				//instanciando e colocando no tabuleiro o peao 1 preto
 				imagemLabelPeao1Preto = new JLabel(imagemPeao1Preto);
 				
@@ -370,7 +376,7 @@ public class Tabuleiro extends JFrame {
 		imagemLabelReiBranco.setBounds(245, 485, 50, 50);
 												
 		tabuleiro.add(imagemLabelReiBranco);
-	}
+	}*/
 	
 	//construtor do tabuleiro (serve para reiniciar jogo)
 	private Tabuleiro(){
@@ -439,12 +445,12 @@ public class Tabuleiro extends JFrame {
 		//O layout do tabuleiro é definido como nulo (por enquanto)
 		tabuleiro.setLayout(null);
 		
-		addPeaoTabuleiro();
+		/*addPeaoTabuleiro();
 		addBispoTabuleiro();
 		addTorreTabuleiro();
 		addCavaloTabuleiro();
 		addRainhaTabuleiro();
-		addReiTabuleiro();
+		addReiTabuleiro();*/
 		
 		botaoReiniciar.setBounds(550, 530, 100, 30);
 		botaoInstrucoes.setBounds(550, 563, 100, 30);
@@ -456,12 +462,13 @@ public class Tabuleiro extends JFrame {
 		tabuleiro.add(botaoRegras);
 		tabuleiro.add(botaoSair);
 		
-		imagemLabelTabuleiro = new JLabel(imagemTabuleiro);
+		//imagemLabelTabuleiro = new JLabel(imagemTabuleiro);
 		
-		imagemLabelTabuleiro.setBounds(50, 50, 500, 500);
+		//imagemLabelTabuleiro.setBounds(50, 50, 500, 500);
 		
-		tabuleiro.add(imagemLabelTabuleiro);
-	
+		//tabuleiro.add(imagemLabelTabuleiro);
+		
+		exibirTabuleiro();
 		
 		tabuleiro.setBounds(10, 10, 500, 500);
 		
@@ -469,11 +476,69 @@ public class Tabuleiro extends JFrame {
 		janelaJogo.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		janelaJogo.getContentPane().add(tabuleiro);
 	}
+	
+	void addCelulaBranca(){
+		botaoBranco = new JButton ();
+		
+		botaoBranco.setIcon(new ImageIcon("image/white.png"));
+		botaoBranco.setBounds(20, 20, xTabuleiro, yTabuleiro);
+		botaoBranco.setBorder(null);
+		botaoBranco.setName(null);
+		botaoBranco.setContentAreaFilled(false);
+	
+		tabuleiro.add(botaoBranco);
+	}
+	
+	void addCelulaPreta(){
+		botaoPreto = new JButton ();
+		
+		botaoPreto.setIcon(new ImageIcon("image/brown.png"));
+		botaoPreto.setBounds(20, 20, xTabuleiro, yTabuleiro);
+		botaoPreto.setBorder(null);
+		botaoPreto.setName(null);
+		botaoPreto.setContentAreaFilled(false);
+		
+		tabuleiro.add(botaoPreto);
+	}
 
 	
 	
 	public void exibirTabuleiro() {
-
+		for(int i = 0; i < 8; ++i){
+			for(int j = 0; j < 8;++j){
+				if(i % 2 == 0 ){
+					if(j % 2 == 0){
+						
+						//adiciona a torre preta
+						if(i == 0 && j == 0){
+							imagemLabelTorre1Preto = new JLabel(imagemTorre1Preto);
+							
+							imagemLabelTorre1Preto.setBounds(xPeca, yPeca, 50, 50);
+							
+							tabuleiro.add(imagemLabelTorre1Preto);
+						}
+						
+						addCelulaBranca();
+					}
+					else{
+						addCelulaPreta();
+					}
+					
+				}
+				else{
+					if(j % 2 == 0){
+						addCelulaPreta();
+					}
+					else{
+						addCelulaBranca();
+					}
+				}
+		
+				xTabuleiro+=120;
+			}
+			yTabuleiro+=118;
+			xTabuleiro = 100;
+		}
 	}
 
 	public void atualizarTabuleiro() {
