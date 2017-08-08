@@ -55,4 +55,3 @@ public class ApareceJanelaRegras implements ActionListener{
 				"Quando isto acontece, se diz que o rei está \"afogado\" e a partida termina em empate.","Regras do jogo",JOptionPane.PLAIN_MESSAGE);
 	}
 }
-
