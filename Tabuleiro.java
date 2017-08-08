@@ -254,18 +254,87 @@ public class Tabuleiro extends JFrame {
 	public void montarTabuleiro() {
 		for(int i = 0; i < 8; ++i){
 			for(int j = 0; j < 8;++j){
+				if(i == 6){		
+					//Adiciona Peao Branco
+					imagemLabelPeaoBranco = new JLabel(imagemPeaoBranco);
+						
+					imagemLabelPeaoBranco.setBounds(xPecaBranca, yPecaBranca, 50, 50);
+						
+					tabuleiro.add(imagemLabelPeaoBranco);
+					xPecaBranca += 60;
+					
+				}
+				if(i == 7){
+					//Adiciona torre 1 branca
+					if(j == 0){
+						xPecaBranca = 46;
+						yPecaBranca += 54;
+						imagemLabelTorre1Branco = new JLabel(imagemTorre1Branco);
+						
+						imagemLabelTorre1Branco.setBounds(xPecaBranca, yPecaBranca, 50, 50);
+						
+						tabuleiro.add(imagemLabelTorre1Branco);
+					}
+					//adiciona bispo 1 branco
+					else if(j == 2){
+						imagemLabelBispo1Branco = new JLabel(imagemBispo1Branco);
+						
+						imagemLabelBispo1Branco.setBounds(xPecaBranca, yPecaBranca, 50, 50);
+						
+						tabuleiro.add(imagemLabelBispo1Branco);
+					}
+					//adiciona rei branco
+					else if(j == 4){
+						imagemLabelReiBranco = new JLabel(imagemReiBranco);
+						
+						imagemLabelReiBranco.setBounds(xPecaBranca, yPecaBranca, 50, 50);
+						
+						tabuleiro.add(imagemLabelReiBranco);
+					}
+					//adiciona cavalo 2 branco
+					else if(j == 6){
+						imagemLabelCavalo2Branco = new JLabel(imagemCavalo2Branco);
+						
+						imagemLabelCavalo2Branco.setBounds(xPecaBranca, yPecaBranca, 50, 50);
+						
+						tabuleiro.add(imagemLabelCavalo2Branco);
+					}
+					//adiciona cavalo 1 branco
+					else if(j == 1){
+						imagemLabelCavalo1Branco = new JLabel(imagemCavalo1Branco);
+						
+						imagemLabelCavalo1Branco.setBounds(xPecaBranca, yPecaBranca, 50, 50);
+						
+						tabuleiro.add(imagemLabelCavalo1Branco);
+					}
+					//adiciona rainha branca
+					else if(j == 3){
+						imagemLabelRainhaBranco = new JLabel(imagemRainhaBranco);
+						
+						imagemLabelRainhaBranco.setBounds(xPecaBranca, yPecaBranca, 50, 50);
+						
+						tabuleiro.add(imagemLabelRainhaBranco);
+					}
+					//adiciona bispo 2 branco
+					else if(j == 5){
+						imagemLabelBispo2Branco = new JLabel(imagemBispo2Branco);
+						
+						imagemLabelBispo2Branco.setBounds(xPecaBranca, yPecaBranca, 50, 50);
+						
+						tabuleiro.add(imagemLabelBispo2Branco);
+					}
+					//adiciona torre 2 branco
+					else if(j == 7){
+						imagemLabelTorre2Branco = new JLabel(imagemTorre2Branco);
+						
+						imagemLabelTorre2Branco.setBounds(xPecaBranca, yPecaBranca, 50, 50);
+						
+						tabuleiro.add(imagemLabelTorre2Branco);
+					}
+					xPecaBranca += 60;
+				}
 				if(i % 2 == 0 ){
 					if(j % 2 == 0){
-						if(i == 6){		
-							System.out.println("entrou");
-							imagemLabelPeaoBranco = new JLabel(imagemPeaoBranco);
-								
-							imagemLabelPeaoBranco.setBounds(xPecaBranca, yPecaBranca, 50, 50);
-								
-							tabuleiro.add(imagemLabelPeaoBranco);
-							
-						}
-						
 						//adiciona a torre 1 preta
 						if(i == 0 && j == 0){
 							imagemLabelTorre1Preto = new JLabel(imagemTorre1Preto);
@@ -303,15 +372,6 @@ public class Tabuleiro extends JFrame {
 						addCelulaBranca();
 					}
 					else{
-						if(i == 6){		
-							System.out.println("entrou");
-							imagemLabelPeaoBranco = new JLabel(imagemPeaoBranco);
-								
-							imagemLabelPeaoBranco.setBounds(xPecaBranca, yPecaBranca, 50, 50);
-								
-							tabuleiro.add(imagemLabelPeaoBranco);
-							
-						}
 						//adiciona cavalo 1 preto
 						if(i == 0 && j == 1){
 							imagemLabelCavalo1Preto = new JLabel(imagemCavalo1Preto);
@@ -371,9 +431,8 @@ public class Tabuleiro extends JFrame {
 		
 				xTabuleiro+=120;
 				xPecaPreta+=60;
-				xPecaBranca+=60;
+				
 			}
-			
 			yPecaPreta+=54;
 			xPecaPreta = 46;			
 			yTabuleiro+=118;
