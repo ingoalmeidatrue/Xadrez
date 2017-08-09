@@ -8,7 +8,7 @@ public class ApareceJanelaFechaJogo implements WindowListener {
 	public void windowClosing(WindowEvent e) {
 		// TODO Auto-generated method stub
 		if (e.getID() == WindowEvent.WINDOW_CLOSING){
-			int selectedOption = JOptionPane.showConfirmDialog(null,"Deseja sair realmente?", null, JOptionPane.YES_NO_OPTION);
+			int selectedOption = JOptionPane.showConfirmDialog(null,"Deseja sair do jogo?", null, JOptionPane.YES_NO_OPTION);
 			if(selectedOption == JOptionPane.YES_OPTION){
 				System.exit(0);  	                	
 			}	

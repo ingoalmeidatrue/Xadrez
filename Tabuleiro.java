@@ -1,4 +1,7 @@
+import java.awt.Color;
 import java.awt.LayoutManager;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -9,9 +12,9 @@ import javax.swing.JPanel;
 
 public class Tabuleiro extends JFrame {
 
-	private Peca pecas;
+	private ArrayList<Peca> pecas = new ArrayList<Peca>();
 
-	private Peca pecasComidas;
+	private ArrayList<Peca> pecasComidas = new ArrayList<Peca>();
 
 	private String espacos;
 	
@@ -134,7 +137,7 @@ public class Tabuleiro extends JFrame {
 	private JButton botaoSair;
 	
 	//coordenadas iniciais
-	int xTabuleiro = 43, yTabuleiro = 45, xPecaPreta = 50, yPecaPreta = 50,xPecaBranca = 50,yPecaBranca = 375;
+	int xTabuleiro = 43, yTabuleiro = 45, xPecaPreta = 50, yPecaPreta = 45,xPecaBranca = 51,yPecaBranca = 399;
 	
 		
 	//construtor do tabuleiro (serve para reiniciar jogo)
@@ -203,58 +206,76 @@ public class Tabuleiro extends JFrame {
 		
 		//O layout do tabuleiro é definido como nulo (por enquanto)
 		tabuleiro.setLayout(null);
-		
+				
 		//define tamanho e posicao dos botoes
 		botaoReiniciar.setBounds(550, 530, 100, 30);
 		botaoInstrucoes.setBounds(550, 563, 100, 30);
 		botaoRegras.setBounds(550, 596, 100, 30);
 		botaoSair.setBounds(550, 629, 100, 30);
-		
+				
 		//adiciona ação nos botoes ao clicar com o mouse neles
 		botaoRegras.addActionListener(new ApareceJanelaRegras());
 		botaoInstrucoes.addActionListener(new ApareceJanelaInstrucoes());
 		botaoSair.addActionListener(new FechaJogo());
-		
+				
 		tabuleiro.add(botaoReiniciar);
 		tabuleiro.add(botaoInstrucoes);
 		tabuleiro.add(botaoRegras);
 		tabuleiro.add(botaoSair);
-		
-		
+				
+				
 		montarTabuleiro();
-		
+				
 		tabuleiro.setBounds(10, 10, 500, 500);
-		
+				
 		janelaJogo.setVisible(true);
-		
+				
 		//esperar confirmacao do usuario para fechar realmente
 		janelaJogo.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		janelaJogo.addWindowListener(new ApareceJanelaFechaJogo());
-		
+				
 		//adiciona o tabuleiro no frame
 		janelaJogo.getContentPane().add(tabuleiro);
 	}
 	
-	void addCelulaBranca(){
-		botaoBranco = new JButton();
+	public ArrayList<Peca> getPecas() {
+		return pecas;
+	}
+
+	void addCelulaBranca(Espaco espaco){
+		botaoBranco = new JButton ();
 		
 		botaoBranco.setIcon(new ImageIcon("image/white.png"));
 		botaoBranco.setBounds(xTabuleiro, yTabuleiro, 60, 60);
 		botaoBranco.setBorder(null);
 		botaoBranco.setName(null);
-		botaoBranco.setContentAreaFilled(false);
-	
+
+		if(espaco.getImagempeca() != null){
+			 botaoBranco.add(espaco.getImagempeca());			
+		}
+		
+	     botaoBranco.setContentAreaFilled(false);
+	     Movimentacao mov = new Movimentacao(botaoBranco,this,tabuleiro);
+	     botaoBranco.addMouseListener(mov);
+			 	
 		tabuleiro.add(botaoBranco);
 	}
 	
-	void addCelulaPreta(){
+	void addCelulaPreta(Espaco espaco){
 		botaoPreto = new JButton ();
 		
 		botaoPreto.setIcon(new ImageIcon("image/brown.png"));
 		botaoPreto.setBounds(xTabuleiro, yTabuleiro, 60, 60);
 		botaoPreto.setBorder(null);
 		botaoPreto.setName(null);
+		
+		if(espaco.getImagempeca() != null){
+			botaoPreto.add(espaco.getImagempeca());			
+		}
+		
 		botaoPreto.setContentAreaFilled(false);
+		Movimentacao mov = new Movimentacao(botaoPreto,this,tabuleiro);
+		botaoPreto.addMouseListener(mov);
 		
 		tabuleiro.add(botaoPreto);
 	}
@@ -267,9 +288,10 @@ public class Tabuleiro extends JFrame {
 				if(i == 6){		
 					//Adiciona Peao Branco
 					imagemLabelPeaoBranco = new JLabel(imagemPeaoBranco);
-						
 					imagemLabelPeaoBranco.setBounds(xPecaBranca, yPecaBranca, 50, 50);
-						
+					Peao PeaoBranco = new Peao(xPecaBranca,yPecaBranca,Color.WHITE,imagemLabelPeaoBranco,this);
+					pecas.add(PeaoBranco);
+					imagemLabelPeaoBranco.addMouseListener(PeaoBranco);
 					tabuleiro.add(imagemLabelPeaoBranco);
 					xPecaBranca += 60;
 					
@@ -278,7 +300,7 @@ public class Tabuleiro extends JFrame {
 					//Adiciona torre 1 branca
 					if(j == 0){
 						xPecaBranca = 50;
-						yPecaBranca += 54;
+						yPecaBranca += 59;
 						imagemLabelTorre1Branco = new JLabel(imagemTorre1Branco);
 						
 						imagemLabelTorre1Branco.setBounds(xPecaBranca, yPecaBranca, 50, 50);
@@ -379,7 +401,12 @@ public class Tabuleiro extends JFrame {
 						}
 						
 						
-						addCelulaBranca();
+						if(i==0 || i==1 || i == 6 || i == 7){
+							addCelulaBranca(new Espaco(new JLabel()));
+						}
+						else{
+							addCelulaBranca(new Espaco(null));							
+						}
 					}
 					else{
 						//adiciona cavalo 1 preto
@@ -414,8 +441,12 @@ public class Tabuleiro extends JFrame {
 							
 							tabuleiro.add(imagemLabelTorre2Preto);
 						}
-						
-						addCelulaPreta();
+						if(i==0 || i==1 || i == 6 || i == 7){
+							addCelulaPreta(new Espaco(new JLabel()));
+						}
+						else{
+							addCelulaPreta(new Espaco(null));							
+						}
 					}
 					
 				}
@@ -423,19 +454,30 @@ public class Tabuleiro extends JFrame {
 					//adiciona peao preto
 					if(i == 1){
 						imagemLabelPeaoPreto = new JLabel(imagemPeaoPreto);
-						
 						imagemLabelPeaoPreto.setBounds(xPecaPreta, yPecaPreta, 50, 50);
-						
+						Peao PeaoPreto = new Peao(xPecaPreta,yPecaPreta,Color.BLACK,imagemLabelPeaoPreto,this);
+						pecas.add(PeaoPreto);
+						imagemLabelPeaoPreto.addMouseListener(PeaoPreto);
 						tabuleiro.add(imagemLabelPeaoPreto);
 					}
 					
 				
 					
 					if(j % 2 == 0){
-						addCelulaPreta();
+						if(i==0 || i==1 || i == 6 || i == 7){
+							addCelulaPreta(new Espaco(new JLabel()));
+						}
+						else{
+							addCelulaPreta(new Espaco(null));							
+						}
 					}
 					else{
-						addCelulaBranca();
+						if(i==0 || i==1 || i == 6 || i == 7){
+							addCelulaBranca(new Espaco(new JLabel()));
+						}
+						else{
+							addCelulaBranca(new Espaco(null));							
+						}
 					}
 				}
 		
@@ -443,10 +485,26 @@ public class Tabuleiro extends JFrame {
 				xPecaPreta+=60;
 				
 			}
-			yPecaPreta+=56;
-			xPecaPreta = 50;			
-			yTabuleiro+=54;
+			yPecaPreta+=59;
+			xPecaPreta = 50;
+			yTabuleiro+=59;
 			xTabuleiro = 43;
+		}
+
+	}
+	
+	public void travaSelecao(Peca peca){
+		for(int i=0; i<pecas.size();i++){
+			if(pecas.get(i)instanceof Peao && pecas.get(i) != peca){
+				Peao p = (Peao)pecas.get(i);
+				p.setPodeSelecionar(false);
+			}
+		}
+	}
+	public void destravaSelecao(){
+		for(int i=0; i<pecas.size();i++){
+				Peca p = pecas.get(i);
+				p.setPodeSelecionar(true);
 		}
 	}
 	
@@ -462,7 +520,19 @@ public class Tabuleiro extends JFrame {
 
 	}
 
-	public boolean validarMovimento() {
+	public boolean validarMovimento(Peca peca, Object c) {
+		if(peca instanceof Peao){
+			Peao p = (Peao)peca;
+			if(c instanceof JButton){
+				JButton espaco = (JButton)c;
+				p.movimentarPeca(null,espaco, tabuleiro);
+				
+			}
+			else if(c instanceof JLabel){
+				JLabel pecaNaFrente = (JLabel)c;
+				p.movimentarPeca(pecaNaFrente,null, tabuleiro);
+			}
+		}
 		return false;
 	}
 
@@ -472,6 +542,10 @@ public class Tabuleiro extends JFrame {
 
 	public void declararEmpate() {
 
+	}
+	
+	public void repaint(){
+		super.repaint();
 	}
 	
 	public static void main(String [] args){
