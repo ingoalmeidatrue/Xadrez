@@ -31,25 +31,27 @@ public class Peao extends Peca {
 	public void movimentarPeca(JLabel pecaNaFrente,JButton espaco, JPanel tabuleiro) {
 			//Realiza o movimento caso tenha clicado num espaço	
 			if(espaco!=null && pecaNaFrente == null){
-				if(posicaoy - 59 == espaco.getY() && this.cor == Color.WHITE && espaco.getComponentCount() == 0){
-					icon.setBounds(posicaox, posicaoy-59, 50,50);
-					this.posicaoy = posicaoy-59;
+				//System.out.println(espaco.getX());
+				//System.out.println(posicaox);
+				if(posicaoy - 60 == espaco.getY() && posicaox == espaco.getX() && this.cor == Color.WHITE && espaco.getComponentCount() == 0){
+					icon.setBounds(posicaox, posicaoy-60, 50,50);
+					this.posicaoy = posicaoy-60;
 					tabuleiro.remove(espaco);
 					espaco.add(new JLabel());
 					tabuleiro.add(espaco);
-					JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaox, posicaoy+59);
+					JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaox, posicaoy+60);
 					espacoAntigo.remove(0);
 					this.selecionada = false;
 					this.tabuleiro.destravaSelecao();
 					this.tabuleiro.repaint();
 				}
-				else if(posicaoy + 59 == espaco.getY() && this.cor == Color.BLACK && espaco.getComponentCount() == 0){
-					icon.setBounds(posicaox, posicaoy+59, 50,50);
-					this.posicaoy = posicaoy+59;
+				else if(posicaoy + 60 == espaco.getY() && posicaox == espaco.getX() && this.cor == Color.BLACK && espaco.getComponentCount() == 0){
+					icon.setBounds(posicaox, posicaoy+60, 50,50);
+					this.posicaoy = posicaoy+60;
 					tabuleiro.remove(espaco);
 					espaco.add(new JLabel());
 					tabuleiro.add(espaco);
-					JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaox, posicaoy-59);
+					JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaox, posicaoy-60);
 					espacoAntigo.remove(0);
 					this.selecionada = false;
 					this.tabuleiro.destravaSelecao();
@@ -72,7 +74,7 @@ public class Peao extends Peca {
 	}
 
 	public void mouseClicked(MouseEvent e){
-		System.out.println("entrou2");
+		//System.out.println("entrou2");
 		if(this.selecionada){
 			this.selecionada = false;
 			this.tabuleiro.destravaSelecao();
