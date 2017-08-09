@@ -250,8 +250,8 @@ public class Tabuleiro extends JFrame {
 		botaoBranco.setBorder(null);
 		botaoBranco.setName(null);
 
-		if(espaco.getImagempeca() != null){
-			 botaoBranco.add(espaco.getImagempeca());			
+		if(espaco.getNome() != null){
+			 botaoBranco.add(espaco);			
 		}
 		
 	     botaoBranco.setContentAreaFilled(false);
@@ -264,13 +264,15 @@ public class Tabuleiro extends JFrame {
 	void addCelulaPreta(Espaco espaco){
 		botaoPreto = new JButton ();
 		
+
+		
 		botaoPreto.setIcon(new ImageIcon("image/brown.png"));
 		botaoPreto.setBounds(xTabuleiro, yTabuleiro, 60, 60);
 		botaoPreto.setBorder(null);
 		botaoPreto.setName(null);
 		
-		if(espaco.getImagempeca() != null){
-			botaoPreto.add(espaco.getImagempeca());			
+		if(espaco.getNome() != null){
+			botaoPreto.add(espaco);			
 		}
 		
 		botaoPreto.setContentAreaFilled(false);
@@ -401,8 +403,11 @@ public class Tabuleiro extends JFrame {
 						}
 						
 						
-						if(i==0 || i==1 || i == 6 || i == 7){
-							addCelulaBranca(new Espaco(new JLabel()));
+						if(i==0 || i==1 ){
+							addCelulaBranca(new Espaco("preto"));
+						}
+						else if(i == 6 || i == 7){
+							addCelulaBranca(new Espaco("branco"));
 						}
 						else{
 							addCelulaBranca(new Espaco(null));							
@@ -441,8 +446,11 @@ public class Tabuleiro extends JFrame {
 							
 							tabuleiro.add(imagemLabelTorre2Preto);
 						}
-						if(i==0 || i==1 || i == 6 || i == 7){
-							addCelulaPreta(new Espaco(new JLabel()));
+						if(i==0 || i==1){
+							addCelulaPreta(new Espaco("preto"));
+						}
+						else if( i == 6 || i == 7){
+							addCelulaPreta(new Espaco("branco"));
 						}
 						else{
 							addCelulaPreta(new Espaco(null));							
@@ -464,16 +472,22 @@ public class Tabuleiro extends JFrame {
 				
 					
 					if(j % 2 == 0){
-						if(i==0 || i==1 || i == 6 || i == 7){
-							addCelulaPreta(new Espaco(new JLabel()));
+						if(i==0 || i==1){
+							addCelulaPreta(new Espaco("preto"));
+						}
+						else if(i == 6 || i == 7){
+							addCelulaPreta(new Espaco("branco"));
 						}
 						else{
 							addCelulaPreta(new Espaco(null));							
 						}
 					}
 					else{
-						if(i==0 || i==1 || i == 6 || i == 7){
-							addCelulaBranca(new Espaco(new JLabel()));
+						if(i==0 || i==1){
+							addCelulaBranca(new Espaco("preto"));
+						}
+						else if(i == 6 || i == 7){
+							addCelulaBranca(new Espaco("branco"));
 						}
 						else{
 							addCelulaBranca(new Espaco(null));							
