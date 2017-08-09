@@ -137,7 +137,7 @@ public class Tabuleiro extends JFrame {
 	private JButton botaoSair;
 	
 	//coordenadas iniciais
-	int xTabuleiro = 43, yTabuleiro = 45, xPecaPreta = 50, yPecaPreta = 45,xPecaBranca = 51,yPecaBranca = 399;
+	int xTabuleiro = 50, yTabuleiro = 50, xPecaPreta = 50, yPecaPreta = 50,xPecaBranca = 50,yPecaBranca = 410;
 	
 		
 	//construtor do tabuleiro (serve para reiniciar jogo)
@@ -302,7 +302,7 @@ public class Tabuleiro extends JFrame {
 					//Adiciona torre 1 branca
 					if(j == 0){
 						xPecaBranca = 50;
-						yPecaBranca += 59;
+						yPecaBranca += 60;
 						imagemLabelTorre1Branco = new JLabel(imagemTorre1Branco);
 						
 						imagemLabelTorre1Branco.setBounds(xPecaBranca, yPecaBranca, 50, 50);
@@ -395,9 +395,9 @@ public class Tabuleiro extends JFrame {
 							
 							imagemLabelReiPreto.setBounds(xPecaPreta, yPecaPreta, 50, 50);
 							
-							//Rei reiPreto = new Rei(xPecaPreta,yPecaPreta,Color.BLACK,imagemLabelReiPreto,this);
-							//pecas.add(reiPreto);
-							//imagemLabelReiBranco.addMouseListener(reiPreto);
+							Rei reiPreto = new Rei(xPecaPreta,yPecaPreta,Color.BLACK,imagemLabelReiPreto,this);
+							pecas.add(reiPreto);
+							imagemLabelReiPreto.addMouseListener(reiPreto);
 							
 							tabuleiro.add(imagemLabelReiPreto);
 						}
@@ -507,10 +507,10 @@ public class Tabuleiro extends JFrame {
 				xPecaPreta+=60;
 				
 			}
-			yPecaPreta+=59;
+			yPecaPreta+=60;
 			xPecaPreta = 50;
-			yTabuleiro+=59;
-			xTabuleiro = 43;
+			yTabuleiro+=60;
+			xTabuleiro = 50;
 		}
 
 	}
