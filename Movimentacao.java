@@ -26,10 +26,10 @@ public class Movimentacao extends MouseAdapter {
 	public void mouseClicked(MouseEvent e){
 		for(int i=0; i<tabuleiro.getPecas().size();i++){
 			if(tabuleiro.getPecas().get(i)instanceof Peao){
-				Peao peca = (Peao)tabuleiro.getPecas().get(i);
+				Peao peao = (Peao)tabuleiro.getPecas().get(i);
 				
-				if(peca.getSelecionada()){
-					this.pecaEscolhida = peca;					
+				if(peao.getSelecionada()){
+					this.pecaEscolhida = peao;					
 				}
 			}
 			else if(tabuleiro.getPecas().get(i)instanceof Rei){
@@ -41,13 +41,17 @@ public class Movimentacao extends MouseAdapter {
 			}
 		}
 		if(espaco!=null){
-			JButton anterior = espaco;
-			espaco.setBackground(Color.BLUE);
 				
 			tabuleiro.validarMovimento(this.pecaEscolhida, espaco);
+			
+			//remove informacao da peca escolhida
+			this.pecaEscolhida = null;
 		}
 		else if(pecaBarra!=null){
 			tabuleiro.validarMovimento(pecaEscolhida, pecaBarra);
+			
+			//remove a informacao da peca que esta na frente
+			this.pecaBarra = null;
 		}
 	}
 
