@@ -27,8 +27,16 @@ public class Movimentacao extends MouseAdapter {
 		for(int i=0; i<tabuleiro.getPecas().size();i++){
 			if(tabuleiro.getPecas().get(i)instanceof Peao){
 				Peao peca = (Peao)tabuleiro.getPecas().get(i);
+				
 				if(peca.getSelecionada()){
 					this.pecaEscolhida = peca;					
+				}
+			}
+			else if(tabuleiro.getPecas().get(i)instanceof Rei){
+				Rei rei = (Rei)tabuleiro.getPecas().get(i);
+				
+				if(rei.getSelecionada()){
+					this.pecaEscolhida = rei;					
 				}
 			}
 		}

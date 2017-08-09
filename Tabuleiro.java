@@ -323,6 +323,10 @@ public class Tabuleiro extends JFrame {
 						
 						imagemLabelReiBranco.setBounds(xPecaBranca, yPecaBranca, 50, 50);
 						
+						Rei reiBranco = new Rei(xPecaBranca,yPecaBranca,Color.WHITE,imagemLabelReiBranco,this);
+						pecas.add(reiBranco);
+						imagemLabelReiBranco.addMouseListener(reiBranco);
+						
 						tabuleiro.add(imagemLabelReiBranco);
 					}
 					//adiciona cavalo 2 branco
@@ -390,6 +394,10 @@ public class Tabuleiro extends JFrame {
 							imagemLabelReiPreto = new JLabel(imagemReiPreto);
 							
 							imagemLabelReiPreto.setBounds(xPecaPreta, yPecaPreta, 50, 50);
+							
+							//Rei reiPreto = new Rei(xPecaPreta,yPecaPreta,Color.BLACK,imagemLabelReiPreto,this);
+							//pecas.add(reiPreto);
+							//imagemLabelReiBranco.addMouseListener(reiPreto);
 							
 							tabuleiro.add(imagemLabelReiPreto);
 						}
@@ -513,6 +521,10 @@ public class Tabuleiro extends JFrame {
 				Peao p = (Peao)pecas.get(i);
 				p.setPodeSelecionar(false);
 			}
+			else if(pecas.get(i)instanceof Rei && pecas.get(i) != peca){
+				Rei rei = (Rei)pecas.get(i);
+				rei.setPodeSelecionar(false);
+			}
 		}
 	}
 	public void destravaSelecao(){
@@ -545,6 +557,18 @@ public class Tabuleiro extends JFrame {
 			else if(c instanceof JLabel){
 				JLabel pecaNaFrente = (JLabel)c;
 				p.movimentarPeca(pecaNaFrente,null, tabuleiro);
+			}
+		}
+		else if(peca instanceof Rei){
+			Rei rei = (Rei) peca;
+			
+			if(c instanceof JButton){
+				JButton espaco = (JButton)c;
+				rei.movimentarPeca(null,espaco,tabuleiro);
+			}
+			else if(c instanceof JLabel){
+				JLabel pecaNaFrente = (JLabel)c;
+				rei.movimentarPeca(pecaNaFrente,null, tabuleiro);
 			}
 		}
 		return false;

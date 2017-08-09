@@ -1,15 +1,16 @@
+import java.awt.Component;
 import java.awt.Container;
 
 import javax.swing.JLabel;
 
-public class Espaco {
-	private JLabel imagemPeca;
+public class Espaco extends Component {
+	private String nome;
 	
-	public Espaco(JLabel peca){
-		this.imagemPeca = peca;
+	public Espaco(String nome){
+		this.nome = nome;
 	}
 
-	public JLabel getImagempeca() {
-		return imagemPeca;
+	public String getNome() {
+		return nome;
 	}
 }
