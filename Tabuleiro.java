@@ -387,6 +387,10 @@ public class Tabuleiro extends JFrame {
 							
 							imagemLabelBispo1Preto.setBounds(xPecaPreta, yPecaPreta, 50, 50);
 							
+							Bispo bispoPreto = new Bispo(xPecaPreta,yPecaPreta,Color.BLACK,imagemLabelBispo1Preto,this);
+							pecas.add(bispoPreto);
+							imagemLabelBispo1Preto.addMouseListener(bispoPreto);
+							
 							tabuleiro.add(imagemLabelBispo1Preto);
 						}
 						//adiciona rei preto
@@ -443,6 +447,10 @@ public class Tabuleiro extends JFrame {
 							imagemLabelBispo2Preto = new JLabel(imagemBispo2Preto);
 							
 							imagemLabelBispo2Preto.setBounds(xPecaPreta, yPecaPreta, 50, 50);
+							
+							Bispo bispoPreto = new Bispo(xPecaPreta,yPecaPreta,Color.BLACK,imagemLabelBispo2Preto,this);
+							pecas.add(bispoPreto);
+							imagemLabelBispo2Preto.addMouseListener(bispoPreto);
 							
 							tabuleiro.add(imagemLabelBispo2Preto);
 						}
@@ -525,6 +533,10 @@ public class Tabuleiro extends JFrame {
 				Rei rei = (Rei)pecas.get(i);
 				rei.setPodeSelecionar(false);
 			}
+			else if(pecas.get(i)instanceof Bispo && pecas.get(i) != peca){
+				Bispo bispo = (Bispo)pecas.get(i);
+				bispo.setPodeSelecionar(false);
+			}
 		}
 	}
 	public void destravaSelecao(){
@@ -569,6 +581,18 @@ public class Tabuleiro extends JFrame {
 			else if(c instanceof JLabel){
 				JLabel pecaNaFrente = (JLabel)c;
 				rei.movimentarPeca(pecaNaFrente,null, tabuleiro);
+			}
+		}
+		else if(peca instanceof Bispo){
+			Bispo bispo = (Bispo) peca;
+			
+			if(c instanceof JButton){
+				JButton espaco = (JButton)c;
+				bispo.movimentarPeca(null,espaco,tabuleiro);
+			}
+			else if(c instanceof JLabel){
+				JLabel pecaNaFrente = (JLabel)c;
+				bispo.movimentarPeca(pecaNaFrente,null, tabuleiro);
 			}
 		}
 		return false;
