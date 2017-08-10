@@ -37,7 +37,7 @@ public class Peao extends Peca {
 					icon.setBounds(posicaox, posicaoy-60, 50,50);
 					this.posicaoy = posicaoy-60;
 					tabuleiro.remove(espaco);
-					espaco.add(new JLabel());
+					espaco.add(new Espaco("branco"));
 					tabuleiro.add(espaco);
 					JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaox, posicaoy+60);
 					espacoAntigo.remove(0);
@@ -49,7 +49,7 @@ public class Peao extends Peca {
 					icon.setBounds(posicaox, posicaoy+60, 50,50);
 					this.posicaoy = posicaoy+60;
 					tabuleiro.remove(espaco);
-					espaco.add(new JLabel());
+					espaco.add(new Espaco("preto"));
 					tabuleiro.add(espaco);
 					JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaox, posicaoy-60);
 					espacoAntigo.remove(0);
