@@ -17,10 +17,10 @@ public class Rei extends Peca {
 	private Color cor;
 	
 	//booleana que diz se existe ou nao alguma peca selecionada
-	private boolean podeSelecionar = true;
+	private static boolean podeSelecionar = true;
 	
 	//booleana que diz se a peca esta selecionada
-	private boolean selecionada = false;
+	private static boolean selecionada = false;
 	
 	//imagem da peca
 	private JLabel icon;
@@ -322,16 +322,19 @@ public class Rei extends Peca {
 			this.tabuleiro.destravaSelecao();
 		}
 		else if(podeSelecionar){
+			System.out.println("entrou1");
 			this.selecionada = true;
 			tabuleiro.travaSelecao(this);
 			
 		}
 		else if(!podeSelecionar){
+			System.out.println("entrou2");
 			Movimentacao barraPeca = new Movimentacao(null, tabuleiro, null);
 			barraPeca.setPecaBarra(this.icon);
 			barraPeca.mouseClicked(e);
 		}
-		System.out.println(this.selecionada);
+		System.out.println("selecionada: "+this.selecionada);
+		System.out.println("pode selecionar: "+this.podeSelecionar);
 	}
 	
 	public boolean getSelecionada(){
@@ -352,6 +355,10 @@ public class Rei extends Peca {
 	
 	public void setPodeSelecionar(boolean podeSelecionar) {
 		this.podeSelecionar = podeSelecionar;
+	}
+	
+	public boolean getPodeSelecionar() {
+		return this.podeSelecionar;
 	}
 	
 
