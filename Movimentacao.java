@@ -46,7 +46,22 @@ public class Movimentacao extends MouseAdapter {
 					this.pecaEscolhida = bispo;					
 				}
 			}
+			else if(tabuleiro.getPecas().get(i)instanceof Rainha){
+				Rainha rainha = (Rainha)tabuleiro.getPecas().get(i);
+				
+				if(rainha.getSelecionada()){
+					this.pecaEscolhida = rainha;					
+				}
+			}
+			else if(tabuleiro.getPecas().get(i)instanceof Torre){
+				Torre torre = (Torre)tabuleiro.getPecas().get(i);
+				
+				if(torre.getSelecionada()){
+					this.pecaEscolhida = torre;					
+				}
+			}
 		}
+		
 		if(espaco!=null){
 				
 			tabuleiro.validarMovimento(this.pecaEscolhida, espaco);

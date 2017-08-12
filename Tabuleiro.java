@@ -309,6 +309,10 @@ public class Tabuleiro extends JFrame {
 						
 						imagemLabelTorre1Branco.setBounds(xPecaBranca, yPecaBranca, 50, 50);
 						
+						Torre torreBranco = new Torre(xPecaBranca,yPecaBranca,Color.WHITE,imagemLabelTorre1Branco,this);
+						pecas.add(torreBranco);
+						imagemLabelTorre1Branco.addMouseListener(torreBranco);
+						
 						tabuleiro.add(imagemLabelTorre1Branco);
 					}
 					//adiciona bispo 1 branco
@@ -357,6 +361,10 @@ public class Tabuleiro extends JFrame {
 						
 						imagemLabelRainhaBranco.setBounds(xPecaBranca, yPecaBranca, 50, 50);
 						
+						Rainha rainhaBranco = new Rainha(xPecaBranca,yPecaBranca,Color.WHITE,imagemLabelRainhaBranco,this);
+						pecas.add(rainhaBranco);
+						imagemLabelRainhaBranco.addMouseListener(rainhaBranco);
+						
 						tabuleiro.add(imagemLabelRainhaBranco);
 					}
 					//adiciona bispo 2 branco
@@ -377,6 +385,10 @@ public class Tabuleiro extends JFrame {
 						
 						imagemLabelTorre2Branco.setBounds(xPecaBranca, yPecaBranca, 50, 50);
 						
+						Torre torreBranco = new Torre(xPecaBranca,yPecaBranca,Color.WHITE,imagemLabelTorre2Branco,this);
+						pecas.add(torreBranco);
+						imagemLabelTorre2Branco.addMouseListener(torreBranco);
+						
 						tabuleiro.add(imagemLabelTorre2Branco);
 					}
 					xPecaBranca += 60;
@@ -388,6 +400,10 @@ public class Tabuleiro extends JFrame {
 							imagemLabelTorre1Preto = new JLabel(imagemTorre1Preto);
 							
 							imagemLabelTorre1Preto.setBounds(xPecaPreta, yPecaPreta, 50, 50);
+							
+							Torre torrePreto = new Torre(xPecaPreta,yPecaPreta,Color.BLACK,imagemLabelTorre1Preto,this);
+							pecas.add(torrePreto);
+							imagemLabelTorre1Preto.addMouseListener(torrePreto);
 							
 							tabuleiro.add(imagemLabelTorre1Preto);
 						}
@@ -450,6 +466,10 @@ public class Tabuleiro extends JFrame {
 							
 							imagemLabelRainhaPreto.setBounds(xPecaPreta, yPecaPreta, 50, 50);
 							
+							Rainha rainhaPreto = new Rainha(xPecaPreta,yPecaPreta,Color.BLACK,imagemLabelRainhaPreto,this);
+							pecas.add(rainhaPreto);
+							imagemLabelRainhaPreto.addMouseListener(rainhaPreto);
+							
 							tabuleiro.add(imagemLabelRainhaPreto);
 						}
 						//adiciona bispo 2 preto
@@ -470,6 +490,10 @@ public class Tabuleiro extends JFrame {
 							
 							imagemLabelTorre2Preto.setBounds(xPecaPreta, yPecaPreta, 50, 50);
 							
+							Torre torrePreto = new Torre(xPecaPreta,yPecaPreta,Color.BLACK,imagemLabelTorre2Preto,this);
+							pecas.add(torrePreto);
+							imagemLabelTorre2Preto.addMouseListener(torrePreto);
+							
 							tabuleiro.add(imagemLabelTorre2Preto);
 						}
 						if(i==0 || i==1){
@@ -489,14 +513,14 @@ public class Tabuleiro extends JFrame {
 					if(i == 1){
 						imagemLabelPeaoPreto = new JLabel(imagemPeaoPreto);
 						imagemLabelPeaoPreto.setBounds(xPecaPreta, yPecaPreta, 50, 50);
+						
 						Peao PeaoPreto = new Peao(xPecaPreta,yPecaPreta,Color.BLACK,imagemLabelPeaoPreto,this);
 						pecas.add(PeaoPreto);
 						imagemLabelPeaoPreto.addMouseListener(PeaoPreto);
+						
 						tabuleiro.add(imagemLabelPeaoPreto);
 					}
-					
-				
-					
+										
 					if(j % 2 == 0){
 						if(i==0 || i==1){
 							addCelulaPreta(new Espaco("preto"));
@@ -548,6 +572,15 @@ public class Tabuleiro extends JFrame {
 				Bispo bispo = (Bispo)pecas.get(i);
 				bispo.setPodeSelecionar(false);
 			}
+			else if(pecas.get(i)instanceof Rainha && pecas.get(i) != peca){
+				Rainha rainha = (Rainha)pecas.get(i);
+				rainha.setPodeSelecionar(false);
+			}
+			else if(pecas.get(i)instanceof Torre && pecas.get(i) != peca){
+				Torre torre = (Torre)pecas.get(i);
+				torre.setPodeSelecionar(false);
+			}
+			
 		}
 	}
 	public void destravaSelecao(){
@@ -604,6 +637,30 @@ public class Tabuleiro extends JFrame {
 			else if(c instanceof JLabel){
 				JLabel pecaNaFrente = (JLabel)c;
 				bispo.movimentarPeca(pecaNaFrente,null, tabuleiro);
+			}
+		}
+		else if(peca instanceof Rainha){
+			Rainha rainha = (Rainha) peca;
+			
+			if(c instanceof JButton){
+				JButton espaco = (JButton)c;
+				rainha.movimentarPeca(null,espaco,tabuleiro);
+			}
+			else if(c instanceof JLabel){
+				JLabel pecaNaFrente = (JLabel)c;
+				rainha.movimentarPeca(pecaNaFrente,null, tabuleiro);
+			}
+		}
+		else if(peca instanceof Torre){
+			Torre torre = (Torre) peca;
+			
+			if(c instanceof JButton){
+				JButton espaco = (JButton)c;
+				torre.movimentarPeca(null,espaco,tabuleiro);
+			}
+			else if(c instanceof JLabel){
+				JLabel pecaNaFrente = (JLabel)c;
+				torre.movimentarPeca(pecaNaFrente,null, tabuleiro);
 			}
 		}
 		return false;
