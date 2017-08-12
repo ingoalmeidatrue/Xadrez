@@ -239,7 +239,7 @@ public class Torre extends Peca {
 			
 		else if(this.cor == Color.BLACK){
 	
-			//Torre branca movimenta para cima
+			//Torre preta movimenta para cima
 			if(espaco.getY() < posicaoy && espaco.getX() == posicaox && espaco.getComponentCount() == 0){
 				//verifica se existe alguma peça no caminho da torre
 				if(verificaEspacoSuperior(espaco,tabuleiro)){
@@ -268,7 +268,7 @@ public class Torre extends Peca {
 
 		}
 		
-			//torre branca movimenta para baixo
+			//torre preta movimenta para baixo
 			else if(espaco.getY() > posicaoy && espaco.getX() == posicaox && espaco.getComponentCount() == 0){
 				//verifica se existe alguma peça no caminho da torre
 				if(verificaEspacoInferior(espaco,tabuleiro)){
@@ -298,7 +298,7 @@ public class Torre extends Peca {
 			}
 	
 			//torre branca movimenta para esquerda
-			else if(espaco.getY() == posicaoy && espaco.getX() > posicaox && espaco.getComponentCount() == 0){
+			else if(espaco.getY() == posicaoy && espaco.getX() < posicaox && espaco.getComponentCount() == 0){
 				//verifica se existe alguma peça no caminho da torre
 				if(verificaEspacoLateralEsquerda(espaco,tabuleiro)){
 		
@@ -327,7 +327,7 @@ public class Torre extends Peca {
 			}
 	
 			//torre branca movimenta para a direita
-			else if(espaco.getY() == posicaoy && espaco.getX() < posicaox && espaco.getComponentCount() == 0){
+			else if(espaco.getY() == posicaoy && espaco.getX() > posicaox && espaco.getComponentCount() == 0){
 				//verifica se existe alguma peça no caminho da torre
 				if(verificaEspacoLateralDireita(espaco,tabuleiro)){
 		
