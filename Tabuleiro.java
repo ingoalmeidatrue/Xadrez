@@ -291,9 +291,11 @@ public class Tabuleiro extends JFrame {
 					//Adiciona Peao Branco
 					imagemLabelPeaoBranco = new JLabel(imagemPeaoBranco);
 					imagemLabelPeaoBranco.setBounds(xPecaBranca, yPecaBranca, 50, 50);
+					
 					Peao PeaoBranco = new Peao(xPecaBranca,yPecaBranca,Color.WHITE,imagemLabelPeaoBranco,this);
 					pecas.add(PeaoBranco);
 					imagemLabelPeaoBranco.addMouseListener(PeaoBranco);
+					
 					tabuleiro.add(imagemLabelPeaoBranco);
 					xPecaBranca += 60;
 					
@@ -314,6 +316,10 @@ public class Tabuleiro extends JFrame {
 						imagemLabelBispo1Branco = new JLabel(imagemBispo1Branco);
 						
 						imagemLabelBispo1Branco.setBounds(xPecaBranca, yPecaBranca, 50, 50);
+						
+						Bispo bispoBranco = new Bispo(xPecaBranca,yPecaBranca,Color.WHITE,imagemLabelBispo1Branco,this);
+						pecas.add(bispoBranco);
+						imagemLabelBispo1Branco.addMouseListener(bispoBranco);
 						
 						tabuleiro.add(imagemLabelBispo1Branco);
 					}
@@ -358,6 +364,10 @@ public class Tabuleiro extends JFrame {
 						imagemLabelBispo2Branco = new JLabel(imagemBispo2Branco);
 						
 						imagemLabelBispo2Branco.setBounds(xPecaBranca, yPecaBranca, 50, 50);
+						
+						Bispo bispoBranco = new Bispo(xPecaBranca,yPecaBranca,Color.WHITE,imagemLabelBispo2Branco,this);
+						pecas.add(bispoBranco);
+						imagemLabelBispo2Branco.addMouseListener(bispoBranco);
 						
 						tabuleiro.add(imagemLabelBispo2Branco);
 					}
