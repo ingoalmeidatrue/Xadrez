@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
@@ -33,130 +34,300 @@ public class Bispo extends Peca {
 			this.tabuleiro = tabuleiro;
 	}
 	
+	private boolean verificaEspacoSuperiorEsquerda(JButton espaco,JPanel tabuleiro){
+		int posicaoAuxX = posicaox,posicaoAuxY = posicaoy;
+		
+		while(posicaoAuxX != espaco.getX() && posicaoAuxY != espaco.getY()){
+			if(tabuleiro.getComponentAt(posicaoAuxX - 60, posicaoAuxY - 60)instanceof JLabel ){
+				return false;
+			}
+			else if(tabuleiro.getComponentAt(posicaoAuxX - 60, posicaoAuxY - 60)instanceof JButton){
+				JButton espacoAux = (JButton)tabuleiro.getComponentAt(posicaoAuxX - 60, posicaoAuxY - 60);
+				System.out.println(espacoAux.getComponentCount());
+				if(espacoAux.getComponentCount() != 0){
+					System.out.println("entrou2");
+					return false;
+				}
+			}
+			posicaoAuxX = posicaoAuxX - 60;
+			posicaoAuxY = posicaoAuxY - 60;
+		}
+		return true;
+	}
+	
+	private boolean verificaEspacoSuperiorDireita(JButton espaco,JPanel tabuleiro){
+		int posicaoAuxX = posicaox,posicaoAuxY = posicaoy;
+		
+		while(posicaoAuxX != espaco.getX() && posicaoAuxY != espaco.getY()){
+			if(tabuleiro.getComponentAt(posicaoAuxX + 60, posicaoAuxY - 60)instanceof JLabel ){
+				return false;
+			}
+			else if(tabuleiro.getComponentAt(posicaoAuxX + 60, posicaoAuxY - 60)instanceof JButton){
+				JButton espacoAux = (JButton)tabuleiro.getComponentAt(posicaoAuxX - 60, posicaoAuxY - 60);
+				System.out.println(espacoAux.getComponentCount());
+				if(espacoAux.getComponentCount() != 0){
+					System.out.println("entrou2");
+					return false;
+				}
+			}
+			posicaoAuxX = posicaoAuxX + 60;
+			posicaoAuxY = posicaoAuxY - 60;
+		}
+		return true;
+	}
+	
+	
 	
 	
 	public void movimentarPeca(JLabel pecaNaFrente,JButton espaco, JPanel tabuleiro) {
-		//System.out.println(espaco.getX());
-		//System.out.println(espaco.getY());
-		if(this.cor == Color.WHITE && espaco.getComponentCount() != 0){
-			
-			//bispo branco movimenta para a diagonal superior esquerda
-			if(espaco.getX() < posicaox && espaco.getY() < posicaoy && espaco.getComponentCount() == 0){
-				if((espaco.getX() - posicaox) == (espaco.getY() - posicaoy)){
-					icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
+		
+		if(espaco!=null && pecaNaFrente == null){
+			if(this.cor == Color.WHITE){
+				
+				//bispo branco movimenta para a diagonal superior esquerda
+				if(espaco.getX() < posicaox && espaco.getY() < posicaoy && espaco.getComponentCount() == 0){
+						//verifica se clicou na mesma diagonal que o bispo esta
+						if((espaco.getX() - posicaox) == (espaco.getY() - posicaoy)){
+							
+							//verifica se existe alguma peça no caminho do bispo
+							if(verificaEspacoSuperiorEsquerda(espaco,tabuleiro)){
+							
+								icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
+							
+								int posicaoAnteriorx = posicaox;
+								int posicaoAnteriory = posicaoy;
+							
+								this.posicaoy = espaco.getY();
+								this.posicaox = espaco.getX();
+							
+								tabuleiro.remove(espaco);
+								espaco.add(new Espaco("branco"));
+								tabuleiro.add(espaco);
+								JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
+								espacoAntigo.remove(0);
+								this.selecionada = false;
+								this.tabuleiro.destravaSelecao();
+								this.tabuleiro.repaint();
+							}
+							else{
+								this.selecionada = false;
+								this.tabuleiro.destravaSelecao();
+							}
+						}
+						else{
+							this.selecionada = false;
+							this.tabuleiro.destravaSelecao();
+						}
+					}
 					
-					int posicaoAnteriorx = posicaox;
-					int posicaoAnteriory = posicaoy;
-					
-					this.posicaoy = espaco.getY();
-					this.posicaox = espaco.getX();
-					
-					tabuleiro.remove(espaco);
-					espaco.add(new Espaco("branco"));
-					tabuleiro.add(espaco);
-					JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
-					espacoAntigo.remove(0);
-					this.selecionada = false;
-					this.tabuleiro.destravaSelecao();
-					this.tabuleiro.repaint();
+				//bispo branco movimenta para a diagonal superior direita
+				else if(espaco.getX() > posicaox && espaco.getY() < posicaoy && espaco.getComponentCount() == 0){
+					if((espaco.getX() - posicaox) == (posicaoy - espaco.getY())){
+						
+						//verifica se existe alguma peça no caminho do bispo
+						if(verificaEspacoSuperiorEsquerda(espaco,tabuleiro)){
+						
+							icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
+						
+							int posicaoAnteriorx = posicaox;
+							int posicaoAnteriory = posicaoy;
+						
+							this.posicaoy = espaco.getY();
+							this.posicaox = espaco.getX();
+						
+							tabuleiro.remove(espaco);
+							espaco.add(new Espaco("branco"));
+							tabuleiro.add(espaco);
+							JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
+							espacoAntigo.remove(0);
+							this.selecionada = false;
+							this.tabuleiro.destravaSelecao();
+							this.tabuleiro.repaint();
+						}
+						else{
+							this.selecionada = false;
+							this.tabuleiro.destravaSelecao();
+						}
+						
+					}
+					else{
+						this.selecionada = false;
+						this.tabuleiro.destravaSelecao();
+					}
 				}
-				else{
-					this.selecionada = false;
-					this.tabuleiro.destravaSelecao();
+				
+				//bispo branco movimenta para a diagonal inferior esquerda
+				else if(espaco.getX() < posicaox && espaco.getY() > posicaoy && espaco.getComponentCount() == 0){
+					if((posicaox - espaco.getX()) == (espaco.getY() - posicaoy)){
+						icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
+						
+						int posicaoAnteriorx = posicaox;
+						int posicaoAnteriory = posicaoy;
+						
+						this.posicaoy = espaco.getY();
+						this.posicaox = espaco.getX();
+						
+						tabuleiro.remove(espaco);
+						espaco.add(new Espaco("branco"));
+						tabuleiro.add(espaco);
+						JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
+						espacoAntigo.remove(0);
+						this.selecionada = false;
+						this.tabuleiro.destravaSelecao();
+						this.tabuleiro.repaint();
+					}
+					else{
+						this.selecionada = false;
+						this.tabuleiro.destravaSelecao();
+					}
+				}
+				
+				//bispo branco movimenta para a diagonal inferior direita
+				else if(espaco.getX() > posicaox && espaco.getY() > posicaoy && espaco.getComponentCount() == 0){
+						if((espaco.getX() - posicaox) == (espaco.getY() - posicaoy) ){
+							
+							icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
+							
+							int posicaoAnteriorx = posicaox;
+							int posicaoAnteriory = posicaoy;
+							
+						this.posicaoy = espaco.getY();
+						this.posicaox = espaco.getX();
+						
+						tabuleiro.remove(espaco);
+						espaco.add(new Espaco("branco"));
+						tabuleiro.add(espaco);
+						JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
+						espacoAntigo.remove(0);
+						this.selecionada = false;
+						this.tabuleiro.destravaSelecao();
+						this.tabuleiro.repaint();
+					}
+					else{
+						this.selecionada = false;
+						this.tabuleiro.destravaSelecao();
+					}
 				}
 			}
-			
-			//bispo branco movimenta para a diagonal inferior direita
-			if(espaco.getX() > posicaox && espaco.getY() > posicaoy){
-				if((espaco.getX() - posicaox) == (espaco.getY() - posicaoy) && espaco.getComponentCount() == 0){
-					icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
-					
-					int posicaoAnteriorx = posicaox;
-					int posicaoAnteriory = posicaoy;
-					
-					this.posicaoy = espaco.getY();
-					this.posicaox = espaco.getX();
-					
-					tabuleiro.remove(espaco);
-					espaco.add(new Espaco("branco"));
-					tabuleiro.add(espaco);
-					JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
-					espacoAntigo.remove(0);
-					this.selecionada = false;
-					this.tabuleiro.destravaSelecao();
-					this.tabuleiro.repaint();
+			else if(this.cor == Color.BLACK){
+				
+				//bispo preto movimenta para a diagonal superior esquerda
+				if(espaco.getX() < posicaox && espaco.getY() < posicaoy && espaco.getComponentCount() == 0){
+					//System.out.println("6");
+					if((espaco.getX() - posicaox) == (espaco.getY() - posicaoy)){
+						//System.out.println("5");
+						icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
+						
+						int posicaoAnteriorx = posicaox;
+						int posicaoAnteriory = posicaoy;
+						
+						this.posicaoy = espaco.getY();
+						this.posicaox = espaco.getX();
+						
+						tabuleiro.remove(espaco);
+						espaco.add(new Espaco("preto"));
+						tabuleiro.add(espaco);
+						JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
+						espacoAntigo.remove(0);
+						this.selecionada = false;
+						this.tabuleiro.destravaSelecao();
+						this.tabuleiro.repaint();
+					}
+					else{
+						this.selecionada = false;
+						this.tabuleiro.destravaSelecao();
+					}
 				}
-				else{
-					this.selecionada = false;
-					this.tabuleiro.destravaSelecao();
+				
+				//bispo preto movimenta para a diagonal superior direita
+				else if(espaco.getX() > posicaox && espaco.getY() < posicaoy && espaco.getComponentCount() == 0){
+					if((espaco.getX() - posicaox) == (posicaoy - espaco.getY())){
+						icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
+						
+						int posicaoAnteriorx = posicaox;
+						int posicaoAnteriory = posicaoy;
+						
+						this.posicaoy = espaco.getY();
+						this.posicaox = espaco.getX();
+						
+						tabuleiro.remove(espaco);
+						espaco.add(new Espaco("preto"));
+						tabuleiro.add(espaco);
+						JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
+						espacoAntigo.remove(0);
+						this.selecionada = false;
+						this.tabuleiro.destravaSelecao();
+						this.tabuleiro.repaint();
+					}
+					else{
+						this.selecionada = false;
+						this.tabuleiro.destravaSelecao();
+					}
 				}
+				
+				//bispo preto movimenta para a diagonal inferior esquerda
+				else if(espaco.getX() < posicaox && espaco.getY() > posicaoy && espaco.getComponentCount() == 0){
+					if((posicaox - espaco.getX()) == (espaco.getY() - posicaoy)){
+						
+						icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
+						
+						int posicaoAnteriorx = posicaox;
+						int posicaoAnteriory = posicaoy;
+						
+						this.posicaoy = espaco.getY();
+						this.posicaox = espaco.getX();
+						
+						tabuleiro.remove(espaco);
+						espaco.add(new Espaco("preto"));
+						tabuleiro.add(espaco);
+						JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
+						espacoAntigo.remove(0);
+						this.selecionada = false;
+						this.tabuleiro.destravaSelecao();
+						this.tabuleiro.repaint();
+					}
+					else{
+						this.selecionada = false;
+						this.tabuleiro.destravaSelecao();
+					}
+				}
+				
+				//bispo preto movimenta para a diagonal inferior direita
+				if(espaco.getX() > posicaox && espaco.getY() > posicaoy){
+					//System.out.println("4");
+					if((espaco.getX() - posicaox) == (espaco.getY() - posicaoy) && espaco.getComponentCount() == 0){
+						//System.out.println("3");
+						icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
+						
+						int posicaoAnteriorx = posicaox;
+						int posicaoAnteriory = posicaoy;
+						
+						this.posicaoy = espaco.getY();
+						this.posicaox = espaco.getX();
+						
+						tabuleiro.remove(espaco);
+						espaco.add(new Espaco("preto"));
+						tabuleiro.add(espaco);
+						JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
+						espacoAntigo.remove(0);
+						this.selecionada = false;
+						this.tabuleiro.destravaSelecao();
+						this.tabuleiro.repaint();
+					}
+					else{
+						//System.out.println("2");
+						this.selecionada = false;
+						this.tabuleiro.destravaSelecao();
+					}
+				}
+			}
+			else{
+				//System.out.println("1");
+				this.selecionada = false;
+				this.tabuleiro.destravaSelecao();
 			}
 		}
-		else if(this.cor == Color.BLACK && espaco.getComponentCount() == 0){
-			System.out.println("Posicao X que eu estava: "+posicaox);
-			System.out.println("Posicao Y que eu estava: "+posicaoy);
-			//System.out.println("X: "+espaco.getX());
-			//System.out.println("Y: "+espaco.getY());
-			
-			//bispo preto movimenta para a diagonal superior esquerda
-			if(espaco.getX() < posicaox && espaco.getY() < posicaoy){
-				System.out.println("6");
-				if((espaco.getX() - posicaox) == (espaco.getY() - posicaoy)){
-					System.out.println("5");
-					icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
-					
-					int posicaoAnteriorx = posicaox;
-					int posicaoAnteriory = posicaoy;
-					
-					this.posicaoy = espaco.getY();
-					this.posicaox = espaco.getX();
-					
-					tabuleiro.remove(espaco);
-					espaco.add(new Espaco("preto"));
-					tabuleiro.add(espaco);
-					JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
-					espacoAntigo.remove(0);
-					this.selecionada = false;
-					this.tabuleiro.destravaSelecao();
-					this.tabuleiro.repaint();
-				}
-				else{
-					this.selecionada = false;
-					this.tabuleiro.destravaSelecao();
-				}
-			}
-			
-			//bispo preto movimenta para a diagonal inferior direita
-			if(espaco.getX() > posicaox && espaco.getY() > posicaoy){
-				System.out.println("4");
-				if((espaco.getX() - posicaox) == (espaco.getY() - posicaoy) && espaco.getComponentCount() == 0){
-					System.out.println("3");
-					icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
-					
-					int posicaoAnteriorx = posicaox;
-					int posicaoAnteriory = posicaoy;
-					
-					this.posicaoy = espaco.getY();
-					this.posicaox = espaco.getX();
-					
-					tabuleiro.remove(espaco);
-					espaco.add(new Espaco("preto"));
-					tabuleiro.add(espaco);
-					JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
-					espacoAntigo.remove(0);
-					this.selecionada = false;
-					this.tabuleiro.destravaSelecao();
-					this.tabuleiro.repaint();
-				}
-				else{
-					System.out.println("2");
-					this.selecionada = false;
-					this.tabuleiro.destravaSelecao();
-				}
-			}
-		}
-		else{
-			System.out.println("1");
+		else if(pecaNaFrente!=null){
 			this.selecionada = false;
 			this.tabuleiro.destravaSelecao();
 		}
@@ -173,7 +344,7 @@ public void mouseClicked(MouseEvent e){
 			this.tabuleiro.destravaSelecao();
 		}
 		else if(podeSelecionar){
-			System.out.println("entrou");
+			//System.out.println("entrou");
 			this.selecionada = true;
 			tabuleiro.travaSelecao(this);
 			
