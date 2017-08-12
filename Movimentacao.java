@@ -60,6 +60,13 @@ public class Movimentacao extends MouseAdapter {
 					this.pecaEscolhida = torre;					
 				}
 			}
+			else if(tabuleiro.getPecas().get(i)instanceof Cavalo){
+				Cavalo cavalo = (Cavalo)tabuleiro.getPecas().get(i);
+				
+				if(cavalo.getSelecionada()){
+					this.pecaEscolhida = cavalo;					
+				}
+			}
 		}
 		
 		if(espaco!=null){

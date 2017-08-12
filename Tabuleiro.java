@@ -345,6 +345,10 @@ public class Tabuleiro extends JFrame {
 						
 						imagemLabelCavalo2Branco.setBounds(xPecaBranca, yPecaBranca, 50, 50);
 						
+						Cavalo cavaloBranco = new Cavalo(xPecaPreta,yPecaPreta,Color.BLACK,imagemLabelCavalo2Branco,this);
+						pecas.add(cavaloBranco);
+						imagemLabelCavalo2Branco.addMouseListener(cavaloBranco);
+						
 						tabuleiro.add(imagemLabelCavalo2Branco);
 					}
 					//adiciona cavalo 1 branco
@@ -352,6 +356,10 @@ public class Tabuleiro extends JFrame {
 						imagemLabelCavalo1Branco = new JLabel(imagemCavalo1Branco);
 						
 						imagemLabelCavalo1Branco.setBounds(xPecaBranca, yPecaBranca, 50, 50);
+						
+						Cavalo cavaloBranco = new Cavalo(xPecaPreta,yPecaPreta,Color.BLACK,imagemLabelCavalo1Branco,this);
+						pecas.add(cavaloBranco);
+						imagemLabelCavalo1Branco.addMouseListener(cavaloBranco);
 						
 						tabuleiro.add(imagemLabelCavalo1Branco);
 					}
@@ -437,6 +445,10 @@ public class Tabuleiro extends JFrame {
 							
 							imagemLabelCavalo2Preto.setBounds(xPecaPreta, yPecaPreta, 50, 50);
 							
+							Cavalo cavaloPreto = new Cavalo(xPecaPreta,yPecaPreta,Color.BLACK,imagemLabelCavalo2Preto,this);
+							pecas.add(cavaloPreto);
+							imagemLabelCavalo2Preto.addMouseListener(cavaloPreto);
+							
 							tabuleiro.add(imagemLabelCavalo2Preto);
 						}
 						
@@ -457,6 +469,10 @@ public class Tabuleiro extends JFrame {
 							imagemLabelCavalo1Preto = new JLabel(imagemCavalo1Preto);
 							
 							imagemLabelCavalo1Preto.setBounds(xPecaPreta, yPecaPreta, 50, 50);
+							
+							Cavalo cavaloPreto = new Cavalo(xPecaPreta,yPecaPreta,Color.BLACK,imagemLabelCavalo1Preto,this);
+							pecas.add(cavaloPreto);
+							imagemLabelCavalo1Preto.addMouseListener(cavaloPreto);
 							
 							tabuleiro.add(imagemLabelCavalo1Preto);
 						}
@@ -580,6 +596,10 @@ public class Tabuleiro extends JFrame {
 				Torre torre = (Torre)pecas.get(i);
 				torre.setPodeSelecionar(false);
 			}
+			else if(pecas.get(i)instanceof Cavalo && pecas.get(i) != peca){
+				Cavalo cavalo = (Cavalo)pecas.get(i);
+				cavalo.setPodeSelecionar(false);
+			}
 			
 		}
 	}
@@ -661,6 +681,18 @@ public class Tabuleiro extends JFrame {
 			else if(c instanceof JLabel){
 				JLabel pecaNaFrente = (JLabel)c;
 				torre.movimentarPeca(pecaNaFrente,null, tabuleiro);
+			}
+		}
+		else if(peca instanceof Cavalo){
+			Cavalo cavalo = (Cavalo) peca;
+			
+			if(c instanceof JButton){
+				JButton espaco = (JButton)c;
+				cavalo.movimentarPeca(null,espaco,tabuleiro);
+			}
+			else if(c instanceof JLabel){
+				JLabel pecaNaFrente = (JLabel)c;
+				cavalo.movimentarPeca(pecaNaFrente,null, tabuleiro);
 			}
 		}
 		return false;

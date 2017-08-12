@@ -43,13 +43,9 @@ public class Rei extends Peca {
 	}
 
 	public void movimentarPeca(JLabel pecaNaFrente,JButton espaco, JPanel tabuleiro) {
-		//System.out.println("posicao X que quero ir: "+espaco.getX());
-		//System.out.println("posicao Y que quero ir: "+espaco.getY());
-		//System.out.println("Posicao Y que estou: "+posicaoy);
-		//System.out.println("Posicao X que estou: "+posicaox);
+		
 		if(espaco!=null && pecaNaFrente == null){
-			//System.out.println("entrou movimento para frente rei branco");
-			//System.out.println(espaco.getComponentCount());
+
 			//rei branco movimenta para frente			
 			if(posicaoy - 60 == espaco.getY() && posicaox == espaco.getX() &&  this.cor == Color.WHITE && espaco.getComponentCount() == 0){
 				icon.setBounds(posicaox, posicaoy-60, 50,50);
