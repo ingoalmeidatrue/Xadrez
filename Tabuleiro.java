@@ -25,13 +25,6 @@ public class Tabuleiro extends JFrame {
 	
 	//imagens das pecas pretas
 	private Icon imagemPeaoPreto;
-	/*private Icon imagemPeao2Preto;
-	private Icon imagemPeao3Preto;
-	private Icon imagemPeao4Preto;
-	private Icon imagemPeao5Preto;
-	private Icon imagemPeao6Preto;
-	private Icon imagemPeao7Preto;
-	private Icon imagemPeao8Preto;*/
 	
 	private Icon imagemCavalo1Preto;
 	private Icon imagemCavalo2Preto;
@@ -48,13 +41,6 @@ public class Tabuleiro extends JFrame {
 	
 	//imagens das pecas brancas
 	private Icon imagemPeaoBranco;
-	/*private Icon imagemPeao2Branco;
-	private Icon imagemPeao3Branco;
-	private Icon imagemPeao4Branco;
-	private Icon imagemPeao5Branco;
-	private Icon imagemPeao6Branco;
-	private Icon imagemPeao7Branco;
-	private Icon imagemPeao8Branco;*/
 		
 	private Icon imagemCavalo1Branco;
 	private Icon imagemCavalo2Branco;
@@ -72,13 +58,6 @@ public class Tabuleiro extends JFrame {
 	
 	//Label pretos
 	private JLabel imagemLabelPeaoPreto;
-	/*private JLabel imagemLabelPeao2Preto;
-	private JLabel imagemLabelPeao3Preto;
-	private JLabel imagemLabelPeao4Preto;
-	private JLabel imagemLabelPeao5Preto;
-	private JLabel imagemLabelPeao6Preto;
-	private JLabel imagemLabelPeao7Preto;
-	private JLabel imagemLabelPeao8Preto;*/
 	
 	private JLabel imagemLabelCavalo1Preto;
 	private JLabel imagemLabelCavalo2Preto;
@@ -95,13 +74,7 @@ public class Tabuleiro extends JFrame {
 	
 	//Label brancos
 	private JLabel imagemLabelPeaoBranco;
-	/*private JLabel imagemLabelPeao2Branco;
-	private JLabel imagemLabelPeao3Branco;
-	private JLabel imagemLabelPeao4Branco;
-	private JLabel imagemLabelPeao5Branco;
-	private JLabel imagemLabelPeao6Branco;
-	private JLabel imagemLabelPeao7Branco;
-	private JLabel imagemLabelPeao8Branco;*/
+
 		
 	private JLabel imagemLabelCavalo1Branco;
 	private JLabel imagemLabelCavalo2Branco;
@@ -154,14 +127,7 @@ public class Tabuleiro extends JFrame {
 		
 		//criando novas instancias de imagens das pecas pretas
 		imagemPeaoPreto = new ImageIcon("image/peaoPreto.png");
-		/*imagemPeao2Preto = new ImageIcon("image/peaoPreto.png");
-		imagemPeao3Preto = new ImageIcon("image/peaoPreto.png");
-		imagemPeao4Preto = new ImageIcon("image/peaoPreto.png");
-		imagemPeao5Preto = new ImageIcon("image/peaoPreto.png");
-		imagemPeao6Preto = new ImageIcon("image/peaoPreto.png");
-		imagemPeao7Preto = new ImageIcon("image/peaoPreto.png");
-		imagemPeao8Preto = new ImageIcon("image/peaoPreto.png");*/
-		
+
 		imagemCavalo1Preto = new ImageIcon("image/cavaloPreto.png");
 		imagemCavalo2Preto = new ImageIcon("image/cavaloPreto.png");
 		
@@ -176,13 +142,6 @@ public class Tabuleiro extends JFrame {
 		
 		//criando novas instancias de imagens das pecas pretas
 		imagemPeaoBranco = new ImageIcon("image/peaoBranco.png");
-		/*imagemPeao2Branco = new ImageIcon("image/peaoBranco.png");
-		imagemPeao3Branco = new ImageIcon("image/peaoBranco.png");
-		imagemPeao4Branco = new ImageIcon("image/peaoBranco.png");
-		imagemPeao5Branco = new ImageIcon("image/peaoBranco.png");
-		imagemPeao6Branco = new ImageIcon("image/peaoBranco.png");
-		imagemPeao7Branco = new ImageIcon("image/peaoBranco.png");
-		imagemPeao8Branco = new ImageIcon("image/peaoBranco.png");*/
 				
 		imagemCavalo1Branco = new ImageIcon("image/cavaloBranco.png");
 		imagemCavalo2Branco = new ImageIcon("image/cavaloBranco.png");
