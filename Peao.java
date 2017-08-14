@@ -150,7 +150,6 @@ public class Peao extends Peca {
 	}
 
 	public void mouseClicked(MouseEvent e){
-		//System.out.println("entrou2");
 		if(this.selecionada){
 			this.selecionada = false;
 			this.tabuleiro.destravaSelecao();

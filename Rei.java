@@ -58,7 +58,7 @@ public class Rei extends Peca {
 				this.selecionada = false;
 				this.tabuleiro.destravaSelecao();
 				this.tabuleiro.repaint();
-				//System.out.println(selecionada);
+				
 			}
 			
 			//rei branco movimenta para tras
@@ -322,19 +322,15 @@ public class Rei extends Peca {
 			this.tabuleiro.destravaSelecao();
 		}
 		else if(podeSelecionar){
-			//System.out.println("entrou1");
 			this.selecionada = true;
 			tabuleiro.travaSelecao(this);
 			
 		}
 		else if(!podeSelecionar){
-			//System.out.println("entrou2");
 			Movimentacao barraPeca = new Movimentacao(null, tabuleiro, null);
 			barraPeca.setPecaBarra(this.icon);
 			barraPeca.mouseClicked(e);
 		}
-		//System.out.println("selecionada: "+this.selecionada);
-		//System.out.println("pode selecionar: "+this.podeSelecionar);
 	}
 	
 	public boolean getSelecionada(){

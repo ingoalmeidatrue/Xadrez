@@ -46,9 +46,7 @@ public class Torre extends Peca {
 	    		}
 	    		else if(tabuleiro.getComponentAt(posicaoAuxX, posicaoAuxY - 60)instanceof JButton){
 	    			JButton espacoAux = (JButton)tabuleiro.getComponentAt(posicaoAuxX, posicaoAuxY - 60);
-	    			System.out.println(espacoAux.getComponentCount());
 	    			if(espacoAux.getComponentCount() != 0){
-	    				//System.out.println("entrou2");
 	    				return false;
 	    			}
 	    		}
@@ -66,9 +64,7 @@ public class Torre extends Peca {
 				}
 				else if(tabuleiro.getComponentAt(posicaoAuxX, posicaoAuxY + 60)instanceof JButton){
 					JButton espacoAux = (JButton)tabuleiro.getComponentAt(posicaoAuxX, posicaoAuxY + 60);
-					System.out.println(espacoAux.getComponentCount());
 					if(espacoAux.getComponentCount() != 0){
-						//System.out.println("entrou2");
 						return false;
 					}
 				}
@@ -88,9 +84,8 @@ public class Torre extends Peca {
 			}
 			else if(tabuleiro.getComponentAt(posicaoAuxX + 60, posicaoAuxY)instanceof JButton){
 				JButton espacoAux = (JButton)tabuleiro.getComponentAt(posicaoAuxX + 60, posicaoAuxY);
-				//System.out.println(espacoAux.getComponentCount());
+				
 				if(espacoAux.getComponentCount() != 0){
-					//System.out.println("entrou2");
 					return false;
 				}
 			}
@@ -108,9 +103,8 @@ public class Torre extends Peca {
 			}
 			else if(tabuleiro.getComponentAt(posicaoAuxX - 60, posicaoAuxY)instanceof JButton){
 				JButton espacoAux = (JButton)tabuleiro.getComponentAt(posicaoAuxX - 60, posicaoAuxY);
-				System.out.println(espacoAux.getComponentCount());
+				
 				if(espacoAux.getComponentCount() != 0){
-					//System.out.println("entrou2");
 					return false;
 				}
 			}	
@@ -356,7 +350,6 @@ public class Torre extends Peca {
 			}
 		}
 		else{
-			//System.out.println("1");
 			this.selecionada = false;
 			this.tabuleiro.destravaSelecao();
 		}
@@ -383,7 +376,6 @@ public class Torre extends Peca {
 			this.tabuleiro.destravaSelecao();
 		}
 		else if(podeSelecionar){
-			//System.out.println("entrou");
 			this.selecionada = true;
 			tabuleiro.travaSelecao(this);
 			
