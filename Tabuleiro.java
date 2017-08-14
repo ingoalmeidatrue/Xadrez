@@ -163,7 +163,7 @@ public class Tabuleiro extends JFrame {
 		
 		tabuleiro = new JPanel();
 		
-		//O layout do tabuleiro é definido como nulo (por enquanto)
+		//O layout do tabuleiro ï¿½ definido como nulo (por enquanto)
 		tabuleiro.setLayout(null);
 				
 		//define tamanho e posicao dos botoes
@@ -172,7 +172,7 @@ public class Tabuleiro extends JFrame {
 		botaoRegras.setBounds(550, 596, 100, 30);
 		botaoSair.setBounds(550, 629, 100, 30);
 				
-		//adiciona ação nos botoes ao clicar com o mouse neles
+		//adiciona aï¿½ï¿½o nos botoes ao clicar com o mouse neles
 		botaoRegras.addActionListener(new ApareceJanelaRegras());
 		botaoInstrucoes.addActionListener(new ApareceJanelaInstrucoes());
 		botaoSair.addActionListener(new FechaJogo());
@@ -667,6 +667,54 @@ public class Tabuleiro extends JFrame {
 	
 	public void repaint(){
 		super.repaint();
+	}
+	
+	public static void main(String [] args){
+		new Tabuleiro();
+	}
+
+}
+=======
+import java.awt.LayoutManager;
+
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+public class Tabuleiro extends JFrame {
+
+	private Tabuleiro(){
+	}
+	
+	public void montarTabuleiro() {
+		
+	}
+	
+	public void exibirTabuleiro() {
+		
+	}
+
+	public void atualizarTabuleiro() {
+
+	}
+
+	public void reiniciarTabuleiro() {
+
+	}
+
+	public boolean validarMovimento() {
+		return false;
+	}
+
+	public boolean validarXeque() {
+		return false;
+	}
+
+	public void declararEmpate() {
+
 	}
 	
 	public static void main(String [] args){
