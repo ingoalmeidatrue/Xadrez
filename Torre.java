@@ -76,8 +76,6 @@ public class Torre extends Peca {
 	private boolean verificaEspacoLateralDireita(JButton espaco,JPanel tabuleiro){
 		int posicaoAuxX = posicaox,posicaoAuxY = posicaoy;
 		
-		System.out.println(espaco.getX() +" "+espaco.getY());
-		System.out.println(posicaox+" "+posicaoy);
 		while(posicaoAuxY == espaco.getY() && posicaoAuxX != espaco.getX()){
 			if(tabuleiro.getComponentAt(posicaoAuxX + 60, posicaoAuxY)instanceof JLabel ){
 				return false;
@@ -305,7 +303,7 @@ public class Torre extends Peca {
 					this.posicaox = espaco.getX();
 		
 					tabuleiro.remove(espaco);
-					espaco.add(new Espaco("branco"));
+					espaco.add(new Espaco("preto"));
 					tabuleiro.add(espaco);
 					JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 					espacoAntigo.remove(0);

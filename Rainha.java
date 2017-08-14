@@ -43,7 +43,6 @@ public class Rainha extends Peca {
     		}
     		else if(tabuleiro.getComponentAt(posicaoAuxX, posicaoAuxY - 60)instanceof JButton){
     			JButton espacoAux = (JButton)tabuleiro.getComponentAt(posicaoAuxX, posicaoAuxY - 60);
-    			System.out.println(espacoAux.getComponentCount());
     			if(espacoAux.getComponentCount() != 0){
     	
     				return false;
@@ -63,7 +62,6 @@ public class Rainha extends Peca {
 				}
 				else if(tabuleiro.getComponentAt(posicaoAuxX, posicaoAuxY + 60)instanceof JButton){
 					JButton espacoAux = (JButton)tabuleiro.getComponentAt(posicaoAuxX, posicaoAuxY + 60);
-					System.out.println(espacoAux.getComponentCount());
 					if(espacoAux.getComponentCount() != 0){
 						return false;
 					}
@@ -75,9 +73,7 @@ public class Rainha extends Peca {
 
 	private boolean verificaEspacoLateralDireita(JButton espaco,JPanel tabuleiro){
 		int posicaoAuxX = posicaox,posicaoAuxY = posicaoy;
-		
-		System.out.println(espaco.getX() +" "+espaco.getY());
-		System.out.println(posicaox+" "+posicaoy);
+
 		while(posicaoAuxY == espaco.getY() && posicaoAuxX != espaco.getX()){
 			if(tabuleiro.getComponentAt(posicaoAuxX + 60, posicaoAuxY)instanceof JLabel ){
 				return false;
@@ -469,7 +465,7 @@ public class Rainha extends Peca {
 							this.posicaox = espaco.getX();
 					
 							tabuleiro.remove(espaco);
-							espaco.add(new Espaco("branco"));
+							espaco.add(new Espaco("preto"));
 							tabuleiro.add(espaco);
 							JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 							espacoAntigo.remove(0);
@@ -497,7 +493,7 @@ public class Rainha extends Peca {
 							this.posicaox = espaco.getX();
 			
 							tabuleiro.remove(espaco);
-							espaco.add(new Espaco("branco"));
+							espaco.add(new Espaco("preto"));
 							tabuleiro.add(espaco);
 							JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 							espacoAntigo.remove(0);
@@ -525,7 +521,7 @@ public class Rainha extends Peca {
 							this.posicaox = espaco.getX();
 			
 							tabuleiro.remove(espaco);
-							espaco.add(new Espaco("branco"));
+							espaco.add(new Espaco("preto"));
 							tabuleiro.add(espaco);
 							JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 							espacoAntigo.remove(0);
@@ -553,7 +549,7 @@ public class Rainha extends Peca {
 							this.posicaox = espaco.getX();
 			
 							tabuleiro.remove(espaco);
-							espaco.add(new Espaco("branco"));
+							espaco.add(new Espaco("preto"));
 							tabuleiro.add(espaco);
 							JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 							espacoAntigo.remove(0);
