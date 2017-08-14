@@ -582,7 +582,7 @@ public class Tabuleiro extends JFrame {
 			else if(pecas.get(i)instanceof Rei && pecas.get(i) != peca){
 				Rei rei = (Rei)pecas.get(i);
 				rei.setPodeSelecionar(false);
-				System.out.println(rei.getPodeSelecionar());
+				
 			}
 			else if(pecas.get(i)instanceof Bispo && pecas.get(i) != peca){
 				Bispo bispo = (Bispo)pecas.get(i);

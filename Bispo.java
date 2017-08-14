@@ -44,9 +44,9 @@ public class Bispo extends Peca {
 			}
 			else if(tabuleiro.getComponentAt(posicaoAuxX - 60, posicaoAuxY - 60)instanceof JButton){
 				JButton espacoAux = (JButton)tabuleiro.getComponentAt(posicaoAuxX - 60, posicaoAuxY - 60);
-				System.out.println(espacoAux.getComponentCount());
+		
 				if(espacoAux.getComponentCount() != 0){
-					System.out.println("entrou2");
+		
 					return false;
 				}
 			}

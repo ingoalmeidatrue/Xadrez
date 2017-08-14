@@ -29,7 +29,7 @@ public class Peao extends Peca {
 	}
 	
 	public void movimentarPeca(JLabel pecaNaFrente,JButton espaco, JPanel tabuleiro) {
-			System.out.println(posicaoy);
+		
 			//Realiza o movimento caso tenha clicado num espaço	
 			if(espaco!=null && pecaNaFrente == null){
 				if(this.cor == Color.WHITE){
