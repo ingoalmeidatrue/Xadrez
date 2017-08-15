@@ -151,31 +151,32 @@ public class Peao extends Peca {
 	}
 
 	public void atacarPeca(JLabel pecaNaFrente,JButton espaco, JPanel tabuleiro) {
-		//Peao branco Ataca peca caso espaco tenha sido clicado
-		if(espaco!=null && pecaNaFrente == null && this.cor == Color.WHITE){
-			posicaoy -= 60;
-			JButton espacoAntigo;
-			if(posicaox - 60 == espaco.getX()){
-				posicaox = posicaox-60;
-				icon.setBounds(posicaox, posicaoy, 50,50);
-				espacoAntigo = (JButton) tabuleiro.getComponentAt(posicaox+61, posicaoy+60);
+		Espaco cor = (Espaco) espaco.getComponent(0);
+		//Peao branco Ataca peca caso espaco tenha sido clicado e contenha peca preta
+		if(espaco!=null && pecaNaFrente == null && this.cor == Color.WHITE && cor.getNome() == "preto"){
+				posicaoy -= 60;
+				JButton espacoAntigo;
+				if(posicaox - 60 == espaco.getX()){
+					posicaox = posicaox-60;
+					icon.setBounds(posicaox, posicaoy, 50,50);
+					espacoAntigo = (JButton) tabuleiro.getComponentAt(posicaox+61, posicaoy+60);
+				}
+				else{
+					posicaox = posicaox+ 60;
+					icon.setBounds(posicaox, posicaoy, 50, 50);
+					espacoAntigo = (JButton) tabuleiro.getComponentAt(posicaox-61, posicaoy+60);
+				}
+				tabuleiro.remove(espaco);
+				JLabel pecaComida = (JLabel)tabuleiro.getComponentAt(espaco.getX(), espaco.getY());
+				tabuleiro.remove(pecaComida);
+				tabuleiro.add(espaco);
+				espacoAntigo.remove(0);
+				this.selecionada = false;
+				this.tabuleiro.destravaSelecao();
+				this.tabuleiro.repaint();
 			}
-			else{
-				posicaox = posicaox+ 60;
-				icon.setBounds(posicaox, posicaoy, 50, 50);
-				espacoAntigo = (JButton) tabuleiro.getComponentAt(posicaox-61, posicaoy+60);
-			}
-			tabuleiro.remove(espaco);
-			JLabel pecaComida = (JLabel)tabuleiro.getComponentAt(espaco.getX(), espaco.getY());
-			tabuleiro.remove(pecaComida);
-			tabuleiro.add(espaco);
-			espacoAntigo.remove(0);
-			this.selecionada = false;
-			this.tabuleiro.destravaSelecao();
-			this.tabuleiro.repaint();
-		}
 		//Peao preto ataca a peca caso o espaco tenha sido clicado
-		else if(espaco!=null && pecaNaFrente == null && this.cor == Color.BLACK){
+		else if(espaco!=null && pecaNaFrente == null && this.cor == Color.BLACK && cor.getNome() == "branco"){
 				posicaoy += 60;
 				JButton espacoAntigo;
 				
