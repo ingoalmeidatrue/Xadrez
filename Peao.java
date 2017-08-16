@@ -283,7 +283,6 @@ public class Peao extends Peca {
 			barraPeca.setPecaBarra(this.icon);
 			barraPeca.mouseClicked(e);
 		}
-		System.out.println(this.selecionada);
 	}
 	
 	public boolean getSelecionada(){
