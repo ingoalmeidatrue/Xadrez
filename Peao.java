@@ -29,12 +29,14 @@ public class Peao extends Peca {
 	}
 	
 	public void movimentarPeca(JLabel pecaNaFrente,JButton espaco, JPanel tabuleiro) {
-		
-			//Realiza o movimento caso tenha clicado num espaço	
+			//Realiza o movimento caso tenha clicado num espaÃ§o
 			if(espaco!=null && pecaNaFrente == null){
 				if(this.cor == Color.WHITE){
+					if((posicaox + 60 == espaco.getX() || posicaox-60 == espaco.getX()) && posicaoy-60 == espaco.getY()){
+						atacarPeca(null,espaco,tabuleiro);
+					}
 					//trata primeiro movimento do peao
-					if(posicaoy == 410){
+					else if(posicaoy == 410){
 						if(posicaoy - 60 == espaco.getY() && posicaox == espaco.getX() && espaco.getComponentCount() == 0){
 							icon.setBounds(posicaox, posicaoy-60, 50,50);
 							this.posicaoy = posicaoy-60;
@@ -85,9 +87,12 @@ public class Peao extends Peca {
 					}
 				}
 					else if(this.cor == Color.BLACK){
-						
+						//ataque do peao preto
+						if((posicaox + 60 == espaco.getX() || posicaox-60 == espaco.getX()) && posicaoy+60 == espaco.getY()){
+							atacarPeca(null,espaco,tabuleiro);
+						}
 						//trata primeiro movimento do peao
-						if(posicaoy == 110){
+						else if(posicaoy == 110){
 							if(posicaoy + 60 == espaco.getY() && posicaox == espaco.getX() && espaco.getComponentCount() == 0){
 								icon.setBounds(posicaox, posicaoy+60, 50,50);
 								this.posicaoy = posicaoy+60;
@@ -138,16 +143,130 @@ public class Peao extends Peca {
 						}
 					}
 				}
-				//Se tiver uma peça na frente, deseleciona
+			else if(pecaNaFrente!= null && (posicaox + 60 == pecaNaFrente.getX() || posicaox-60 == pecaNaFrente.getX()) && posicaoy-60 == pecaNaFrente.getY() && this.cor == Color.WHITE){
+				atacarPeca(pecaNaFrente,null,tabuleiro);
+			}
+			else if(pecaNaFrente!= null && (posicaox + 60 == pecaNaFrente.getX() || posicaox-60 == pecaNaFrente.getX()) && posicaoy+60 == pecaNaFrente.getY() && this.cor == Color.BLACK){
+				atacarPeca(pecaNaFrente,null,tabuleiro);
+			}
+				//Se tiver uma peÃ§a na frente, deseleciona
 				else if(pecaNaFrente!=null){
 					this.selecionada = false;
 					this.tabuleiro.destravaSelecao();
 				}
 	}
 
-	public void atacarPeca() {
-
+	public void atacarPeca(JLabel pecaNaFrente,JButton espaco, JPanel tabuleiro) {
+		//Peao branco Ataca peca caso espaco tenha sido clicado e contenha peca preta
+		if(espaco!=null && pecaNaFrente == null){
+			Espaco cor = (Espaco) espaco.getComponent(0);
+			if(this.cor == Color.WHITE && cor.getNome() == "preto"){
+				posicaoy -= 60;
+				JButton espacoAntigo;
+				if(posicaox - 60 == espaco.getX()){
+					posicaox = posicaox-60;
+					icon.setBounds(posicaox, posicaoy, 50,50);
+					espacoAntigo = (JButton) tabuleiro.getComponentAt(posicaox+60, posicaoy+60);
+				}
+				else{
+					posicaox = posicaox+ 60;
+					icon.setBounds(posicaox, posicaoy, 50, 50);
+					espacoAntigo = (JButton) tabuleiro.getComponentAt(posicaox-60, posicaoy+60);
+				}
+				tabuleiro.remove(espaco);
+				JLabel pecaComida = (JLabel)tabuleiro.getComponentAt(espaco.getX(), espaco.getY());
+				tabuleiro.remove(pecaComida);
+				tabuleiro.add(espaco);
+				espacoAntigo.remove(0);
+				this.selecionada = false;
+				this.tabuleiro.destravaSelecao();
+				this.tabuleiro.repaint();
+			}
+			//Peao preto ataca a peca caso o espaco tenha sido clicado e contenha uma peca branca
+			else if(espaco!=null && pecaNaFrente == null && this.cor == Color.BLACK && cor.getNome() == "branco"){
+				posicaoy += 60;
+				JButton espacoAntigo;
+				JLabel pecaComida = (JLabel)tabuleiro.getComponentAt(espaco.getX(), espaco.getY());
+				
+				if(posicaox - 60 == espaco.getX()){
+					posicaox = posicaox-60;
+					icon.setBounds(posicaox, posicaoy, 50,50);
+					espacoAntigo = (JButton) tabuleiro.getComponentAt(posicaox+60, posicaoy-60);
+				}
+				else{
+					posicaox = posicaox + 60;
+					icon.setBounds(posicaox, posicaoy, 50, 50);
+					espacoAntigo = (JButton) tabuleiro.getComponentAt(posicaox-60, posicaoy-60);
+				}
+				tabuleiro.remove(espaco);
+				tabuleiro.remove(pecaComida);
+				tabuleiro.add(espaco);
+				espacoAntigo.remove(0);
+				this.selecionada = false;
+				this.tabuleiro.destravaSelecao();
+				this.tabuleiro.repaint();
+			}
+		}
+		//Peao branco ataca caso a peca tenha sido clicada e seja branca
+		else if(espaco==null && pecaNaFrente!=null && this.cor == Color.WHITE){
+			JButton espaconovo = (JButton) tabuleiro.getComponentAt(pecaNaFrente.getX()+50, pecaNaFrente.getY()+50);
+			Espaco cor = (Espaco) espaconovo.getComponent(0);
+			if(cor.getNome() == "preto"){
+				posicaoy -= 60;
+				JButton espacoAntigo;
+				if(posicaox - 60 == pecaNaFrente.getX()){
+					posicaox = posicaox-60;
+					icon.setBounds(posicaox, posicaoy, 50,50);
+					espacoAntigo = (JButton) tabuleiro.getComponentAt(posicaox+60, posicaoy+60);
+				}
+				else{
+					posicaox = posicaox+ 60;
+					icon.setBounds(posicaox, posicaoy, 50, 50);
+					espacoAntigo = (JButton) tabuleiro.getComponentAt(posicaox-60, posicaoy+60);
+				}
+				tabuleiro.remove(espaconovo);
+				JLabel pecaComida = (JLabel)tabuleiro.getComponentAt(pecaNaFrente.getX(), pecaNaFrente.getY());
+				tabuleiro.remove(pecaComida);
+				tabuleiro.add(espaconovo);
+				espacoAntigo.remove(0);
+				this.selecionada = false;
+				this.tabuleiro.destravaSelecao();
+				this.tabuleiro.repaint();
+			}
+		}
+		//Peao preto ataca caso a peca tenha sido clicada e seja preto
+		else if(espaco==null && pecaNaFrente!=null && this.cor == Color.BLACK){
+			JButton espaconovo = (JButton) tabuleiro.getComponentAt(pecaNaFrente.getX()+50, pecaNaFrente.getY()+50);
+			Espaco cor = (Espaco) espaconovo.getComponent(0);
+			JLabel pecaComida = (JLabel)tabuleiro.getComponentAt(pecaNaFrente.getX(), pecaNaFrente.getY());
+			if(cor.getNome() == "branco"){
+				posicaoy += 60;
+				JButton espacoAntigo;
+				if(posicaox - 60 == pecaNaFrente.getX()){
+					posicaox = posicaox-60;
+					icon.setBounds(posicaox, posicaoy, 50,50);
+					espacoAntigo = (JButton) tabuleiro.getComponentAt(posicaox+60, posicaoy-60);
+				}
+				else{
+					posicaox = posicaox+ 60;
+					icon.setBounds(posicaox, posicaoy, 50, 50);
+					espacoAntigo = (JButton) tabuleiro.getComponentAt(posicaox-60, posicaoy-60);
+				}
+				tabuleiro.remove(espaconovo);
+				tabuleiro.remove(pecaComida);
+				tabuleiro.add(espaconovo);
+				espacoAntigo.remove(0);
+				this.selecionada = false;
+				this.tabuleiro.destravaSelecao();
+				this.tabuleiro.repaint();
+			}
+		}
+		else{
+			this.selecionada = false;
+			this.tabuleiro.destravaSelecao();
+		}
 	}
+
 
 	public void mouseClicked(MouseEvent e){
 		if(this.selecionada){
