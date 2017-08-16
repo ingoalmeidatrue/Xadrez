@@ -45,7 +45,6 @@ public class Rei extends Peca {
 	public void movimentarPeca(JLabel pecaNaFrente,JButton espaco, JPanel tabuleiro) {
 		
 		if(espaco!=null && pecaNaFrente == null){
-			System.out.println(espaco.getX()+" "+espaco.getY());
 			if(this.cor == Color.WHITE){
 				if(espaco.getComponentCount() == 0){
 					//rei branco movimenta para frente			
@@ -302,7 +301,6 @@ public class Rei extends Peca {
 					
 					//rei preto movimenta para o lado esquerdo
 					else if(posicaoy  == espaco.getY() && posicaox - 60 == espaco.getX()){
-						System.out.println("entrou1");
 						icon.setBounds(posicaox - 60, posicaoy, 50,50);
 						
 						this.posicaox = posicaox - 60;
