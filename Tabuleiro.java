@@ -97,7 +97,12 @@ public class Tabuleiro extends JFrame {
 		
 	//construtor do tabuleiro (serve para reiniciar jogo)
 	private Tabuleiro(){
+		janelaJogo = new JFrame();
 		
+		this.MontaComponentes();
+	}
+	
+	private void MontaComponentes(){
 		botaoReiniciar = new JButton("Reiniciar");
 		botaoSair = new JButton("Sair");
 		botaoInstrucoes = new JButton("Instrucoes");
@@ -127,12 +132,7 @@ public class Tabuleiro extends JFrame {
 		imagemTorre2Branco = new ImageIcon("image/torreBranco.png");
 		imagemReiBranco = new ImageIcon("image/reiBranco.png");
 		imagemRainhaBranco = new ImageIcon("image/rainhaBranco.png");
-		
-				
-		janelaJogo = new JFrame();
-		
-		//Define o tamanho da Janela
-		janelaJogo.setSize(700, 700);
+										
 		
 		tabuleiro = new JPanel();
 		
@@ -146,7 +146,7 @@ public class Tabuleiro extends JFrame {
 		botaoSair.setBounds(550, 629, 100, 30);
 				
 		//adiciona ação nos botoes ao clicar com o mouse neles
-		botaoRegras.addActionListener(new ApareceJanelaRegras());
+		botaoRegras.addActionListener(new ApareceJanelaRegras("Janela de regras"));
 		botaoInstrucoes.addActionListener(new ApareceJanelaInstrucoes());
 		botaoSair.addActionListener(new FechaJogo());
 		botaoReiniciar.addActionListener(new ReiniciaJogo(this));		
@@ -160,14 +160,18 @@ public class Tabuleiro extends JFrame {
 				
 		tabuleiro.setBounds(10, 10, 500, 500);
 				
-		janelaJogo.setVisible(true);
-				
+		//adiciona o tabuleiro no frame
+		janelaJogo.getContentPane().add(tabuleiro);
+		
+		//Define o tamanho da Janela
+		janelaJogo.setSize(700, 700);
+		janelaJogo.setResizable(false);
+		
 		//esperar confirmacao do usuario para fechar realmente
 		janelaJogo.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		janelaJogo.addWindowListener(new ApareceJanelaFechaJogo());
-				
-		//adiciona o tabuleiro no frame
-		janelaJogo.getContentPane().add(tabuleiro);
+		
+		janelaJogo.setVisible(true);
 	}
 	
 	public ArrayList<Peca> getPecas() {
@@ -551,11 +555,17 @@ public class Tabuleiro extends JFrame {
 	}
 
 	public void reiniciarTabuleiro() {
-//		tabuleiro.
-		this.remove(tabuleiro);	
-		tabuleiro.removeAll();
-		this.repaint();
-		this.montarTabuleiro();	
+		xTabuleiro = 50; 
+		yTabuleiro = 50; 
+		xPecaPreta = 50; 
+		yPecaPreta = 50;
+		xPecaBranca = 50;
+		yPecaBranca = 410;
+		this.janelaJogo.getContentPane().remove(tabuleiro);		
+		this.janelaJogo.repaint();
+		this.MontaComponentes();
+		this.janelaJogo.repaint();
+		
 		
 	}
 
