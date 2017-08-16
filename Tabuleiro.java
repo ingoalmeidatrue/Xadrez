@@ -574,7 +574,7 @@ public class Tabuleiro extends JFrame {
 	}
 
 	public void atualizarTabuleiro() {
-
+		this.repaint();
 	}
 
 	public void reiniciarTabuleiro() {
@@ -671,6 +671,10 @@ public class Tabuleiro extends JFrame {
 	
 	public static void main(String [] args){
 		new Tabuleiro();
+	}
+
+	public ArrayList<Peca> getPecasComidas() {
+		return pecasComidas;
 	}
 
 }
