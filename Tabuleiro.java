@@ -147,7 +147,7 @@ public class Tabuleiro extends JFrame {
 				
 		//adiciona ação nos botoes ao clicar com o mouse neles
 		botaoRegras.addActionListener(new ApareceJanelaRegras("Janela de regras"));
-		botaoInstrucoes.addActionListener(new ApareceJanelaInstrucoes());
+		botaoInstrucoes.addActionListener(new ApareceJanelaInstrucoes("Janela de instruções"));
 		botaoSair.addActionListener(new FechaJogo());
 		botaoReiniciar.addActionListener(new ReiniciaJogo(this));		
 		tabuleiro.add(botaoReiniciar);
