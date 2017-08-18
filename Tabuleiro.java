@@ -136,7 +136,7 @@ public class Tabuleiro extends JFrame {
 		
 		tabuleiro = new JPanel();
 		
-		//O layout do tabuleiro é definido como nulo (por enquanto)
+		//O layout do tabuleiro Ã© definido como nulo (por enquanto)
 		tabuleiro.setLayout(null);
 				
 		//define tamanho e posicao dos botoes
@@ -145,9 +145,9 @@ public class Tabuleiro extends JFrame {
 		botaoRegras.setBounds(550, 596, 100, 30);
 		botaoSair.setBounds(550, 629, 100, 30);
 				
-		//adiciona ação nos botoes ao clicar com o mouse neles
+		//adiciona aÃ§Ã£o nos botoes ao clicar com o mouse neles
 		botaoRegras.addActionListener(new ApareceJanelaRegras("Janela de regras"));
-		botaoInstrucoes.addActionListener(new ApareceJanelaInstrucoes("Janela de instruções"));
+		botaoInstrucoes.addActionListener(new ApareceJanelaInstrucoes("Janela de instruÃ§Ãµes"));
 		botaoSair.addActionListener(new FechaJogo());
 		botaoReiniciar.addActionListener(new ReiniciaJogo(this));		
 		tabuleiro.add(botaoReiniciar);
@@ -518,7 +518,6 @@ public class Tabuleiro extends JFrame {
 			else if(pecas.get(i)instanceof Rei && pecas.get(i) != peca){
 				Rei rei = (Rei)pecas.get(i);
 				rei.setPodeSelecionar(false);
-				//System.out.println(rei.getPodeSelecionar());
 			}
 			else if(pecas.get(i)instanceof Bispo && pecas.get(i) != peca){
 				Bispo bispo = (Bispo)pecas.get(i);
