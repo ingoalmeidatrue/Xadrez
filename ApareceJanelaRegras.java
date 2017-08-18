@@ -1,12 +1,38 @@
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextPane;
+import javax.swing.ScrollPaneLayout;
 
 public class ApareceJanelaRegras implements ActionListener{
-
+	private JFrame ajuda;
+	private JScrollPane scrollPane;
+	private JTextPane textomov;
+	private JPanel painel;
+	  public ApareceJanelaRegras(String titulo){
+		  this.ajuda = new JFrame(titulo);
+	    }
 	public void actionPerformed(ActionEvent actionEvent) {
-		JOptionPane.showMessageDialog(null,"MOVIMENTAÇÃO DE PEÇAS\r\n" + 
+		this.montaJanela(); 
+		ajuda.setVisible(true);
+	}
+	
+	private void montaJanela(){
+		this.painel = new JPanel();
+		this.scrollPane = new JScrollPane();
+		this.textomov = new JTextPane();
+		this.textomov.setEditable(false);
+		this.textomov.setText("MOVIMENTAÇÃO DE PEÇAS\r\n" + 
 				"Torre - A movimentação da torre se dá somente de forma horizontal (linhas do tabuleiro) ou vertical (colunas do tabuleiro).\r\n" + 
 				"Bispo - Esta peça se movimenta somente nas diagonais do tabuleiro.\r\n" + 
 				"Dama - Uma dama pode se movimentar tanto na horizontal como na vertical (assim como uma torre) ou nas diagonais (assim como um bispo).\r\n" + 
@@ -52,6 +78,29 @@ public class ApareceJanelaRegras implements ActionListener{
 				"O \"rei afogado\" é uma posição que ocorre em duas circunstâncias ao mesmo tempo:\r\n" + 
 				"O jogador da vez não tem jogadas legais para realizar\r\n" + 
 				"O rei do jogador da vez não está em xeque e não pode movimentar nenhuma peça;\r\n" + 
-				"Quando isto acontece, se diz que o rei está \"afogado\" e a partida termina em empate.","Regras do jogo",JOptionPane.PLAIN_MESSAGE);
+				"Quando isto acontece, se diz que o rei está \"afogado\" e a partida termina em empate.");
+		GroupLayout layout = new GroupLayout(painel);
+		this.painel.setLayout(layout);
+		layout.setAutoCreateContainerGaps(true);
+		GroupLayout.SequentialGroup hGroup = layout.createSequentialGroup();
+		hGroup.addGroup(layout.createParallelGroup().addComponent(textomov));
+		layout.setHorizontalGroup(hGroup);
+		GroupLayout.SequentialGroup vGroup = layout.createSequentialGroup();
+		vGroup.addGroup(layout.createParallelGroup(Alignment.BASELINE).addComponent(textomov));
+		layout.setVerticalGroup(vGroup);
+		scrollPane.setViewportView(painel);
+		ScrollPaneLayout scrollPaneLayout = new ScrollPaneLayout(); 
+		scrollPaneLayout.setHorizontalScrollBarPolicy(ScrollPaneLayout.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		scrollPaneLayout.setVerticalScrollBarPolicy(ScrollPaneLayout.VERTICAL_SCROLLBAR_AS_NEEDED);
+		scrollPane.setLayout(scrollPaneLayout);
+		ajuda.getContentPane().add(this.scrollPane,BorderLayout.CENTER);
+		ajuda.setSize(500, 500);
+	   // ajuda.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	   /* ajuda.addWindowListener(
+         new WindowAdapter() {
+                public void windowClosing(WindowEvent e){                                        
+                    System.exit(0);                                
+                }
+            }); */ //talvez colocar no tabuleiro para melhorar o desempenho     
 	}
 }

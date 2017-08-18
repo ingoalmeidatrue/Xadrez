@@ -25,20 +25,14 @@ public class Tabuleiro extends JFrame {
 	
 	//imagens das pecas pretas
 	private Icon imagemPeaoPreto;
-	
 	private Icon imagemCavalo1Preto;
 	private Icon imagemCavalo2Preto;
-	
 	private Icon imagemTorre1Preto;
 	private Icon imagemTorre2Preto;
-	
 	private Icon imagemBispo1Preto;
 	private Icon imagemBispo2Preto;
-	
 	private Icon imagemRainhaPreto;
-	
 	private Icon imagemReiPreto;
-	
 	//imagens das pecas brancas
 	private Icon imagemPeaoBranco;
 		
@@ -58,35 +52,23 @@ public class Tabuleiro extends JFrame {
 	
 	//Label pretos
 	private JLabel imagemLabelPeaoPreto;
-	
 	private JLabel imagemLabelCavalo1Preto;
 	private JLabel imagemLabelCavalo2Preto;
-	
 	private JLabel imagemLabelBispo1Preto;
 	private JLabel imagemLabelBispo2Preto;
-	
 	private JLabel imagemLabelTorre1Preto;
 	private JLabel imagemLabelTorre2Preto;
-	
 	private JLabel imagemLabelRainhaPreto;
-	
 	private JLabel imagemLabelReiPreto;
-	
 	//Label brancos
 	private JLabel imagemLabelPeaoBranco;
-
-		
 	private JLabel imagemLabelCavalo1Branco;
 	private JLabel imagemLabelCavalo2Branco;
-		
 	private JLabel imagemLabelBispo1Branco;
 	private JLabel imagemLabelBispo2Branco;
-		
 	private JLabel imagemLabelTorre1Branco;
 	private JLabel imagemLabelTorre2Branco;
-		
 	private JLabel imagemLabelRainhaBranco;
-		
 	private JLabel imagemLabelReiBranco;
 	
 	
@@ -115,7 +97,12 @@ public class Tabuleiro extends JFrame {
 		
 	//construtor do tabuleiro (serve para reiniciar jogo)
 	private Tabuleiro(){
+		janelaJogo = new JFrame();
 		
+		this.MontaComponentes();
+	}
+	
+	private void MontaComponentes(){
 		botaoReiniciar = new JButton("Reiniciar");
 		botaoSair = new JButton("Sair");
 		botaoInstrucoes = new JButton("Instrucoes");
@@ -127,43 +114,29 @@ public class Tabuleiro extends JFrame {
 		
 		//criando novas instancias de imagens das pecas pretas
 		imagemPeaoPreto = new ImageIcon("image/peaoPreto.png");
-
 		imagemCavalo1Preto = new ImageIcon("image/cavaloPreto.png");
 		imagemCavalo2Preto = new ImageIcon("image/cavaloPreto.png");
-		
 		imagemBispo1Preto = new ImageIcon("image/bispoPreto.png");
 		imagemBispo2Preto = new ImageIcon("image/bispoPreto.png");
-		
 		imagemTorre1Preto = new ImageIcon("image/torrePreto.png");
 		imagemTorre2Preto = new ImageIcon("image/torrePreto.png");
-		
 		imagemReiPreto = new ImageIcon("image/reiPreto.png");
 		imagemRainhaPreto = new ImageIcon("image/rainhaPreto.png");
-		
 		//criando novas instancias de imagens das pecas pretas
 		imagemPeaoBranco = new ImageIcon("image/peaoBranco.png");
-				
 		imagemCavalo1Branco = new ImageIcon("image/cavaloBranco.png");
 		imagemCavalo2Branco = new ImageIcon("image/cavaloBranco.png");
-				
 		imagemBispo1Branco = new ImageIcon("image/bispoBranco.png");
 		imagemBispo2Branco = new ImageIcon("image/bispoBranco.png");
-				
 		imagemTorre1Branco = new ImageIcon("image/torreBranco.png");
 		imagemTorre2Branco = new ImageIcon("image/torreBranco.png");
-				
 		imagemReiBranco = new ImageIcon("image/reiBranco.png");
 		imagemRainhaBranco = new ImageIcon("image/rainhaBranco.png");
-		
-				
-		janelaJogo = new JFrame();
-		
-		//Define o tamanho da Janela
-		janelaJogo.setSize(700, 700);
+										
 		
 		tabuleiro = new JPanel();
 		
-		//O layout do tabuleiro � definido como nulo (por enquanto)
+		//O layout do tabuleiro é definido como nulo (por enquanto)
 		tabuleiro.setLayout(null);
 				
 		//define tamanho e posicao dos botoes
@@ -172,11 +145,11 @@ public class Tabuleiro extends JFrame {
 		botaoRegras.setBounds(550, 596, 100, 30);
 		botaoSair.setBounds(550, 629, 100, 30);
 				
-		//adiciona a��o nos botoes ao clicar com o mouse neles
-		botaoRegras.addActionListener(new ApareceJanelaRegras());
-		botaoInstrucoes.addActionListener(new ApareceJanelaInstrucoes());
+		//adiciona ação nos botoes ao clicar com o mouse neles
+		botaoRegras.addActionListener(new ApareceJanelaRegras("Janela de regras"));
+		botaoInstrucoes.addActionListener(new ApareceJanelaInstrucoes("Janela de instruções"));
 		botaoSair.addActionListener(new FechaJogo());
-				
+		botaoReiniciar.addActionListener(new ReiniciaJogo(this));		
 		tabuleiro.add(botaoReiniciar);
 		tabuleiro.add(botaoInstrucoes);
 		tabuleiro.add(botaoRegras);
@@ -187,14 +160,18 @@ public class Tabuleiro extends JFrame {
 				
 		tabuleiro.setBounds(10, 10, 500, 500);
 				
-		janelaJogo.setVisible(true);
-				
+		//adiciona o tabuleiro no frame
+		janelaJogo.getContentPane().add(tabuleiro);
+		
+		//Define o tamanho da Janela
+		janelaJogo.setSize(700, 700);
+		janelaJogo.setResizable(false);
+		
 		//esperar confirmacao do usuario para fechar realmente
 		janelaJogo.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		janelaJogo.addWindowListener(new ApareceJanelaFechaJogo());
-				
-		//adiciona o tabuleiro no frame
-		janelaJogo.getContentPane().add(tabuleiro);
+		
+		janelaJogo.setVisible(true);
 	}
 	
 	public ArrayList<Peca> getPecas() {
@@ -541,7 +518,6 @@ public class Tabuleiro extends JFrame {
 			else if(pecas.get(i)instanceof Rei && pecas.get(i) != peca){
 				Rei rei = (Rei)pecas.get(i);
 				rei.setPodeSelecionar(false);
-				
 			}
 			else if(pecas.get(i)instanceof Bispo && pecas.get(i) != peca){
 				Bispo bispo = (Bispo)pecas.get(i);
@@ -578,7 +554,18 @@ public class Tabuleiro extends JFrame {
 	}
 
 	public void reiniciarTabuleiro() {
-
+		xTabuleiro = 50; 
+		yTabuleiro = 50; 
+		xPecaPreta = 50; 
+		yPecaPreta = 50;
+		xPecaBranca = 50;
+		yPecaBranca = 410;
+		this.janelaJogo.getContentPane().remove(tabuleiro);		
+		this.janelaJogo.repaint();
+		this.MontaComponentes();
+		this.janelaJogo.repaint();
+		
+		
 	}
 
 	public boolean validarMovimento(Peca peca, Object c) {
@@ -666,6 +653,7 @@ public class Tabuleiro extends JFrame {
 	}
 	
 	public void repaint(){
+		
 		super.repaint();
 	}
 	
