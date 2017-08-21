@@ -10,6 +10,7 @@ public class Rei extends Peca {
 	//posicao da peca selecionada
 	private int posicaox;
 	private int posicaoy;
+	private boolean roque = true;
 	
 	private Tabuleiro tabuleiro;
 	
@@ -38,12 +39,48 @@ public class Rei extends Peca {
 		return false;
 	}
 
-	public void usarJogadaEspecial() {
-
+	public void usarJogadaEspecial(JLabel torre, JPanel tabuleiro) {
+		if(this.roque){
+			if(this.posicaox == 290 && this.posicaoy == 50 && this.cor == Color.BLACK){
+				if(tabuleiro.getComponentAt(350, 50) instanceof JButton && tabuleiro.getComponentAt(410, 50) instanceof JButton){
+					Torre t = (Torre)torre.getMouseListeners()[0];
+					if(t.getPosicaox() == 470 && t.getPosicaoy() == 50){
+						this.posicaox = 410;
+						t.setPosicaox(350);
+						this.icon.setBounds(posicaox, posicaoy, 50, 50);
+						JLabel tower = t.getIcon();
+						JButton espaco = (JButton)tabuleiro.getComponentAt(350, 50);
+						tabuleiro.remove(espaco);
+						tower.setBounds(t.getPosicaox(), t.getPosicaoy(), 50, 50);
+						tabuleiro.add(espaco);
+						this.tabuleiro.atualizarTabuleiro();					
+					}
+				}
+				else if(tabuleiro.getComponentAt(230, 50) instanceof JButton && tabuleiro.getComponentAt(170, 50) instanceof JButton){
+					Torre t = (Torre)torre.getMouseListeners()[0];
+					if(t.getPosicaox() == 110 && t.getPosicaoy() == 50){
+						this.posicaox = 170;
+						t.setPosicaox(230);
+						this.icon.setBounds(posicaox, posicaoy, 50, 50);
+						JLabel tower = t.getIcon();
+						JButton espaco = (JButton)tabuleiro.getComponentAt(230, 50);
+						tabuleiro.remove(espaco);
+						tower.setBounds(t.getPosicaox(), t.getPosicaoy(), 50, 50);
+						tabuleiro.add(espaco);
+						this.tabuleiro.atualizarTabuleiro();					
+					}
+				}
+			}		
+		}
 	}
 
 	public void movimentarPeca(JLabel pecaNaFrente,JButton espaco, JPanel tabuleiro) {
-		
+		if(this.cor == Color.BLACK && this.posicaox != 290 && this.posicaoy == 50){
+			this.roque = false;
+		}
+		else if(this.cor == Color.WHITE && this.posicaox != 290 && this.posicaoy == 50){
+			this.roque = false;
+		}
 		if(espaco!=null && pecaNaFrente == null){
 
 			//rei branco movimenta para frente			
@@ -310,6 +347,10 @@ public class Rei extends Peca {
 			}
 		}
 		else if(pecaNaFrente!=null){
+			if(pecaNaFrente.getMouseListeners()[0] instanceof Torre){
+				System.out.println("Entrei");
+				usarJogadaEspecial(pecaNaFrente, tabuleiro);
+			}
 			this.selecionada = false;
 			this.tabuleiro.destravaSelecao();
 		}
