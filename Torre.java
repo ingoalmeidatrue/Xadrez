@@ -40,7 +40,7 @@ public class Torre extends Peca {
 	private boolean verificaEspacoSuperior(JButton espaco,JPanel tabuleiro){
 	    	int posicaoAuxX = posicaox,posicaoAuxY = posicaoy;
 	
-	    	while(posicaoAuxY != espaco.getY() && posicaoAuxX == espaco.getX()){
+	    	while(posicaoAuxY - 60 != espaco.getY() && posicaoAuxX == espaco.getX()){
 	    		if(tabuleiro.getComponentAt(posicaoAuxX, posicaoAuxY - 60)instanceof JLabel ){
 	    			return false;
 	    		}
@@ -58,7 +58,7 @@ public class Torre extends Peca {
 	private boolean verificaEspacoInferior(JButton espaco,JPanel tabuleiro){
 			int posicaoAuxX = posicaox,posicaoAuxY = posicaoy;
 	
-			while(posicaoAuxY != espaco.getY() && posicaoAuxX == espaco.getX()){
+			while(posicaoAuxY + 60 != espaco.getY() && posicaoAuxX == espaco.getX()){
 				if(tabuleiro.getComponentAt(posicaoAuxX, posicaoAuxY + 60)instanceof JLabel ){
 					return false;
 				}
@@ -76,7 +76,7 @@ public class Torre extends Peca {
 	private boolean verificaEspacoLateralDireita(JButton espaco,JPanel tabuleiro){
 		int posicaoAuxX = posicaox,posicaoAuxY = posicaoy;
 		
-		while(posicaoAuxY == espaco.getY() && posicaoAuxX != espaco.getX()){
+		while(posicaoAuxY == espaco.getY() && posicaoAuxX + 60 != espaco.getX()){
 			if(tabuleiro.getComponentAt(posicaoAuxX + 60, posicaoAuxY)instanceof JLabel ){
 				return false;
 			}
@@ -95,7 +95,7 @@ public class Torre extends Peca {
 	private boolean verificaEspacoLateralEsquerda(JButton espaco,JPanel tabuleiro){
 		int posicaoAuxX = posicaox,posicaoAuxY = posicaoy;
 	
-		while(posicaoAuxY == espaco.getY() && posicaoAuxX != espaco.getX()){
+		while(posicaoAuxY == espaco.getY() && posicaoAuxX - 60 != espaco.getX()){
 			if(tabuleiro.getComponentAt(posicaoAuxX - 60, posicaoAuxY)instanceof JLabel ){
 				return false;
 			}
@@ -163,7 +163,7 @@ public class Torre extends Peca {
 				}
 		
 				//torre branca movimenta para baixo
-				else if(espaco.getY() > posicaoy && espaco.getX() == posicaox && espaco.getComponentCount() == 0){
+				else if(espaco.getY() > posicaoy && espaco.getX() == posicaox){
 					//verifica se existe alguma peça no caminho da torre
 					if(verificaEspacoInferior(espaco,tabuleiro)){
 		
@@ -209,7 +209,7 @@ public class Torre extends Peca {
 				}
 	
 				//torre branca movimenta para esquerda
-				else if(espaco.getY() == posicaoy && espaco.getX() < posicaox && espaco.getComponentCount() == 0){
+				else if(espaco.getY() == posicaoy && espaco.getX() < posicaox){
 					//verifica se existe alguma peça no caminho da torre
 					if(verificaEspacoLateralEsquerda(espaco,tabuleiro)){
 		
@@ -255,7 +255,7 @@ public class Torre extends Peca {
 				}
 	
 				//torre branca movimenta para a direita
-				else if(espaco.getY() == posicaoy && espaco.getX() > posicaox && espaco.getComponentCount() == 0){
+				else if(espaco.getY() == posicaoy && espaco.getX() > posicaox){
 					//verifica se existe alguma peça no caminho da torre
 					if(verificaEspacoLateralDireita(espaco,tabuleiro)){
 		
@@ -304,57 +304,96 @@ public class Torre extends Peca {
 		else if(this.cor == Color.BLACK){
 	
 			//Torre preta movimenta para cima
-			if(espaco.getY() < posicaoy && espaco.getX() == posicaox && espaco.getComponentCount() == 0){
+			if(espaco.getY() < posicaoy && espaco.getX() == posicaox){
 				//verifica se existe alguma peça no caminho da torre
 				if(verificaEspacoSuperior(espaco,tabuleiro)){
+								
+					if(espaco.getComponentCount() == 0){
+						icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
 				
-					icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
+						int posicaoAnteriorx = posicaox;
+						int posicaoAnteriory = posicaoy;
 				
-					int posicaoAnteriorx = posicaox;
-					int posicaoAnteriory = posicaoy;
+						this.posicaoy = espaco.getY();
+						this.posicaox = espaco.getX();
 				
-					this.posicaoy = espaco.getY();
-					this.posicaox = espaco.getX();
-				
-					tabuleiro.remove(espaco);
-					espaco.add(new Espaco("preto"));
-					tabuleiro.add(espaco);
-					JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
-					espacoAntigo.remove(0);
-					this.selecionada = false;
-					this.tabuleiro.destravaSelecao();
-					this.tabuleiro.repaint();
+						tabuleiro.remove(espaco);
+						espaco.add(new Espaco("preto"));
+						tabuleiro.add(espaco);
+						JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
+						espacoAntigo.remove(0);
+						this.selecionada = false;
+						this.tabuleiro.destravaSelecao();
+						this.tabuleiro.repaint();
+					}
+					//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
+					else{
+						Espaco espacoAux = (Espaco) espaco.getComponent(0);
+						
+						//clicou num espaco que tem uma peca de mesma cor
+						if(espacoAux.getNome() == "preto"){
+							this.selecionada = false;
+							this.tabuleiro.destravaSelecao();
+						}
+						
+						//clicou numa peca de outra cor para atacar
+						else{
+							this.atacarPeca(pecaNaFrente,espaco,tabuleiro);
+						}
+					}
 				}
-				else if(verificaEspacoSuperior(espaco,tabuleiro) == false){
+				//tem uma peca no caminho da torre
+				else{
 					this.selecionada = false;
 					this.tabuleiro.destravaSelecao();
 				}
 
-		}
+			}
 		
 			//torre preta movimenta para baixo
-			else if(espaco.getY() > posicaoy && espaco.getX() == posicaox && espaco.getComponentCount() == 0){
+			else if(espaco.getY() > posicaoy && espaco.getX() == posicaox){
+				
 				//verifica se existe alguma peça no caminho da torre
 				if(verificaEspacoInferior(espaco,tabuleiro)){
-		
-					icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
-		
-					int posicaoAnteriorx = posicaox;
-					int posicaoAnteriory = posicaoy;
-		
-					this.posicaoy = espaco.getY();
-					this.posicaox = espaco.getX();
-		
-					tabuleiro.remove(espaco);
-					espaco.add(new Espaco("preto"));
-					tabuleiro.add(espaco);
-					JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
-					espacoAntigo.remove(0);
-					this.selecionada = false;
-					this.tabuleiro.destravaSelecao();
-					this.tabuleiro.repaint();
+					
+					//eh um movimento
+					if(espaco.getComponentCount() == 0){
+						icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
+				
+						int posicaoAnteriorx = posicaox;
+						int posicaoAnteriory = posicaoy;
+				
+						this.posicaoy = espaco.getY();
+						this.posicaox = espaco.getX();
+				
+						tabuleiro.remove(espaco);
+						espaco.add(new Espaco("preto"));
+						tabuleiro.add(espaco);
+						JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
+						espacoAntigo.remove(0);
+						this.selecionada = false;
+						this.tabuleiro.destravaSelecao();
+						this.tabuleiro.repaint();
+					}
+					//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
+					else{
+						Espaco espacoAux = (Espaco) espaco.getComponent(0);
+						
+						//clicou num espaco que tem uma peca de mesma cor
+						if(espacoAux.getNome() == "preto"){
+							this.selecionada = false;
+							this.tabuleiro.destravaSelecao();
+						}
+						
+						//clicou numa peca de outra cor para atacar
+						else{
+							this.atacarPeca(pecaNaFrente,espaco,tabuleiro);
+						}
+					}
+					
 				}
-				else if(verificaEspacoInferior(espaco,tabuleiro) == false){
+				//tem uma peca no caminho da torre
+				else{
 					this.selecionada = false;
 					this.tabuleiro.destravaSelecao();
 				}
@@ -362,28 +401,49 @@ public class Torre extends Peca {
 			}
 	
 			//torre branca movimenta para esquerda
-			else if(espaco.getY() == posicaoy && espaco.getX() < posicaox && espaco.getComponentCount() == 0){
+			else if(espaco.getY() == posicaoy && espaco.getX() < posicaox){
+				
 				//verifica se existe alguma peça no caminho da torre
 				if(verificaEspacoLateralEsquerda(espaco,tabuleiro)){
-		
-					icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
-		
-					int posicaoAnteriorx = posicaox;
-					int posicaoAnteriory = posicaoy;
-		
-					this.posicaoy = espaco.getY();
-					this.posicaox = espaco.getX();
-		
-					tabuleiro.remove(espaco);
-					espaco.add(new Espaco("preto"));
-					tabuleiro.add(espaco);
-					JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
-					espacoAntigo.remove(0);
-					this.selecionada = false;
-					this.tabuleiro.destravaSelecao();
-					this.tabuleiro.repaint();
+					
+					//eh um movimento
+					if(espaco.getComponentCount() == 0){
+						icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
+				
+						int posicaoAnteriorx = posicaox;
+						int posicaoAnteriory = posicaoy;
+				
+						this.posicaoy = espaco.getY();
+						this.posicaox = espaco.getX();
+				
+						tabuleiro.remove(espaco);
+						espaco.add(new Espaco("preto"));
+						tabuleiro.add(espaco);
+						JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
+						espacoAntigo.remove(0);
+						this.selecionada = false;
+						this.tabuleiro.destravaSelecao();
+						this.tabuleiro.repaint();
+					}
+					//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
+					else{
+						Espaco espacoAux = (Espaco) espaco.getComponent(0);
+						
+						//clicou num espaco que tem uma peca de mesma cor
+						if(espacoAux.getNome() == "preto"){
+							this.selecionada = false;
+							this.tabuleiro.destravaSelecao();
+						}
+						
+						//clicou numa peca de outra cor para atacar
+						else{
+							this.atacarPeca(pecaNaFrente,espaco,tabuleiro);
+						}
+					}
 				}
-				else if(verificaEspacoLateralEsquerda(espaco,tabuleiro) == false){
+				
+				//tem uma peca no caminho da torre
+				else{
 					this.selecionada = false;
 					this.tabuleiro.destravaSelecao();
 				}
@@ -391,42 +451,444 @@ public class Torre extends Peca {
 			}
 	
 			//torre branca movimenta para a direita
-			else if(espaco.getY() == posicaoy && espaco.getX() > posicaox && espaco.getComponentCount() == 0){
+			else if(espaco.getY() == posicaoy && espaco.getX() > posicaox){
+				
 				//verifica se existe alguma peça no caminho da torre
 				if(verificaEspacoLateralDireita(espaco,tabuleiro)){
 		
-					icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
-		
-					int posicaoAnteriorx = posicaox;
-					int posicaoAnteriory = posicaoy;
-		
-					this.posicaoy = espaco.getY();
-					this.posicaox = espaco.getX();
-		
-					tabuleiro.remove(espaco);
-					espaco.add(new Espaco("preto"));
-					tabuleiro.add(espaco);
-					JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
-					espacoAntigo.remove(0);
-					this.selecionada = false;
-					this.tabuleiro.destravaSelecao();
-					this.tabuleiro.repaint();
+					if(espaco.getComponentCount() == 0){
+						icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
+				
+						int posicaoAnteriorx = posicaox;
+						int posicaoAnteriory = posicaoy;
+				
+						this.posicaoy = espaco.getY();
+						this.posicaox = espaco.getX();
+				
+						tabuleiro.remove(espaco);
+						espaco.add(new Espaco("preto"));
+						tabuleiro.add(espaco);
+						JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
+						espacoAntigo.remove(0);
+						this.selecionada = false;
+						this.tabuleiro.destravaSelecao();
+						this.tabuleiro.repaint();
+					}
+					//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
+					else{
+						Espaco espacoAux = (Espaco) espaco.getComponent(0);
+						
+						//clicou num espaco que tem uma peca de mesma cor
+						if(espacoAux.getNome() == "preto"){
+							this.selecionada = false;
+							this.tabuleiro.destravaSelecao();
+						}
+						
+						//clicou numa peca de outra cor para atacar
+						else{
+							this.atacarPeca(pecaNaFrente,espaco,tabuleiro);
+						}
+					}
 				}
-				else if(verificaEspacoLateralDireita(espaco,tabuleiro) == false){
+				
+				//tem uma peca no caminho da torre
+				else{
 					this.selecionada = false;
 					this.tabuleiro.destravaSelecao();
 				}
 
 			}
 		}
-		else{
-			this.selecionada = false;
-			this.tabuleiro.destravaSelecao();
-		}
 	}
 	else if(pecaNaFrente!=null){
-			this.selecionada = false;
-			this.tabuleiro.destravaSelecao();
+		espaco = (JButton) tabuleiro.getComponentAt(pecaNaFrente.getX()+50, pecaNaFrente.getY()+50);
+		
+		if(this.cor == Color.WHITE){
+			
+			//Torre branca movimenta para cima
+			if(espaco.getY() < posicaoy && espaco.getX() == posicaox){
+			
+				//verifica se existe alguma peça no caminho da torre
+				if(verificaEspacoSuperior(espaco,tabuleiro)){
+					
+					if(espaco.getComponentCount() == 0){
+						icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
+				
+						int posicaoAnteriorx = posicaox;
+						int posicaoAnteriory = posicaoy;
+				
+						this.posicaoy = espaco.getY();
+						this.posicaox = espaco.getX();
+				
+						tabuleiro.remove(espaco);
+						espaco.add(new Espaco("branco"));
+						tabuleiro.add(espaco);
+						JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
+						espacoAntigo.remove(0);
+						this.selecionada = false;
+						this.tabuleiro.destravaSelecao();
+						this.tabuleiro.repaint();
+					}
+					//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
+					else{
+						Espaco espacoAux = (Espaco) espaco.getComponent(0);
+						
+						//clicou num espaco que tem uma peca de mesma cor
+						if(espacoAux.getNome() == "branco"){
+							this.selecionada = false;
+							this.tabuleiro.destravaSelecao();
+						}
+						
+						//clicou numa peca de outra cor para atacar
+						else{
+							this.atacarPeca(pecaNaFrente,espaco,tabuleiro);
+						}
+					}
+				}
+				//tem uma peca no caminho da torre
+				else{
+					this.selecionada = false;
+					this.tabuleiro.destravaSelecao();
+				}
+			}
+	
+			//torre branca movimenta para baixo
+			else if(espaco.getY() > posicaoy && espaco.getX() == posicaox){
+				//verifica se existe alguma peça no caminho da torre
+				if(verificaEspacoInferior(espaco,tabuleiro)){
+	
+					if(espaco.getComponentCount() == 0){
+						icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
+				
+						int posicaoAnteriorx = posicaox;
+						int posicaoAnteriory = posicaoy;
+				
+						this.posicaoy = espaco.getY();
+						this.posicaox = espaco.getX();
+				
+						tabuleiro.remove(espaco);
+						espaco.add(new Espaco("branco"));
+						tabuleiro.add(espaco);
+						JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
+						espacoAntigo.remove(0);
+						this.selecionada = false;
+						this.tabuleiro.destravaSelecao();
+						this.tabuleiro.repaint();
+					}
+					//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
+					else{
+						Espaco espacoAux = (Espaco) espaco.getComponent(0);
+						
+						//clicou num espaco que tem uma peca de mesma cor
+						if(espacoAux.getNome() == "branco"){
+							this.selecionada = false;
+							this.tabuleiro.destravaSelecao();
+						}
+						
+						//clicou numa peca de outra cor para atacar
+						else{
+							this.atacarPeca(pecaNaFrente,espaco,tabuleiro);
+						}
+					}
+				}
+				//tem uma peca no caminho da torre
+				else{
+					this.selecionada = false;
+					this.tabuleiro.destravaSelecao();
+				}
+			}
+
+			//torre branca movimenta para esquerda
+			else if(espaco.getY() == posicaoy && espaco.getX() < posicaox){
+				//verifica se existe alguma peça no caminho da torre
+				if(verificaEspacoLateralEsquerda(espaco,tabuleiro)){
+	
+					if(espaco.getComponentCount() == 0){
+						icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
+				
+						int posicaoAnteriorx = posicaox;
+						int posicaoAnteriory = posicaoy;
+				
+						this.posicaoy = espaco.getY();
+						this.posicaox = espaco.getX();
+				
+						tabuleiro.remove(espaco);
+						espaco.add(new Espaco("branco"));
+						tabuleiro.add(espaco);
+						JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
+						espacoAntigo.remove(0);
+						this.selecionada = false;
+						this.tabuleiro.destravaSelecao();
+						this.tabuleiro.repaint();
+					}
+					//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
+					else{
+						Espaco espacoAux = (Espaco) espaco.getComponent(0);
+						
+						//clicou num espaco que tem uma peca de mesma cor
+						if(espacoAux.getNome() == "branco"){
+							this.selecionada = false;
+							this.tabuleiro.destravaSelecao();
+						}
+						
+						//clicou numa peca de outra cor para atacar
+						else{
+							this.atacarPeca(pecaNaFrente,espaco,tabuleiro);
+						}
+					}
+				}
+				//tem uma peca no caminho da torre
+				else{
+					this.selecionada = false;
+					this.tabuleiro.destravaSelecao();
+				}
+			}
+
+			//torre branca movimenta para a direita
+			else if(espaco.getY() == posicaoy && espaco.getX() > posicaox){
+				//verifica se existe alguma peça no caminho da torre
+				if(verificaEspacoLateralDireita(espaco,tabuleiro)){
+	
+					if(espaco.getComponentCount() == 0){
+						icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
+				
+						int posicaoAnteriorx = posicaox;
+						int posicaoAnteriory = posicaoy;
+				
+						this.posicaoy = espaco.getY();
+						this.posicaox = espaco.getX();
+				
+						tabuleiro.remove(espaco);
+						espaco.add(new Espaco("branco"));
+						tabuleiro.add(espaco);
+						JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
+						espacoAntigo.remove(0);
+						this.selecionada = false;
+						this.tabuleiro.destravaSelecao();
+						this.tabuleiro.repaint();
+					}
+					//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
+					else{
+						Espaco espacoAux = (Espaco) espaco.getComponent(0);
+						
+						//clicou num espaco que tem uma peca de mesma cor
+						if(espacoAux.getNome() == "branco"){
+							this.selecionada = false;
+							this.tabuleiro.destravaSelecao();
+						}
+						
+						//clicou numa peca de outra cor para atacar
+						else{
+							this.atacarPeca(pecaNaFrente,espaco,tabuleiro);
+						}
+					}
+				}
+				//tem uma peca no caminho da torre
+				else{
+					this.selecionada = false;
+					this.tabuleiro.destravaSelecao();
+				}
+			}
+		}
+		
+		else if(this.cor == Color.BLACK){
+	
+			//Torre preta movimenta para cima
+			if(espaco.getY() < posicaoy && espaco.getX() == posicaox){
+				//verifica se existe alguma peça no caminho da torre
+				if(verificaEspacoSuperior(espaco,tabuleiro)){
+								
+					if(espaco.getComponentCount() == 0){
+						icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
+				
+						int posicaoAnteriorx = posicaox;
+						int posicaoAnteriory = posicaoy;
+				
+						this.posicaoy = espaco.getY();
+						this.posicaox = espaco.getX();
+				
+						tabuleiro.remove(espaco);
+						espaco.add(new Espaco("preto"));
+						tabuleiro.add(espaco);
+						JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
+						espacoAntigo.remove(0);
+						this.selecionada = false;
+						this.tabuleiro.destravaSelecao();
+						this.tabuleiro.repaint();
+					}
+					//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
+					else{
+						Espaco espacoAux = (Espaco) espaco.getComponent(0);
+						
+						//clicou num espaco que tem uma peca de mesma cor
+						if(espacoAux.getNome() == "preto"){
+							this.selecionada = false;
+							this.tabuleiro.destravaSelecao();
+						}
+						
+						//clicou numa peca de outra cor para atacar
+						else{
+							this.atacarPeca(pecaNaFrente,espaco,tabuleiro);
+						}
+					}
+				}
+				//tem uma peca no caminho da torre
+				else{
+					this.selecionada = false;
+					this.tabuleiro.destravaSelecao();
+				}
+	
+			}
+		
+			//torre preta movimenta para baixo
+			else if(espaco.getY() > posicaoy && espaco.getX() == posicaox){
+				
+				//verifica se existe alguma peça no caminho da torre
+				if(verificaEspacoInferior(espaco,tabuleiro)){
+					
+					//eh um movimento
+					if(espaco.getComponentCount() == 0){
+						icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
+				
+						int posicaoAnteriorx = posicaox;
+						int posicaoAnteriory = posicaoy;
+				
+						this.posicaoy = espaco.getY();
+						this.posicaox = espaco.getX();
+				
+						tabuleiro.remove(espaco);
+						espaco.add(new Espaco("preto"));
+						tabuleiro.add(espaco);
+						JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
+						espacoAntigo.remove(0);
+						this.selecionada = false;
+						this.tabuleiro.destravaSelecao();
+						this.tabuleiro.repaint();
+					}
+					//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
+					else{
+						Espaco espacoAux = (Espaco) espaco.getComponent(0);
+						
+						//clicou num espaco que tem uma peca de mesma cor
+						if(espacoAux.getNome() == "preto"){
+							this.selecionada = false;
+							this.tabuleiro.destravaSelecao();
+						}
+						
+						//clicou numa peca de outra cor para atacar
+						else{
+							this.atacarPeca(pecaNaFrente,espaco,tabuleiro);
+						}
+					}
+					
+				}
+				//tem uma peca no caminho da torre
+				else{
+					this.selecionada = false;
+					this.tabuleiro.destravaSelecao();
+				}
+				
+			}
+	
+			//torre branca movimenta para esquerda
+			else if(espaco.getY() == posicaoy && espaco.getX() < posicaox){
+				
+				//verifica se existe alguma peça no caminho da torre
+				if(verificaEspacoLateralEsquerda(espaco,tabuleiro)){
+					
+					//eh um movimento
+					if(espaco.getComponentCount() == 0){
+						icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
+				
+						int posicaoAnteriorx = posicaox;
+						int posicaoAnteriory = posicaoy;
+				
+						this.posicaoy = espaco.getY();
+						this.posicaox = espaco.getX();
+				
+						tabuleiro.remove(espaco);
+						espaco.add(new Espaco("preto"));
+						tabuleiro.add(espaco);
+						JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
+						espacoAntigo.remove(0);
+						this.selecionada = false;
+						this.tabuleiro.destravaSelecao();
+						this.tabuleiro.repaint();
+					}
+					//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
+					else{
+						Espaco espacoAux = (Espaco) espaco.getComponent(0);
+						
+						//clicou num espaco que tem uma peca de mesma cor
+						if(espacoAux.getNome() == "preto"){
+							this.selecionada = false;
+							this.tabuleiro.destravaSelecao();
+						}
+						
+						//clicou numa peca de outra cor para atacar
+						else{
+							this.atacarPeca(pecaNaFrente,espaco,tabuleiro);
+						}
+					}
+				}
+				
+				//tem uma peca no caminho da torre
+				else{
+					this.selecionada = false;
+					this.tabuleiro.destravaSelecao();
+				}
+	
+			}
+	
+			//torre branca movimenta para a direita
+			else if(espaco.getY() == posicaoy && espaco.getX() > posicaox){
+				
+				//verifica se existe alguma peça no caminho da torre
+				if(verificaEspacoLateralDireita(espaco,tabuleiro)){
+		
+					if(espaco.getComponentCount() == 0){
+						icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
+				
+						int posicaoAnteriorx = posicaox;
+						int posicaoAnteriory = posicaoy;
+				
+						this.posicaoy = espaco.getY();
+						this.posicaox = espaco.getX();
+				
+						tabuleiro.remove(espaco);
+						espaco.add(new Espaco("preto"));
+						tabuleiro.add(espaco);
+						JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
+						espacoAntigo.remove(0);
+						this.selecionada = false;
+						this.tabuleiro.destravaSelecao();
+						this.tabuleiro.repaint();
+					}
+					//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
+					else{
+						Espaco espacoAux = (Espaco) espaco.getComponent(0);
+						
+						//clicou num espaco que tem uma peca de mesma cor
+						if(espacoAux.getNome() == "preto"){
+							this.selecionada = false;
+							this.tabuleiro.destravaSelecao();
+						}
+						
+						//clicou numa peca de outra cor para atacar
+						else{
+							this.atacarPeca(pecaNaFrente,espaco,tabuleiro);
+						}
+					}
+				}
+				
+				//tem uma peca no caminho da torre
+				else{
+					this.selecionada = false;
+					this.tabuleiro.destravaSelecao();
+				}
+	
+			}
+		}
 	}
 }
 	
