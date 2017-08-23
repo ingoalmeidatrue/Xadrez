@@ -25,8 +25,23 @@ public class Bispo extends Peca {
 		
 	//imagem da peca
 	private JLabel icon;
+	
+	public int getPosicaox() {
+		return posicaox;
+	}
 
-		
+	public void setPosicaox(int posicaox) {
+		this.posicaox = posicaox;
+	}
+
+	public int getPosicaoy() {
+		return posicaoy;
+	}
+
+	public void setPosicaoy(int posicaoy) {
+		this.posicaoy = posicaoy;
+	}
+
 	public Bispo(int posicaox, int posicaoy, Color cor, JLabel img, Tabuleiro tabuleiro){
 			this.posicaox = posicaox;
 			this.posicaoy = posicaoy;
@@ -38,7 +53,8 @@ public class Bispo extends Peca {
 	private boolean verificaEspacoSuperiorEsquerda(JButton espaco,JPanel tabuleiro){
 		int posicaoAuxX = posicaox,posicaoAuxY = posicaoy;
 		
-		while(posicaoAuxX != espaco.getX() && posicaoAuxY != espaco.getY()){
+		//a posicao que o usuario clicou nao precisa ser verificada, pois verificaremos por ultimo na funcao movimentar peca
+		while(posicaoAuxX - 60 != espaco.getX() && posicaoAuxY - 60 != espaco.getY()){
 			if(tabuleiro.getComponentAt(posicaoAuxX - 60, posicaoAuxY - 60)instanceof JLabel ){
 				return false;
 			}
@@ -46,7 +62,6 @@ public class Bispo extends Peca {
 				JButton espacoAux = (JButton)tabuleiro.getComponentAt(posicaoAuxX - 60, posicaoAuxY - 60);
 		
 				if(espacoAux.getComponentCount() != 0){
-		
 					return false;
 				}
 			}
@@ -59,7 +74,7 @@ public class Bispo extends Peca {
 	private boolean verificaEspacoSuperiorDireita(JButton espaco,JPanel tabuleiro){
 		int posicaoAuxX = posicaox,posicaoAuxY = posicaoy;
 		
-		while(posicaoAuxX != espaco.getX() && posicaoAuxY != espaco.getY()){
+		while(posicaoAuxX + 60 != espaco.getX() && posicaoAuxY - 60!= espaco.getY()){
 			if(tabuleiro.getComponentAt(posicaoAuxX + 60, posicaoAuxY - 60)instanceof JLabel ){
 				return false;
 			}
@@ -79,7 +94,7 @@ public class Bispo extends Peca {
 	private boolean verificaEspacoInferiorDireita(JButton espaco,JPanel tabuleiro){
 		int posicaoAuxX = posicaox,posicaoAuxY = posicaoy;
 	
-		while(posicaoAuxX != espaco.getX() && posicaoAuxY != espaco.getY()){
+		while(posicaoAuxX + 60!= espaco.getX() && posicaoAuxY + 60!= espaco.getY()){
 			if(tabuleiro.getComponentAt(posicaoAuxX + 60, posicaoAuxY + 60)instanceof JLabel ){
 				return false;
 			}
@@ -99,7 +114,7 @@ public class Bispo extends Peca {
 	private boolean verificaEspacoInferiorEsquerda(JButton espaco,JPanel tabuleiro){
 		int posicaoAuxX = posicaox,posicaoAuxY = posicaoy;
 		
-		while(posicaoAuxX != espaco.getX() && posicaoAuxY != espaco.getY()){
+		while(posicaoAuxX - 60 != espaco.getX() && posicaoAuxY + 60 != espaco.getY()){
 			if(tabuleiro.getComponentAt(posicaoAuxX - 60, posicaoAuxY + 60)instanceof JLabel ){
 				return false;
 			}
@@ -122,18 +137,299 @@ public class Bispo extends Peca {
 	
 	
 	public void movimentarPeca(JLabel pecaNaFrente,JButton espaco, JPanel tabuleiro) {
-		
+		//clicou no canto do espaco
 		if(espaco!=null && pecaNaFrente == null){
 			if(this.cor == Color.WHITE){
+					//diagonal superior esquerda
+					if(espaco.getX() < posicaox && espaco.getY() < posicaoy){
+							//verifica se clicou na mesma diagonal que o bispo esta
+							if((espaco.getX() - posicaox) == (espaco.getY() - posicaoy)){
+								
+								//verifica se existe alguma peça no caminho do bispo
+								if(verificaEspacoSuperiorEsquerda(espaco,tabuleiro)){
+									//eh um movimento
+									if(espaco.getComponentCount() == 0){
+								
+										icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
+									
+										int posicaoAnteriorx = posicaox;
+										int posicaoAnteriory = posicaoy;
+									
+										this.posicaoy = espaco.getY();
+										this.posicaox = espaco.getX();
+									
+										tabuleiro.remove(espaco);
+										espaco.add(new Espaco("branco"));
+										tabuleiro.add(espaco);
+										JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
+										espacoAntigo.remove(0);
+										this.selecionada = false;
+										this.tabuleiro.destravaSelecao();
+										this.tabuleiro.repaint();
+									}
+									//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
+									else{
+										Espaco espacoAux = (Espaco) espaco.getComponent(0);
+										
+										//clicou num espaco que tem uma peca de mesma cor
+										if(espacoAux.getNome() == "branco"){
+											this.selecionada = false;
+											this.tabuleiro.destravaSelecao();
+										}
+										
+										//clicou numa peca de outra cor para atacar
+										else{
+											this.atacarPeca(pecaNaFrente,espaco,tabuleiro);
+										}
+									}
+								}
+								//tem uma peca no caminho do bispo
+								else{
+									this.selecionada = false;
+									this.tabuleiro.destravaSelecao();
+								}
+							}
+							//o bispo nao clicou em sua diagonal
+							else{
+								this.selecionada = false;
+								this.tabuleiro.destravaSelecao();
+							}
+						}
+						
+					//diagonal superior direita
+					else if(espaco.getX() > posicaox && espaco.getY() < posicaoy){
+						
+						if((espaco.getX() - posicaox) == (posicaoy - espaco.getY())){
+							
+							//verifica se existe alguma peça no caminho do bispo
+							if(verificaEspacoSuperiorDireita(espaco,tabuleiro)){
+								//eh um movimento
+								if(espaco.getComponentCount() == 0){
+									icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
+								
+									int posicaoAnteriorx = posicaox;
+									int posicaoAnteriory = posicaoy;
+								
+									this.posicaoy = espaco.getY();
+									this.posicaox = espaco.getX();
+								
+									tabuleiro.remove(espaco);
+									espaco.add(new Espaco("branco"));
+									tabuleiro.add(espaco);
+									JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
+									espacoAntigo.remove(0);
+									this.selecionada = false;
+									this.tabuleiro.destravaSelecao();
+									this.tabuleiro.repaint();
+								}
+								//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
+								else{
+									Espaco espacoAux = (Espaco) espaco.getComponent(0);
+									
+									//clicou num espaco que tem uma peca de mesma cor
+									if(espacoAux.getNome() == "branco"){
+										this.selecionada = false;
+										this.tabuleiro.destravaSelecao();
+									}
+									
+									//clicou numa peca de outra cor para atacar
+									else{
+										this.atacarPeca(pecaNaFrente,espaco,tabuleiro);
+									}
+								}
+							}
+							//tem uma peca no caminho do bispo
+							else{
+								this.selecionada = false;
+								this.tabuleiro.destravaSelecao();
+							}
+							
+						}
+						//o bispo nao clicou em sua diagonal
+						else{
+							this.selecionada = false;
+							this.tabuleiro.destravaSelecao();
+						}
+					}
+					
+					//diagonal inferior esquerda
+					else if(espaco.getX() < posicaox && espaco.getY() > posicaoy){
+
+						if((posicaox - espaco.getX()) == (espaco.getY() - posicaoy)){
+
+							//verifica se existe alguma peça no caminho do bispo
+							if(verificaEspacoInferiorEsquerda(espaco,tabuleiro)){
+								//eh um movimento
+								if(espaco.getComponentCount() == 0){
+									icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
+								
+									int posicaoAnteriorx = posicaox;
+									int posicaoAnteriory = posicaoy;
+								
+									this.posicaoy = espaco.getY();
+									this.posicaox = espaco.getX();
+								
+									tabuleiro.remove(espaco);
+									espaco.add(new Espaco("branco"));
+									tabuleiro.add(espaco);
+									JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
+									espacoAntigo.remove(0);
+									this.selecionada = false;
+									this.tabuleiro.destravaSelecao();
+									this.tabuleiro.repaint();
+								}
+								//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
+								else{
+									Espaco espacoAux = (Espaco) espaco.getComponent(0);
+									
+									//clicou num espaco que tem uma peca de mesma cor
+									if(espacoAux.getNome() == "branco"){
+										this.selecionada = false;
+										this.tabuleiro.destravaSelecao();
+									}
+									
+									//clicou numa peca de outra cor para atacar
+									else{
+										this.atacarPeca(pecaNaFrente,espaco,tabuleiro);
+									}
+								}
+								
+							}
+							//tem uma peca no caminho do bispo
+							else{
+								this.selecionada = false;
+								this.tabuleiro.destravaSelecao();
+							}
+						}
+						//o bispo nao clicou em sua diagonal
+						else{
+							this.selecionada = false;
+							this.tabuleiro.destravaSelecao();
+						}
+					}
+					
+					//diagonal inferior direita
+					else if(espaco.getX() > posicaox && espaco.getY() > posicaoy){
+						
+							if((espaco.getX() - posicaox) == (espaco.getY() - posicaoy) ){
+								
+								//verifica se existe alguma peça no caminho do bispo
+								if(verificaEspacoInferiorDireita(espaco,tabuleiro)){
+									//eh um movimento
+									if(espaco.getComponentCount() == 0){
+										icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
+									
+										int posicaoAnteriorx = posicaox;
+										int posicaoAnteriory = posicaoy;
+									
+										this.posicaoy = espaco.getY();
+										this.posicaox = espaco.getX();
+									
+										tabuleiro.remove(espaco);
+										espaco.add(new Espaco("branco"));
+										tabuleiro.add(espaco);
+										JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
+										espacoAntigo.remove(0);
+										this.selecionada = false;
+										this.tabuleiro.destravaSelecao();
+										this.tabuleiro.repaint();
+									}
+									//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
+									else{
+										Espaco espacoAux = (Espaco) espaco.getComponent(0);
+										
+										//clicou num espaco que tem uma peca de mesma cor
+										if(espacoAux.getNome() == "branco"){
+											this.selecionada = false;
+											this.tabuleiro.destravaSelecao();
+										}
+										
+										//clicou numa peca de outra cor para atacar
+										else{
+											this.atacarPeca(pecaNaFrente,espaco,tabuleiro);
+										}
+									}
+								}
+								//tem uma peca no caminho do bispo
+								else{
+									this.selecionada = false;
+									this.tabuleiro.destravaSelecao();
+								}
+							}
+							//o bispo nao clicou em sua diagonal
+							else{
+								this.selecionada = false;
+								this.tabuleiro.destravaSelecao();
+							}
+						}
+			}
+			else if(this.cor == Color.BLACK){
 				
-				//bispo branco movimenta para a diagonal superior esquerda
-				if(espaco.getX() < posicaox && espaco.getY() < posicaoy && espaco.getComponentCount() == 0){
+				//diagonal superior esquerda
+				if(espaco.getX() < posicaox && espaco.getY() < posicaoy){
 						//verifica se clicou na mesma diagonal que o bispo esta
 						if((espaco.getX() - posicaox) == (espaco.getY() - posicaoy)){
 							
 							//verifica se existe alguma peça no caminho do bispo
 							if(verificaEspacoSuperiorEsquerda(espaco,tabuleiro)){
+								//eh um movimento
+								if(espaco.getComponentCount() == 0){
 							
+									icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
+								
+									int posicaoAnteriorx = posicaox;
+									int posicaoAnteriory = posicaoy;
+								
+									this.posicaoy = espaco.getY();
+									this.posicaox = espaco.getX();
+								
+									tabuleiro.remove(espaco);
+									espaco.add(new Espaco("preto"));
+									tabuleiro.add(espaco);
+									JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
+									espacoAntigo.remove(0);
+									this.selecionada = false;
+									this.tabuleiro.destravaSelecao();
+									this.tabuleiro.repaint();
+								}
+								//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
+								else{
+									Espaco espacoAux = (Espaco) espaco.getComponent(0);
+									
+									//clicou num espaco que tem uma peca de mesma cor
+									if(espacoAux.getNome() == "preto"){
+										this.selecionada = false;
+										this.tabuleiro.destravaSelecao();
+									}
+									
+									//clicou numa peca de outra cor para atacar
+									else{
+										this.atacarPeca(pecaNaFrente,espaco,tabuleiro);
+									}
+								}
+							}
+							//tem uma peca no caminho do bispo
+							else{
+								this.selecionada = false;
+								this.tabuleiro.destravaSelecao();
+							}
+						}
+						//o bispo nao clicou em sua diagonal
+						else{
+							this.selecionada = false;
+							this.tabuleiro.destravaSelecao();
+						}
+					}
+					
+				//diagonal superior direita
+				else if(espaco.getX() > posicaox && espaco.getY() < posicaoy){
+					
+					if((espaco.getX() - posicaox) == (posicaoy - espaco.getY())){
+						
+						//verifica se existe alguma peça no caminho do bispo
+						if(verificaEspacoSuperiorDireita(espaco,tabuleiro)){
+							//eh um movimento
+							if(espaco.getComponentCount() == 0){
 								icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
 							
 								int posicaoAnteriorx = posicaox;
@@ -143,7 +439,7 @@ public class Bispo extends Peca {
 								this.posicaox = espaco.getX();
 							
 								tabuleiro.remove(espaco);
-								espaco.add(new Espaco("branco"));
+								espaco.add(new Espaco("preto"));
 								tabuleiro.add(espaco);
 								JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 								espacoAntigo.remove(0);
@@ -151,285 +447,544 @@ public class Bispo extends Peca {
 								this.tabuleiro.destravaSelecao();
 								this.tabuleiro.repaint();
 							}
+							//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
 							else{
-								this.selecionada = false;
-								this.tabuleiro.destravaSelecao();
+								Espaco espacoAux = (Espaco) espaco.getComponent(0);
+								
+								//clicou num espaco que tem uma peca de mesma cor
+								if(espacoAux.getNome() == "preto"){
+									this.selecionada = false;
+									this.tabuleiro.destravaSelecao();
+								}
+								
+								//clicou numa peca de outra cor para atacar
+								else{
+									this.atacarPeca(pecaNaFrente,espaco,tabuleiro);
+								}
 							}
 						}
-						else{
-							this.selecionada = false;
-							this.tabuleiro.destravaSelecao();
-						}
-					}
-					
-				//bispo branco movimenta para a diagonal superior direita
-				else if(espaco.getX() > posicaox && espaco.getY() < posicaoy && espaco.getComponentCount() == 0){
-					
-					if((espaco.getX() - posicaox) == (posicaoy - espaco.getY())){
-						
-						//verifica se existe alguma peça no caminho do bispo
-						if(verificaEspacoSuperiorDireita(espaco,tabuleiro)){
-						
-							icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
-						
-							int posicaoAnteriorx = posicaox;
-							int posicaoAnteriory = posicaoy;
-						
-							this.posicaoy = espaco.getY();
-							this.posicaox = espaco.getX();
-						
-							tabuleiro.remove(espaco);
-							espaco.add(new Espaco("branco"));
-							tabuleiro.add(espaco);
-							JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
-							espacoAntigo.remove(0);
-							this.selecionada = false;
-							this.tabuleiro.destravaSelecao();
-							this.tabuleiro.repaint();
-						}
+						//tem uma peca no caminho do bispo
 						else{
 							this.selecionada = false;
 							this.tabuleiro.destravaSelecao();
 						}
 						
 					}
+					//o bispo nao clicou em sua diagonal
 					else{
 						this.selecionada = false;
 						this.tabuleiro.destravaSelecao();
 					}
 				}
 				
-				//bispo branco movimenta para a diagonal inferior esquerda
-				else if(espaco.getX() < posicaox && espaco.getY() > posicaoy && espaco.getComponentCount() == 0){
+				//diagonal inferior esquerda
+				else if(espaco.getX() < posicaox && espaco.getY() > posicaoy){
+
 					if((posicaox - espaco.getX()) == (espaco.getY() - posicaoy)){
-						
+
 						//verifica se existe alguma peça no caminho do bispo
 						if(verificaEspacoInferiorEsquerda(espaco,tabuleiro)){
-						
-							icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
-						
-							int posicaoAnteriorx = posicaox;
-							int posicaoAnteriory = posicaoy;
-						
-							this.posicaoy = espaco.getY();
-							this.posicaox = espaco.getX();
-						
-							tabuleiro.remove(espaco);
-							espaco.add(new Espaco("branco"));
-							tabuleiro.add(espaco);
-							JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
-							espacoAntigo.remove(0);
-							this.selecionada = false;
-							this.tabuleiro.destravaSelecao();
-							this.tabuleiro.repaint();
+							//eh um movimento
+							if(espaco.getComponentCount() == 0){
+								icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
+							
+								int posicaoAnteriorx = posicaox;
+								int posicaoAnteriory = posicaoy;
+							
+								this.posicaoy = espaco.getY();
+								this.posicaox = espaco.getX();
+							
+								tabuleiro.remove(espaco);
+								espaco.add(new Espaco("preto"));
+								tabuleiro.add(espaco);
+								JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
+								espacoAntigo.remove(0);
+								this.selecionada = false;
+								this.tabuleiro.destravaSelecao();
+								this.tabuleiro.repaint();
+							}
+							//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
+							else{
+								Espaco espacoAux = (Espaco) espaco.getComponent(0);
+								
+								//clicou num espaco que tem uma peca de mesma cor
+								if(espacoAux.getNome() == "preto"){
+									this.selecionada = false;
+									this.tabuleiro.destravaSelecao();
+								}
+								
+								//clicou numa peca de outra cor para atacar
+								else{
+									this.atacarPeca(pecaNaFrente,espaco,tabuleiro);
+								}
+							}
+							
 						}
+						//tem uma peca no caminho do bispo
 						else{
 							this.selecionada = false;
 							this.tabuleiro.destravaSelecao();
 						}
 					}
+					//o bispo nao clicou em sua diagonal
 					else{
 						this.selecionada = false;
 						this.tabuleiro.destravaSelecao();
 					}
 				}
 				
-				//bispo branco movimenta para a diagonal inferior direita
-				else if(espaco.getX() > posicaox && espaco.getY() > posicaoy && espaco.getComponentCount() == 0){
+				//diagonal inferior direita
+				else if(espaco.getX() > posicaox && espaco.getY() > posicaoy){
+					
 						if((espaco.getX() - posicaox) == (espaco.getY() - posicaoy) ){
 							
 							//verifica se existe alguma peça no caminho do bispo
 							if(verificaEspacoInferiorDireita(espaco,tabuleiro)){
-							
-								icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
-							
-								int posicaoAnteriorx = posicaox;
-								int posicaoAnteriory = posicaoy;
-							
-								this.posicaoy = espaco.getY();
-								this.posicaox = espaco.getX();
-							
-								tabuleiro.remove(espaco);
-								espaco.add(new Espaco("branco"));
-								tabuleiro.add(espaco);
-								JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
-								espacoAntigo.remove(0);
-								this.selecionada = false;
-								this.tabuleiro.destravaSelecao();
-								this.tabuleiro.repaint();
+								//eh um movimento
+								if(espaco.getComponentCount() == 0){
+									icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
+								
+									int posicaoAnteriorx = posicaox;
+									int posicaoAnteriory = posicaoy;
+								
+									this.posicaoy = espaco.getY();
+									this.posicaox = espaco.getX();
+								
+									tabuleiro.remove(espaco);
+									espaco.add(new Espaco("preto"));
+									tabuleiro.add(espaco);
+									JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
+									espacoAntigo.remove(0);
+									this.selecionada = false;
+									this.tabuleiro.destravaSelecao();
+									this.tabuleiro.repaint();
+								}
+								//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
+								else{
+									Espaco espacoAux = (Espaco) espaco.getComponent(0);
+									
+									//clicou num espaco que tem uma peca de mesma cor
+									if(espacoAux.getNome() == "preto"){
+										this.selecionada = false;
+										this.tabuleiro.destravaSelecao();
+									}
+									
+									//clicou numa peca de outra cor para atacar
+									else{
+										this.atacarPeca(pecaNaFrente,espaco,tabuleiro);
+									}
+								}
 							}
+							//tem uma peca no caminho do bispo
 							else{
 								this.selecionada = false;
 								this.tabuleiro.destravaSelecao();
 							}
 						}
-					else{
-						this.selecionada = false;
-						this.tabuleiro.destravaSelecao();
-					}
-				}
-			}
-			else if(this.cor == Color.BLACK){
-				
-				//bispo preto movimenta para a diagonal superior esquerda
-				if(espaco.getX() < posicaox && espaco.getY() < posicaoy && espaco.getComponentCount() == 0){
-
-					if((espaco.getX() - posicaox) == (espaco.getY() - posicaoy)){
-						
-						//verifica se existe alguma peça no caminho do bispo
-						if(verificaEspacoSuperiorEsquerda(espaco,tabuleiro)){
-						
-							icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
-						
-							int posicaoAnteriorx = posicaox;
-							int posicaoAnteriory = posicaoy;
-						
-							this.posicaoy = espaco.getY();
-							this.posicaox = espaco.getX();
-						
-							tabuleiro.remove(espaco);
-							espaco.add(new Espaco("preto"));
-							tabuleiro.add(espaco);
-							JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
-							espacoAntigo.remove(0);
-							this.selecionada = false;
-							this.tabuleiro.destravaSelecao();
-							this.tabuleiro.repaint();
-						}
+						//o bispo nao clicou em sua diagonal
 						else{
 							this.selecionada = false;
 							this.tabuleiro.destravaSelecao();
 						}
-		
 					}
-					else{
-						this.selecionada = false;
-						this.tabuleiro.destravaSelecao();
-					}
+			}
+		}
+		//clicou no JLabel
+		else if(pecaNaFrente!=null){
+			
+			espaco = (JButton) tabuleiro.getComponentAt(pecaNaFrente.getX()+50, pecaNaFrente.getY()+50);
+			
+			if(this.cor == Color.WHITE){
+				//diagonal superior esquerda
+				if(espaco.getX() < posicaox && espaco.getY() < posicaoy){
+						//verifica se clicou na mesma diagonal que o bispo esta
+						if((espaco.getX() - posicaox) == (espaco.getY() - posicaoy)){
+							
+							//verifica se existe alguma peça no caminho do bispo
+							if(verificaEspacoSuperiorEsquerda(espaco,tabuleiro)){
+								
+								Espaco espacoAux = (Espaco) espaco.getComponent(0);
+								
+								//clicou num espaco que tem uma peca de mesma cor
+								if(espacoAux.getNome() == "branco"){
+									this.selecionada = false;
+									this.tabuleiro.destravaSelecao();
+								}
+								
+								//clicou numa peca de outra cor para atacar
+								else{
+									this.atacarPeca(pecaNaFrente,espaco,tabuleiro);
+								}
+							}
+							//tem uma peca no caminho do bispo
+							else{
+								this.selecionada = false;
+								this.tabuleiro.destravaSelecao();
+							}
+						}
+						//o bispo nao clicou em sua diagonal
+						else{
+							this.selecionada = false;
+							this.tabuleiro.destravaSelecao();
+						}
 				}
 				
-				//bispo preto movimenta para a diagonal superior direita
-				else if(espaco.getX() > posicaox && espaco.getY() < posicaoy && espaco.getComponentCount() == 0){
+				//diagonal superior direita
+				else if(espaco.getX() > posicaox && espaco.getY() < posicaoy){
 					
 					if((espaco.getX() - posicaox) == (posicaoy - espaco.getY())){
-												
+						
 						//verifica se existe alguma peça no caminho do bispo
 						if(verificaEspacoSuperiorDireita(espaco,tabuleiro)){
-						
-							icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
-						
-							int posicaoAnteriorx = posicaox;
-							int posicaoAnteriory = posicaoy;
-						
-							this.posicaoy = espaco.getY();
-							this.posicaox = espaco.getX();
-						
-							tabuleiro.remove(espaco);
-							espaco.add(new Espaco("preto"));
-							tabuleiro.add(espaco);
-							JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
-							espacoAntigo.remove(0);
-							this.selecionada = false;
-							this.tabuleiro.destravaSelecao();
-							this.tabuleiro.repaint();
+							Espaco espacoAux = (Espaco) espaco.getComponent(0);
+							
+							//clicou num espaco que tem uma peca de mesma cor
+							if(espacoAux.getNome() == "branco"){
+								this.selecionada = false;
+								this.tabuleiro.destravaSelecao();
+							}
+							
+							//clicou numa peca de outra cor para atacar
+							else{
+								this.atacarPeca(pecaNaFrente,espaco,tabuleiro);
+							}
 						}
+						//tem uma peca no caminho do bispo
 						else{
 							this.selecionada = false;
 							this.tabuleiro.destravaSelecao();
 						}
 					}
+					//o bispo nao clicou em sua diagonal
 					else{
 						this.selecionada = false;
 						this.tabuleiro.destravaSelecao();
 					}
 				}
 				
-				//bispo preto movimenta para a diagonal inferior esquerda
-				else if(espaco.getX() < posicaox && espaco.getY() > posicaoy && espaco.getComponentCount() == 0){
-					
+				//diagonal inferior esquerda
+				else if(espaco.getX() < posicaox && espaco.getY() > posicaoy){
+
 					if((posicaox - espaco.getX()) == (espaco.getY() - posicaoy)){
-						
+
 						//verifica se existe alguma peça no caminho do bispo
 						if(verificaEspacoInferiorEsquerda(espaco,tabuleiro)){
-						
-							icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
-						
-							int posicaoAnteriorx = posicaox;
-							int posicaoAnteriory = posicaoy;
-						
-							this.posicaoy = espaco.getY();
-							this.posicaox = espaco.getX();
-						
-							tabuleiro.remove(espaco);
-							espaco.add(new Espaco("preto"));
-							tabuleiro.add(espaco);
-							JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
-							espacoAntigo.remove(0);
-							this.selecionada = false;
-							this.tabuleiro.destravaSelecao();
-							this.tabuleiro.repaint();
+							Espaco espacoAux = (Espaco) espaco.getComponent(0);
+							
+							//clicou num espaco que tem uma peca de mesma cor
+							if(espacoAux.getNome() == "branco"){
+								this.selecionada = false;
+								this.tabuleiro.destravaSelecao();
+							}
+							
+							//clicou numa peca de outra cor para atacar
+							else{
+								this.atacarPeca(pecaNaFrente,espaco,tabuleiro);
+							}
 						}
+						//tem uma peca no caminho do bispo
 						else{
 							this.selecionada = false;
 							this.tabuleiro.destravaSelecao();
 						}
 					}
+					//o bispo nao clicou em sua diagonal
 					else{
 						this.selecionada = false;
 						this.tabuleiro.destravaSelecao();
 					}
 				}
 				
-				//bispo preto movimenta para a diagonal inferior direita
-				if(espaco.getX() > posicaox && espaco.getY() > posicaoy){
-
-					if((espaco.getX() - posicaox) == (espaco.getY() - posicaoy) && espaco.getComponentCount() == 0){
-						
-						//verifica se existe alguma peça no caminho do bispo
-						if(verificaEspacoInferiorDireita(espaco,tabuleiro)){
-						
-							icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
-						
-							int posicaoAnteriorx = posicaox;
-							int posicaoAnteriory = posicaoy;
-						
-							this.posicaoy = espaco.getY();
-							this.posicaox = espaco.getX();
-						
-							tabuleiro.remove(espaco);
-							espaco.add(new Espaco("preto"));
-							tabuleiro.add(espaco);
-							JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
-							espacoAntigo.remove(0);
+				//diagonal inferior direita
+				else if(espaco.getX() > posicaox && espaco.getY() > posicaoy){
+					
+						if((espaco.getX() - posicaox) == (espaco.getY() - posicaoy) ){
+							
+							//verifica se existe alguma peça no caminho do bispo
+							if(verificaEspacoInferiorDireita(espaco,tabuleiro)){
+								Espaco espacoAux = (Espaco) espaco.getComponent(0);
+								
+								//clicou num espaco que tem uma peca de mesma cor
+								if(espacoAux.getNome() == "branco"){
+									this.selecionada = false;
+									this.tabuleiro.destravaSelecao();
+								}
+								
+								//clicou numa peca de outra cor para atacar
+								else{
+									this.atacarPeca(pecaNaFrente,espaco,tabuleiro);
+								}
+							}
+							//tem uma peca no caminho do bispo
+							else{
+								this.selecionada = false;
+								this.tabuleiro.destravaSelecao();
+							}
+						}
+						//o bispo nao clicou em sua diagonal
+						else{
 							this.selecionada = false;
 							this.tabuleiro.destravaSelecao();
-							this.tabuleiro.repaint();
 						}
+				}
+				else{
+					this.selecionada = false;
+					this.tabuleiro.destravaSelecao();
+				}				
+			}
+			else if(this.cor == Color.BLACK){
+				//diagonal superior esquerda
+				if(espaco.getX() < posicaox && espaco.getY() < posicaoy){
+						//verifica se clicou na mesma diagonal que o bispo esta
+						if((espaco.getX() - posicaox) == (espaco.getY() - posicaoy)){
+							
+							//verifica se existe alguma peça no caminho do bispo
+							if(verificaEspacoSuperiorEsquerda(espaco,tabuleiro)){
+								
+								Espaco espacoAux = (Espaco) espaco.getComponent(0);
+								
+								//clicou num espaco que tem uma peca de mesma cor
+								if(espacoAux.getNome() == "preto"){
+									this.selecionada = false;
+									this.tabuleiro.destravaSelecao();
+								}
+								
+								//clicou numa peca de outra cor para atacar
+								else{
+									this.atacarPeca(pecaNaFrente,espaco,tabuleiro);
+								}
+							}
+							//tem uma peca no caminho do bispo
+							else{
+								this.selecionada = false;
+								this.tabuleiro.destravaSelecao();
+							}
+						}
+						//o bispo nao clicou em sua diagonal
+						else{
+							this.selecionada = false;
+							this.tabuleiro.destravaSelecao();
+						}
+				}
+				
+				//diagonal superior direita
+				else if(espaco.getX() > posicaox && espaco.getY() < posicaoy){
+					
+					if((espaco.getX() - posicaox) == (posicaoy - espaco.getY())){
+						
+						//verifica se existe alguma peça no caminho do bispo
+						if(verificaEspacoSuperiorDireita(espaco,tabuleiro)){
+							Espaco espacoAux = (Espaco) espaco.getComponent(0);
+							
+							//clicou num espaco que tem uma peca de mesma cor
+							if(espacoAux.getNome() == "preto"){
+								this.selecionada = false;
+								this.tabuleiro.destravaSelecao();
+							}
+							
+							//clicou numa peca de outra cor para atacar
+							else{
+								this.atacarPeca(pecaNaFrente,espaco,tabuleiro);
+							}
+						}
+						//tem uma peca no caminho do bispo
 						else{
 							this.selecionada = false;
 							this.tabuleiro.destravaSelecao();
 						}
 					}
-					
+					//o bispo nao clicou em sua diagonal
 					else{
 						this.selecionada = false;
 						this.tabuleiro.destravaSelecao();
 					}
 				}
+				
+				//diagonal inferior esquerda
+				else if(espaco.getX() < posicaox && espaco.getY() > posicaoy){
+
+					if((posicaox - espaco.getX()) == (espaco.getY() - posicaoy)){
+
+						//verifica se existe alguma peça no caminho do bispo
+						if(verificaEspacoInferiorEsquerda(espaco,tabuleiro)){
+							Espaco espacoAux = (Espaco) espaco.getComponent(0);
+							
+							//clicou num espaco que tem uma peca de mesma cor
+							if(espacoAux.getNome() == "preto"){
+								this.selecionada = false;
+								this.tabuleiro.destravaSelecao();
+							}
+							
+							//clicou numa peca de outra cor para atacar
+							else{
+								this.atacarPeca(pecaNaFrente,espaco,tabuleiro);
+							}
+						}
+						//tem uma peca no caminho do bispo
+						else{
+							this.selecionada = false;
+							this.tabuleiro.destravaSelecao();
+						}
+					}
+					//o bispo nao clicou em sua diagonal
+					else{
+						this.selecionada = false;
+						this.tabuleiro.destravaSelecao();
+					}
+				}
+				
+				//diagonal inferior direita
+				else if(espaco.getX() > posicaox && espaco.getY() > posicaoy){
+					
+						if((espaco.getX() - posicaox) == (espaco.getY() - posicaoy) ){
+							
+							//verifica se existe alguma peça no caminho do bispo
+							if(verificaEspacoInferiorDireita(espaco,tabuleiro)){
+								Espaco espacoAux = (Espaco) espaco.getComponent(0);
+								
+								//clicou num espaco que tem uma peca de mesma cor
+								if(espacoAux.getNome() == "preto"){
+									this.selecionada = false;
+									this.tabuleiro.destravaSelecao();
+								}
+								
+								//clicou numa peca de outra cor para atacar
+								else{
+									this.atacarPeca(pecaNaFrente,espaco,tabuleiro);
+								}
+							}
+							//tem uma peca no caminho do bispo
+							else{
+								this.selecionada = false;
+								this.tabuleiro.destravaSelecao();
+							}
+						}
+						//o bispo nao clicou em sua diagonal
+						else{
+							this.selecionada = false;
+							this.tabuleiro.destravaSelecao();
+						}
+				}
+				else{
+					this.selecionada = false;
+					this.tabuleiro.destravaSelecao();
+				}
 			}
-			else{
-				this.selecionada = false;
-				this.tabuleiro.destravaSelecao();
-			}
-		}
-		else if(pecaNaFrente!=null){
-			this.selecionada = false;
-			this.tabuleiro.destravaSelecao();
 		}
 	}
+	
 
-	public void atacarPeca() {
-
+	public void atacarPeca(JLabel pecaNaFrente,JButton espaco, JPanel tabuleiro) {
+		//clica no canto do espaco
+		if(espaco!=null && pecaNaFrente == null){
+			if(this.cor == Color.BLACK){
+				JLabel pecaComida = (JLabel) tabuleiro.getComponentAt(espaco.getX(),espaco.getY());
+				
+				tabuleiro.remove(pecaComida);
+				espaco.remove(0);
+				
+				icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
+		
+				
+				int posicaoAnteriorx = posicaox;
+				int posicaoAnteriory = posicaoy;
+				
+				this.posicaoy = espaco.getY();
+				this.posicaox = espaco.getX();
+				
+				tabuleiro.remove(espaco);
+				espaco.add(new Espaco("preto"));
+				tabuleiro.add(espaco);
+				JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
+				espacoAntigo.remove(0);
+				this.selecionada = false;
+				this.tabuleiro.destravaSelecao();
+				this.tabuleiro.repaint();
+			}
+			else if(this.cor == Color.WHITE){
+				JLabel pecaComida = (JLabel) tabuleiro.getComponentAt(espaco.getX(),espaco.getY());
+				
+				tabuleiro.remove(pecaComida);
+				espaco.remove(0);
+				
+				icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
+		
+				
+				int posicaoAnteriorx = posicaox;
+				int posicaoAnteriory = posicaoy;
+				
+				this.posicaoy = espaco.getY();
+				this.posicaox = espaco.getX();
+				
+				tabuleiro.remove(espaco);
+				espaco.add(new Espaco("branco"));
+				tabuleiro.add(espaco);
+				JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
+				espacoAntigo.remove(0);
+				this.selecionada = false;
+				this.tabuleiro.destravaSelecao();
+				this.tabuleiro.repaint();
+			}
+		}
+		//clica no JLabel
+		else if(pecaNaFrente != null){
+			if(this.cor == Color.BLACK){
+				
+				espaco = (JButton) tabuleiro.getComponentAt(pecaNaFrente.getX()+50, pecaNaFrente.getY()+50);
+				
+				int posicaoAtualX = pecaNaFrente.getX();
+				int posicaoAtualY = pecaNaFrente.getY();
+				
+				tabuleiro.remove(pecaNaFrente);
+				espaco.remove(0);
+				
+				icon.setBounds(posicaoAtualX, posicaoAtualY, 50,50);
+		
+				
+				int posicaoAnteriorx = posicaox;
+				int posicaoAnteriory = posicaoy;
+				
+				this.posicaoy = posicaoAtualY;
+				this.posicaox = posicaoAtualX;
+				
+				tabuleiro.remove(espaco);
+				espaco.add(new Espaco("preto"));
+				tabuleiro.add(espaco);
+				JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
+				espacoAntigo.remove(0);
+				this.selecionada = false;
+				this.tabuleiro.destravaSelecao();
+				this.tabuleiro.repaint();
+				
+			}
+			else if(this.cor == Color.WHITE){
+				espaco = (JButton) tabuleiro.getComponentAt(pecaNaFrente.getX()+50, pecaNaFrente.getY()+50);
+				
+				int posicaoAtualX = pecaNaFrente.getX();
+				int posicaoAtualY = pecaNaFrente.getY();
+				
+				tabuleiro.remove(pecaNaFrente);
+				espaco.remove(0);
+				
+				icon.setBounds(posicaoAtualX, posicaoAtualY, 50,50);
+		
+				
+				int posicaoAnteriorx = posicaox;
+				int posicaoAnteriory = posicaoy;
+				
+				this.posicaoy = posicaoAtualY;
+				this.posicaox = posicaoAtualX;
+				
+				tabuleiro.remove(espaco);
+				espaco.add(new Espaco("branco"));
+				tabuleiro.add(espaco);
+				JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
+				espacoAntigo.remove(0);
+				this.selecionada = false;
+				this.tabuleiro.destravaSelecao();
+				this.tabuleiro.repaint();
+			}
+		}
 	}
 	
 public void mouseClicked(MouseEvent e){

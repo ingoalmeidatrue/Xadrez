@@ -1,4 +1,4 @@
-import java.awt.Color;
+﻿import java.awt.Color;
 import java.awt.LayoutManager;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,12 +14,20 @@ public class Tabuleiro extends JFrame {
 
 	private ArrayList<Peca> pecas = new ArrayList<Peca>();
 
-	private ArrayList<Peca> pecasComidas = new ArrayList<Peca>();
+	private ArrayList<Peca> pecasForaDoJogo = new ArrayList<Peca>();
 
 	private String espacos;
 	
 	private JButton botaoBranco, botaoPreto;
 	
+	public ArrayList<Peca> getPecasForaDoJogo() {
+		return pecasForaDoJogo;
+	}
+
+	public void setPecasForaDoJogo(ArrayList<Peca> pecasForaDoJogo) {
+		this.pecasForaDoJogo = pecasForaDoJogo;
+	}
+
 	//imagem do tabuleiro
 	private Icon imagemTabuleiro;
 	
@@ -281,7 +289,7 @@ public class Tabuleiro extends JFrame {
 						
 						imagemLabelCavalo2Branco.setBounds(xPecaBranca, yPecaBranca, 50, 50);
 						
-						Cavalo cavaloBranco = new Cavalo(xPecaPreta,yPecaPreta,Color.BLACK,imagemLabelCavalo2Branco,this);
+						Cavalo cavaloBranco = new Cavalo(xPecaPreta,yPecaPreta,Color.WHITE,imagemLabelCavalo2Branco,this);
 						pecas.add(cavaloBranco);
 						imagemLabelCavalo2Branco.addMouseListener(cavaloBranco);
 						
@@ -293,7 +301,7 @@ public class Tabuleiro extends JFrame {
 						
 						imagemLabelCavalo1Branco.setBounds(xPecaBranca, yPecaBranca, 50, 50);
 						
-						Cavalo cavaloBranco = new Cavalo(xPecaPreta,yPecaPreta,Color.BLACK,imagemLabelCavalo1Branco,this);
+						Cavalo cavaloBranco = new Cavalo(xPecaPreta,yPecaPreta,Color.WHITE,imagemLabelCavalo1Branco,this);
 						pecas.add(cavaloBranco);
 						imagemLabelCavalo1Branco.addMouseListener(cavaloBranco);
 						
@@ -660,9 +668,6 @@ public class Tabuleiro extends JFrame {
 	public static void main(String [] args){
 		new Tabuleiro();
 	}
-
-	public ArrayList<Peca> getPecasComidas() {
-		return pecasComidas;
-	}
-
 }
+
+

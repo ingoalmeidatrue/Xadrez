@@ -24,7 +24,26 @@ public class Cavalo extends Peca {
 	//imagem da peca
 	private JLabel icon;
 	
-			
+	public int getPosicaox() {
+		return posicaox;
+	}
+
+
+	public void setPosicaox(int posicaox) {
+		this.posicaox = posicaox;
+	}
+
+
+	public int getPosicaoy() {
+		return posicaoy;
+	}
+
+
+	public void setPosicaoy(int posicaoy) {
+		this.posicaoy = posicaoy;
+	}
+
+
 	public Cavalo(int posicaox, int posicaoy, Color cor, JLabel img, Tabuleiro tabuleiro){
 				this.posicaox = posicaox;
 				this.posicaoy = posicaoy;
@@ -36,354 +55,1011 @@ public class Cavalo extends Peca {
 
 	public void movimentarPeca(JLabel pecaNaFrente,JButton espaco, JPanel tabuleiro) {
 		if(espaco!=null && pecaNaFrente == null){
+		
 			if(this.cor == Color.WHITE){
+		
 				
 				//cavalo movimenta em l deitado para a esquerda comecando de cima
-				if(posicaox == espaco.getX()  - 120 && posicaoy == espaco.getY() + 60 && espaco.getComponentCount() == 0){
-					icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
+				if(posicaox == espaco.getX()  - 120 && posicaoy == espaco.getY() + 60){
 					
-					int posicaoAnteriorx = posicaox;
-					int posicaoAnteriory = posicaoy;
-		
-					this.posicaoy = espaco.getY();
-					this.posicaox = espaco.getX();
-		
-					tabuleiro.remove(espaco);
-					espaco.add(new Espaco("branco"));
-					tabuleiro.add(espaco);
-					JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
-					espacoAntigo.remove(0);
-					this.selecionada = false;
-					this.tabuleiro.destravaSelecao();
-					this.tabuleiro.repaint();
+					if(espaco.getComponentCount() == 0){
+						icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
+						
+						int posicaoAnteriorx = posicaox;
+						int posicaoAnteriory = posicaoy;
+			
+						this.posicaoy = espaco.getY();
+						this.posicaox = espaco.getX();
+			
+						tabuleiro.remove(espaco);
+						espaco.add(new Espaco("branco"));
+						tabuleiro.add(espaco);
+						JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
+						espacoAntigo.remove(0);
+						this.selecionada = false;
+						this.tabuleiro.destravaSelecao();
+						this.tabuleiro.repaint();
+					}
+					else{
+						Espaco espacoAux = (Espaco) espaco.getComponent(0);
+						
+						//clicou num espaco que tem uma peca de mesma cor
+						if(espacoAux.getNome() == "branco"){
+							this.selecionada = false;
+							this.tabuleiro.destravaSelecao();
+						}
+						
+						//clicou numa peca de outra cor para atacar
+						else{
+							this.atacarPeca(pecaNaFrente,espaco,tabuleiro);
+						}
+					}
 				}
 				
 				//cavalo movimenta em l deitado para a direita comecando de cima
-				else if(posicaox == espaco.getX()  + 120 && posicaoy == espaco.getY() + 60 && espaco.getComponentCount() == 0){
-					icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
+				else if(posicaox == espaco.getX()  + 120 && posicaoy == espaco.getY() + 60){
 					
-					int posicaoAnteriorx = posicaox;
-					int posicaoAnteriory = posicaoy;
-		
-					this.posicaoy = espaco.getY();
-					this.posicaox = espaco.getX();
-		
-					tabuleiro.remove(espaco);
-					espaco.add(new Espaco("branco"));
-					tabuleiro.add(espaco);
-					JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
-					espacoAntigo.remove(0);
-					this.selecionada = false;
-					this.tabuleiro.destravaSelecao();
-					this.tabuleiro.repaint();
+					if(espaco.getComponentCount() == 0){
+						icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
+						
+						int posicaoAnteriorx = posicaox;
+						int posicaoAnteriory = posicaoy;
+			
+						this.posicaoy = espaco.getY();
+						this.posicaox = espaco.getX();
+			
+						tabuleiro.remove(espaco);
+						espaco.add(new Espaco("branco"));
+						tabuleiro.add(espaco);
+						JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
+						espacoAntigo.remove(0);
+						this.selecionada = false;
+						this.tabuleiro.destravaSelecao();
+						this.tabuleiro.repaint();
+					}
+					else{
+						Espaco espacoAux = (Espaco) espaco.getComponent(0);
+						
+						//clicou num espaco que tem uma peca de mesma cor
+						if(espacoAux.getNome() == "branco"){
+							this.selecionada = false;
+							this.tabuleiro.destravaSelecao();
+						}
+						
+						//clicou numa peca de outra cor para atacar
+						else{
+							this.atacarPeca(pecaNaFrente,espaco,tabuleiro);
+						}
+					}
 				}
 				
 				//cavalo movimenta em l deitado para a esquerda comecando de baixo
-				else if(posicaox == espaco.getX()  - 120 && posicaoy == espaco.getY() - 60 && espaco.getComponentCount() == 0){
+				else if(posicaox == espaco.getX()  - 120 && posicaoy == espaco.getY() - 60){
 					
-					icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
-					
-					int posicaoAnteriorx = posicaox;
-					int posicaoAnteriory = posicaoy;
-		
-					this.posicaoy = espaco.getY();
-					this.posicaox = espaco.getX();
-		
-					tabuleiro.remove(espaco);
-					espaco.add(new Espaco("branco"));
-					tabuleiro.add(espaco);
-					JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
-					espacoAntigo.remove(0);
-					this.selecionada = false;
-					this.tabuleiro.destravaSelecao();
-					this.tabuleiro.repaint();
+					if(espaco.getComponentCount() == 0){
+						icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
+						
+						int posicaoAnteriorx = posicaox;
+						int posicaoAnteriory = posicaoy;
+			
+						this.posicaoy = espaco.getY();
+						this.posicaox = espaco.getX();
+			
+						tabuleiro.remove(espaco);
+						espaco.add(new Espaco("branco"));
+						tabuleiro.add(espaco);
+						JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
+						espacoAntigo.remove(0);
+						this.selecionada = false;
+						this.tabuleiro.destravaSelecao();
+						this.tabuleiro.repaint();
+					}
+					else{
+						Espaco espacoAux = (Espaco) espaco.getComponent(0);
+						
+						//clicou num espaco que tem uma peca de mesma cor
+						if(espacoAux.getNome() == "branco"){
+							this.selecionada = false;
+							this.tabuleiro.destravaSelecao();
+						}
+						
+						//clicou numa peca de outra cor para atacar
+						else{
+							this.atacarPeca(pecaNaFrente,espaco,tabuleiro);
+						}
+					}
 				}
 				
 				//cavalo movimenta em l deitado para a direita começando de baixo
-				else if(posicaox == espaco.getX()  + 120 && posicaoy == espaco.getY() - 60 && espaco.getComponentCount() == 0){
+				else if(posicaox == espaco.getX()  + 120 && posicaoy == espaco.getY() - 60){
 					
-					icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
-					
-					int posicaoAnteriorx = posicaox;
-					int posicaoAnteriory = posicaoy;
-		
-					this.posicaoy = espaco.getY();
-					this.posicaox = espaco.getX();
-		
-					tabuleiro.remove(espaco);
-					espaco.add(new Espaco("branco"));
-					tabuleiro.add(espaco);
-					JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
-					espacoAntigo.remove(0);
-					this.selecionada = false;
-					this.tabuleiro.destravaSelecao();
-					this.tabuleiro.repaint();
+					if(espaco.getComponentCount() == 0){
+						icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
+						
+						int posicaoAnteriorx = posicaox;
+						int posicaoAnteriory = posicaoy;
+			
+						this.posicaoy = espaco.getY();
+						this.posicaox = espaco.getX();
+			
+						tabuleiro.remove(espaco);
+						espaco.add(new Espaco("branco"));
+						tabuleiro.add(espaco);
+						JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
+						espacoAntigo.remove(0);
+						this.selecionada = false;
+						this.tabuleiro.destravaSelecao();
+						this.tabuleiro.repaint();
+					}
+					else{
+						Espaco espacoAux = (Espaco) espaco.getComponent(0);
+						
+						//clicou num espaco que tem uma peca de mesma cor
+						if(espacoAux.getNome() == "branco"){
+							this.selecionada = false;
+							this.tabuleiro.destravaSelecao();
+						}
+						
+						//clicou numa peca de outra cor para atacar
+						else{
+							this.atacarPeca(pecaNaFrente,espaco,tabuleiro);
+						}
+					}
 				}
 				
 				//cavalo movimenta em l em pe para a esquerda comecando de cima
-				else if(posicaox == espaco.getX()  - 60 && posicaoy == espaco.getY() + 120 && espaco.getComponentCount() == 0){
+				else if(posicaox == espaco.getX()  - 60 && posicaoy == espaco.getY() + 120){
 					
-					icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
-					
-					int posicaoAnteriorx = posicaox;
-					int posicaoAnteriory = posicaoy;
-		
-					this.posicaoy = espaco.getY();
-					this.posicaox = espaco.getX();
-		
-					tabuleiro.remove(espaco);
-					espaco.add(new Espaco("branco"));
-					tabuleiro.add(espaco);
-					JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
-					espacoAntigo.remove(0);
-					this.selecionada = false;
-					this.tabuleiro.destravaSelecao();
-					this.tabuleiro.repaint();
+					if(espaco.getComponentCount() == 0){
+						icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
+						
+						int posicaoAnteriorx = posicaox;
+						int posicaoAnteriory = posicaoy;
+			
+						this.posicaoy = espaco.getY();
+						this.posicaox = espaco.getX();
+			
+						tabuleiro.remove(espaco);
+						espaco.add(new Espaco("branco"));
+						tabuleiro.add(espaco);
+						JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
+						espacoAntigo.remove(0);
+						this.selecionada = false;
+						this.tabuleiro.destravaSelecao();
+						this.tabuleiro.repaint();
+					}
+					else{
+						Espaco espacoAux = (Espaco) espaco.getComponent(0);
+						
+						//clicou num espaco que tem uma peca de mesma cor
+						if(espacoAux.getNome() == "branco"){
+							this.selecionada = false;
+							this.tabuleiro.destravaSelecao();
+						}
+						
+						//clicou numa peca de outra cor para atacar
+						else{
+							this.atacarPeca(pecaNaFrente,espaco,tabuleiro);
+						}
+					}
 				}
 				
 				//cavalo movimenta em l em pe para a direita comecando de cima
-				else if(posicaox == espaco.getX()  + 60 && posicaoy == espaco.getY() + 120 && espaco.getComponentCount() == 0){
+				else if(posicaox == espaco.getX()  + 60 && posicaoy == espaco.getY() + 120){
 					
-					icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
-					
-					int posicaoAnteriorx = posicaox;
-					int posicaoAnteriory = posicaoy;
-		
-					this.posicaoy = espaco.getY();
-					this.posicaox = espaco.getX();
-		
-					tabuleiro.remove(espaco);
-					espaco.add(new Espaco("branco"));
-					tabuleiro.add(espaco);
-					JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
-					espacoAntigo.remove(0);
-					this.selecionada = false;
-					this.tabuleiro.destravaSelecao();
-					this.tabuleiro.repaint();
+					if(espaco.getComponentCount() == 0){
+						icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
+						
+						int posicaoAnteriorx = posicaox;
+						int posicaoAnteriory = posicaoy;
+			
+						this.posicaoy = espaco.getY();
+						this.posicaox = espaco.getX();
+			
+						tabuleiro.remove(espaco);
+						espaco.add(new Espaco("branco"));
+						tabuleiro.add(espaco);
+						JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
+						espacoAntigo.remove(0);
+						this.selecionada = false;
+						this.tabuleiro.destravaSelecao();
+						this.tabuleiro.repaint();
+					}
+					else{
+						Espaco espacoAux = (Espaco) espaco.getComponent(0);
+						
+						//clicou num espaco que tem uma peca de mesma cor
+						if(espacoAux.getNome() == "branco"){
+							this.selecionada = false;
+							this.tabuleiro.destravaSelecao();
+						}
+						
+						//clicou numa peca de outra cor para atacar
+						else{
+							this.atacarPeca(pecaNaFrente,espaco,tabuleiro);
+						}
+					}
 				}
 				
 				//cavalo movimenta em l em pe para a esquerda comecando de baixo
-				else if(posicaox == espaco.getX()  - 60 && posicaoy == espaco.getY() - 120 && espaco.getComponentCount() == 0){
-					
-					icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
-					
-					int posicaoAnteriorx = posicaox;
-					int posicaoAnteriory = posicaoy;
-		
-					this.posicaoy = espaco.getY();
-					this.posicaox = espaco.getX();
-		
-					tabuleiro.remove(espaco);
-					espaco.add(new Espaco("branco"));
-					tabuleiro.add(espaco);
-					JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
-					espacoAntigo.remove(0);
-					this.selecionada = false;
-					this.tabuleiro.destravaSelecao();
-					this.tabuleiro.repaint();
+				else if(posicaox == espaco.getX()  - 60 && posicaoy == espaco.getY() - 120){
+
+					if(espaco.getComponentCount() == 0){
+
+						icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
+						
+						int posicaoAnteriorx = posicaox;
+						int posicaoAnteriory = posicaoy;
+			
+						this.posicaoy = espaco.getY();
+						this.posicaox = espaco.getX();
+			
+						tabuleiro.remove(espaco);
+						espaco.add(new Espaco("branco"));
+						tabuleiro.add(espaco);
+						JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
+						espacoAntigo.remove(0);
+						this.selecionada = false;
+						this.tabuleiro.destravaSelecao();
+						this.tabuleiro.repaint();
+					}
+					else{
+						Espaco espacoAux = (Espaco) espaco.getComponent(0);
+						
+						//clicou num espaco que tem uma peca de mesma cor
+						if(espacoAux.getNome() == "branco"){
+							this.selecionada = false;
+							this.tabuleiro.destravaSelecao();
+						}
+						
+						//clicou numa peca de outra cor para atacar
+						else{
+							this.atacarPeca(pecaNaFrente,espaco,tabuleiro);
+						}
+					}
 				}
 				
 				//cavalo movimenta em l em pe para a direita comecando de baixo
-				else if(posicaox == espaco.getX()  + 60 && posicaoy == espaco.getY() - 120 && espaco.getComponentCount() == 0){
-					
-					icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
-					
-					int posicaoAnteriorx = posicaox;
-					int posicaoAnteriory = posicaoy;
-		
-					this.posicaoy = espaco.getY();
-					this.posicaox = espaco.getX();
-		
-					tabuleiro.remove(espaco);
-					espaco.add(new Espaco("branco"));
-					tabuleiro.add(espaco);
-					JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
-					espacoAntigo.remove(0);
-					this.selecionada = false;
-					this.tabuleiro.destravaSelecao();
-					this.tabuleiro.repaint();
+				else if(posicaox == espaco.getX()  + 60 && posicaoy == espaco.getY() - 120){
+					if(espaco.getComponentCount() == 0){
+						icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
+						
+						int posicaoAnteriorx = posicaox;
+						int posicaoAnteriory = posicaoy;
+			
+						this.posicaoy = espaco.getY();
+						this.posicaox = espaco.getX();
+			
+						tabuleiro.remove(espaco);
+						espaco.add(new Espaco("branco"));
+						tabuleiro.add(espaco);
+						JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
+						espacoAntigo.remove(0);
+						this.selecionada = false;
+						this.tabuleiro.destravaSelecao();
+						this.tabuleiro.repaint();
+					}
+					else{
+						Espaco espacoAux = (Espaco) espaco.getComponent(0);
+						
+						//clicou num espaco que tem uma peca de mesma cor
+						if(espacoAux.getNome() == "branco"){
+							this.selecionada = false;
+							this.tabuleiro.destravaSelecao();
+						}
+						
+						//clicou numa peca de outra cor para atacar
+						else{
+							this.atacarPeca(pecaNaFrente,espaco,tabuleiro);
+						}
+					}
 				}
 					
 			}
 			else if(this.cor == Color.BLACK){
 				
 				//cavalo movimenta em l deitado para a esquerda comecando de cima
-				if(posicaox == espaco.getX()  - 120 && posicaoy == espaco.getY() + 60 && espaco.getComponentCount() == 0){
-					icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
+				if(posicaox == espaco.getX()  - 120 && posicaoy == espaco.getY() + 60){
 					
-					int posicaoAnteriorx = posicaox;
-					int posicaoAnteriory = posicaoy;
-		
-					this.posicaoy = espaco.getY();
-					this.posicaox = espaco.getX();
-		
-					tabuleiro.remove(espaco);
-					espaco.add(new Espaco("preto"));
-					tabuleiro.add(espaco);
-					JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
-					espacoAntigo.remove(0);
-					this.selecionada = false;
-					this.tabuleiro.destravaSelecao();
-					this.tabuleiro.repaint();
+					if(espaco.getComponentCount() == 0){
+						icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
+						
+						int posicaoAnteriorx = posicaox;
+						int posicaoAnteriory = posicaoy;
+			
+						this.posicaoy = espaco.getY();
+						this.posicaox = espaco.getX();
+			
+						tabuleiro.remove(espaco);
+						espaco.add(new Espaco("preto"));
+						tabuleiro.add(espaco);
+						JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
+						espacoAntigo.remove(0);
+						this.selecionada = false;
+						this.tabuleiro.destravaSelecao();
+						this.tabuleiro.repaint();
+					}
+					else{
+						Espaco espacoAux = (Espaco) espaco.getComponent(0);
+						
+						//clicou num espaco que tem uma peca de mesma cor
+						if(espacoAux.getNome() == "preto"){
+							this.selecionada = false;
+							this.tabuleiro.destravaSelecao();
+						}
+						
+						//clicou numa peca de outra cor para atacar
+						else{
+							this.atacarPeca(pecaNaFrente,espaco,tabuleiro);
+						}
+					}
 				}
 				
 				//cavalo movimenta em l deitado para a direita comecando de cima
-				else if(posicaox == espaco.getX()  + 120 && posicaoy == espaco.getY() + 60 && espaco.getComponentCount() == 0){
-					icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
+				else if(posicaox == espaco.getX()  + 120 && posicaoy == espaco.getY() + 60){
 					
-					int posicaoAnteriorx = posicaox;
-					int posicaoAnteriory = posicaoy;
-		
-					this.posicaoy = espaco.getY();
-					this.posicaox = espaco.getX();
-		
-					tabuleiro.remove(espaco);
-					espaco.add(new Espaco("preto"));
-					tabuleiro.add(espaco);
-					JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
-					espacoAntigo.remove(0);
-					this.selecionada = false;
-					this.tabuleiro.destravaSelecao();
-					this.tabuleiro.repaint();
+					if(espaco.getComponentCount() == 0){
+						icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
+						
+						int posicaoAnteriorx = posicaox;
+						int posicaoAnteriory = posicaoy;
+			
+						this.posicaoy = espaco.getY();
+						this.posicaox = espaco.getX();
+			
+						tabuleiro.remove(espaco);
+						espaco.add(new Espaco("preto"));
+						tabuleiro.add(espaco);
+						JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
+						espacoAntigo.remove(0);
+						this.selecionada = false;
+						this.tabuleiro.destravaSelecao();
+						this.tabuleiro.repaint();
+					}
+					else{
+						Espaco espacoAux = (Espaco) espaco.getComponent(0);
+						
+						//clicou num espaco que tem uma peca de mesma cor
+						if(espacoAux.getNome() == "preto"){
+							this.selecionada = false;
+							this.tabuleiro.destravaSelecao();
+						}
+						
+						//clicou numa peca de outra cor para atacar
+						else{
+							this.atacarPeca(pecaNaFrente,espaco,tabuleiro);
+						}
+					}
 				}
 				
 				//cavalo movimenta em l deitado para a esquerda comecando de baixo
-				else if(posicaox == espaco.getX()  - 120 && posicaoy == espaco.getY() - 60 && espaco.getComponentCount() == 0){
+				else if(posicaox == espaco.getX()  - 120 && posicaoy == espaco.getY() - 60){
 					
-					icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
-					
-					int posicaoAnteriorx = posicaox;
-					int posicaoAnteriory = posicaoy;
-		
-					this.posicaoy = espaco.getY();
-					this.posicaox = espaco.getX();
-		
-					tabuleiro.remove(espaco);
-					espaco.add(new Espaco("preto"));
-					tabuleiro.add(espaco);
-					JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
-					espacoAntigo.remove(0);
-					this.selecionada = false;
-					this.tabuleiro.destravaSelecao();
-					this.tabuleiro.repaint();
+					if(espaco.getComponentCount() == 0){
+						icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
+						
+						int posicaoAnteriorx = posicaox;
+						int posicaoAnteriory = posicaoy;
+			
+						this.posicaoy = espaco.getY();
+						this.posicaox = espaco.getX();
+			
+						tabuleiro.remove(espaco);
+						espaco.add(new Espaco("preto"));
+						tabuleiro.add(espaco);
+						JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
+						espacoAntigo.remove(0);
+						this.selecionada = false;
+						this.tabuleiro.destravaSelecao();
+						this.tabuleiro.repaint();
+					}
+					else{
+						Espaco espacoAux = (Espaco) espaco.getComponent(0);
+						
+						//clicou num espaco que tem uma peca de mesma cor
+						if(espacoAux.getNome() == "preto"){
+							this.selecionada = false;
+							this.tabuleiro.destravaSelecao();
+						}
+						
+						//clicou numa peca de outra cor para atacar
+						else{
+							this.atacarPeca(pecaNaFrente,espaco,tabuleiro);
+						}
+					}
 				}
 				
 				//cavalo movimenta em l deitado para a direita começando de baixo
-				else if(posicaox == espaco.getX()  + 120 && posicaoy == espaco.getY() - 60 && espaco.getComponentCount() == 0){
+				else if(posicaox == espaco.getX()  + 120 && posicaoy == espaco.getY() - 60){
 					
-					icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
-					
-					int posicaoAnteriorx = posicaox;
-					int posicaoAnteriory = posicaoy;
-		
-					this.posicaoy = espaco.getY();
-					this.posicaox = espaco.getX();
-		
-					tabuleiro.remove(espaco);
-					espaco.add(new Espaco("preto"));
-					tabuleiro.add(espaco);
-					JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
-					espacoAntigo.remove(0);
-					this.selecionada = false;
-					this.tabuleiro.destravaSelecao();
-					this.tabuleiro.repaint();
+					if(espaco.getComponentCount() == 0){
+						icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
+						
+						int posicaoAnteriorx = posicaox;
+						int posicaoAnteriory = posicaoy;
+			
+						this.posicaoy = espaco.getY();
+						this.posicaox = espaco.getX();
+			
+						tabuleiro.remove(espaco);
+						espaco.add(new Espaco("preto"));
+						tabuleiro.add(espaco);
+						JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
+						espacoAntigo.remove(0);
+						this.selecionada = false;
+						this.tabuleiro.destravaSelecao();
+						this.tabuleiro.repaint();
+					}
+					else{
+						Espaco espacoAux = (Espaco) espaco.getComponent(0);
+						
+						//clicou num espaco que tem uma peca de mesma cor
+						if(espacoAux.getNome() == "preto"){
+							this.selecionada = false;
+							this.tabuleiro.destravaSelecao();
+						}
+						
+						//clicou numa peca de outra cor para atacar
+						else{
+							this.atacarPeca(pecaNaFrente,espaco,tabuleiro);
+						}
+					}
 				}
 				
 				//cavalo movimenta em l em pe para a esquerda comecando de cima
-				else if(posicaox == espaco.getX()  - 60 && posicaoy == espaco.getY() + 120 && espaco.getComponentCount() == 0){
+				else if(posicaox == espaco.getX()  - 60 && posicaoy == espaco.getY() + 120){
 					
-					icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
-					
-					int posicaoAnteriorx = posicaox;
-					int posicaoAnteriory = posicaoy;
-		
-					this.posicaoy = espaco.getY();
-					this.posicaox = espaco.getX();
-		
-					tabuleiro.remove(espaco);
-					espaco.add(new Espaco("preto"));
-					tabuleiro.add(espaco);
-					JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
-					espacoAntigo.remove(0);
-					this.selecionada = false;
-					this.tabuleiro.destravaSelecao();
-					this.tabuleiro.repaint();
+					if(espaco.getComponentCount() == 0){
+						icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
+						
+						int posicaoAnteriorx = posicaox;
+						int posicaoAnteriory = posicaoy;
+			
+						this.posicaoy = espaco.getY();
+						this.posicaox = espaco.getX();
+			
+						tabuleiro.remove(espaco);
+						espaco.add(new Espaco("preto"));
+						tabuleiro.add(espaco);
+						JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
+						espacoAntigo.remove(0);
+						this.selecionada = false;
+						this.tabuleiro.destravaSelecao();
+						this.tabuleiro.repaint();
+					}
+					else{
+						Espaco espacoAux = (Espaco) espaco.getComponent(0);
+						
+						//clicou num espaco que tem uma peca de mesma cor
+						if(espacoAux.getNome() == "preto"){
+							this.selecionada = false;
+							this.tabuleiro.destravaSelecao();
+						}
+						
+						//clicou numa peca de outra cor para atacar
+						else{
+							this.atacarPeca(pecaNaFrente,espaco,tabuleiro);
+						}
+					}
 				}
 				
 				//cavalo movimenta em l em pe para a direita comecando de cima
-				else if(posicaox == espaco.getX()  + 60 && posicaoy == espaco.getY() + 120 && espaco.getComponentCount() == 0){
+				else if(posicaox == espaco.getX()  + 60 && posicaoy == espaco.getY() + 120){
 					
-					icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
-					
-					int posicaoAnteriorx = posicaox;
-					int posicaoAnteriory = posicaoy;
-		
-					this.posicaoy = espaco.getY();
-					this.posicaox = espaco.getX();
-		
-					tabuleiro.remove(espaco);
-					espaco.add(new Espaco("preto"));
-					tabuleiro.add(espaco);
-					JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
-					espacoAntigo.remove(0);
-					this.selecionada = false;
-					this.tabuleiro.destravaSelecao();
-					this.tabuleiro.repaint();
+					if(espaco.getComponentCount() == 0){
+						icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
+						
+						int posicaoAnteriorx = posicaox;
+						int posicaoAnteriory = posicaoy;
+			
+						this.posicaoy = espaco.getY();
+						this.posicaox = espaco.getX();
+			
+						tabuleiro.remove(espaco);
+						espaco.add(new Espaco("preto"));
+						tabuleiro.add(espaco);
+						JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
+						espacoAntigo.remove(0);
+						this.selecionada = false;
+						this.tabuleiro.destravaSelecao();
+						this.tabuleiro.repaint();
+					}
+					else{
+						Espaco espacoAux = (Espaco) espaco.getComponent(0);
+						
+						//clicou num espaco que tem uma peca de mesma cor
+						if(espacoAux.getNome() == "preto"){
+							this.selecionada = false;
+							this.tabuleiro.destravaSelecao();
+						}
+						
+						//clicou numa peca de outra cor para atacar
+						else{
+							this.atacarPeca(pecaNaFrente,espaco,tabuleiro);
+						}
+					}
 				}
 				
 				//cavalo movimenta em l em pe para a esquerda comecando de baixo
-				else if(posicaox == espaco.getX()  - 60 && posicaoy == espaco.getY() - 120 && espaco.getComponentCount() == 0){
+				else if(posicaox == espaco.getX()  - 60 && posicaoy == espaco.getY() - 120){
 					
-					icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
-					
-					int posicaoAnteriorx = posicaox;
-					int posicaoAnteriory = posicaoy;
-		
-					this.posicaoy = espaco.getY();
-					this.posicaox = espaco.getX();
-		
-					tabuleiro.remove(espaco);
-					espaco.add(new Espaco("preto"));
-					tabuleiro.add(espaco);
-					JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
-					espacoAntigo.remove(0);
-					this.selecionada = false;
-					this.tabuleiro.destravaSelecao();
-					this.tabuleiro.repaint();
+					if(espaco.getComponentCount() == 0){
+						icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
+						
+						int posicaoAnteriorx = posicaox;
+						int posicaoAnteriory = posicaoy;
+			
+						this.posicaoy = espaco.getY();
+						this.posicaox = espaco.getX();
+			
+						tabuleiro.remove(espaco);
+						espaco.add(new Espaco("preto"));
+						tabuleiro.add(espaco);
+						JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
+						espacoAntigo.remove(0);
+						this.selecionada = false;
+						this.tabuleiro.destravaSelecao();
+						this.tabuleiro.repaint();
+					}
+					else{
+						Espaco espacoAux = (Espaco) espaco.getComponent(0);
+						
+						//clicou num espaco que tem uma peca de mesma cor
+						if(espacoAux.getNome() == "preto"){
+							this.selecionada = false;
+							this.tabuleiro.destravaSelecao();
+						}
+						
+						//clicou numa peca de outra cor para atacar
+						else{
+							this.atacarPeca(pecaNaFrente,espaco,tabuleiro);
+						}
+					}
 				}
 				
 				//cavalo movimenta em l em pe para a direita comecando de baixo
-				else if(posicaox == espaco.getX()  + 60 && posicaoy == espaco.getY() - 120 && espaco.getComponentCount() == 0){
+				else if(posicaox == espaco.getX()  + 60 && posicaoy == espaco.getY() - 120){
 					
-					icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
-					
-					int posicaoAnteriorx = posicaox;
-					int posicaoAnteriory = posicaoy;
-		
-					this.posicaoy = espaco.getY();
-					this.posicaox = espaco.getX();
-		
-					tabuleiro.remove(espaco);
-					espaco.add(new Espaco("preto"));
-					tabuleiro.add(espaco);
-					JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
-					espacoAntigo.remove(0);
-					this.selecionada = false;
-					this.tabuleiro.destravaSelecao();
-					this.tabuleiro.repaint();
+					if(espaco.getComponentCount() == 0){
+						icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
+						
+						int posicaoAnteriorx = posicaox;
+						int posicaoAnteriory = posicaoy;
+			
+						this.posicaoy = espaco.getY();
+						this.posicaox = espaco.getX();
+			
+						tabuleiro.remove(espaco);
+						espaco.add(new Espaco("preto"));
+						tabuleiro.add(espaco);
+						JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
+						espacoAntigo.remove(0);
+						this.selecionada = false;
+						this.tabuleiro.destravaSelecao();
+						this.tabuleiro.repaint();
+					}
+					else{
+						Espaco espacoAux = (Espaco) espaco.getComponent(0);
+						
+						//clicou num espaco que tem uma peca de mesma cor
+						if(espacoAux.getNome() == "preto"){
+							this.selecionada = false;
+							this.tabuleiro.destravaSelecao();
+						}
+						
+						//clicou numa peca de outra cor para atacar
+						else{
+							this.atacarPeca(pecaNaFrente,espaco,tabuleiro);
+						}
+					}
 				}
 					
 			}
 		}
 		else if(pecaNaFrente!=null){
-			this.selecionada = false;
-			this.tabuleiro.destravaSelecao();
+			espaco = (JButton) tabuleiro.getComponentAt(pecaNaFrente.getX()+50, pecaNaFrente.getY()+50);
+			
+			if(this.cor == Color.WHITE){
+				//cavalo movimenta em l deitado para a esquerda comecando de cima
+				if(posicaox == espaco.getX()  - 120 && posicaoy == espaco.getY() + 60){
+					
+						Espaco espacoAux = (Espaco) espaco.getComponent(0);
+						
+						//clicou num espaco que tem uma peca de mesma cor
+						if(espacoAux.getNome() == "branco"){
+							this.selecionada = false;
+							this.tabuleiro.destravaSelecao();
+						}
+						
+						//clicou numa peca de outra cor para atacar
+						else{
+							this.atacarPeca(pecaNaFrente,espaco,tabuleiro);
+						}
+					
+				}
+				
+				//cavalo movimenta em l deitado para a direita comecando de cima
+				else if(posicaox == espaco.getX()  + 120 && posicaoy == espaco.getY() + 60){
+					
+						Espaco espacoAux = (Espaco) espaco.getComponent(0);
+						
+						//clicou num espaco que tem uma peca de mesma cor
+						if(espacoAux.getNome() == "branco"){
+							this.selecionada = false;
+							this.tabuleiro.destravaSelecao();
+						}
+						
+						//clicou numa peca de outra cor para atacar
+						else{
+							this.atacarPeca(pecaNaFrente,espaco,tabuleiro);
+						}
+					
+				}
+				
+				//cavalo movimenta em l deitado para a esquerda comecando de baixo
+				else if(posicaox == espaco.getX()  - 120 && posicaoy == espaco.getY() - 60){
+					
+						Espaco espacoAux = (Espaco) espaco.getComponent(0);
+						
+						//clicou num espaco que tem uma peca de mesma cor
+						if(espacoAux.getNome() == "branco"){
+							this.selecionada = false;
+							this.tabuleiro.destravaSelecao();
+						}
+						
+						//clicou numa peca de outra cor para atacar
+						else{
+							this.atacarPeca(pecaNaFrente,espaco,tabuleiro);
+						}
+				}
+				
+				//cavalo movimenta em l deitado para a direita começando de baixo
+				else if(posicaox == espaco.getX()  + 120 && posicaoy == espaco.getY() - 60){
+
+						Espaco espacoAux = (Espaco) espaco.getComponent(0);
+						
+						//clicou num espaco que tem uma peca de mesma cor
+						if(espacoAux.getNome() == "branco"){
+							this.selecionada = false;
+							this.tabuleiro.destravaSelecao();
+						}
+						
+						//clicou numa peca de outra cor para atacar
+						else{
+							this.atacarPeca(pecaNaFrente,espaco,tabuleiro);
+						}
+					
+				}
+				
+				//cavalo movimenta em l em pe para a esquerda comecando de cima
+				else if(posicaox == espaco.getX()  - 60 && posicaoy == espaco.getY() + 120){
+
+						Espaco espacoAux = (Espaco) espaco.getComponent(0);
+						
+						//clicou num espaco que tem uma peca de mesma cor
+						if(espacoAux.getNome() == "branco"){
+							this.selecionada = false;
+							this.tabuleiro.destravaSelecao();
+						}
+						
+						//clicou numa peca de outra cor para atacar
+						else{
+							this.atacarPeca(pecaNaFrente,espaco,tabuleiro);
+						}
+					
+				}
+				
+				//cavalo movimenta em l em pe para a direita comecando de cima
+				else if(posicaox == espaco.getX()  + 60 && posicaoy == espaco.getY() + 120){
+					
+						Espaco espacoAux = (Espaco) espaco.getComponent(0);
+						
+						//clicou num espaco que tem uma peca de mesma cor
+						if(espacoAux.getNome() == "branco"){
+							this.selecionada = false;
+							this.tabuleiro.destravaSelecao();
+						}
+						
+						//clicou numa peca de outra cor para atacar
+						else{
+							this.atacarPeca(pecaNaFrente,espaco,tabuleiro);
+						}
+					
+				}
+				
+				//cavalo movimenta em l em pe para a esquerda comecando de baixo
+				else if(posicaox == espaco.getX()  - 60 && posicaoy == espaco.getY() - 120){
+
+						Espaco espacoAux = (Espaco) espaco.getComponent(0);
+						
+						//clicou num espaco que tem uma peca de mesma cor
+						if(espacoAux.getNome() == "branco"){
+							this.selecionada = false;
+							this.tabuleiro.destravaSelecao();
+						}
+						
+						//clicou numa peca de outra cor para atacar
+						else{
+							this.atacarPeca(pecaNaFrente,espaco,tabuleiro);
+						}
+					
+				}
+				
+				//cavalo movimenta em l em pe para a direita comecando de baixo
+				else if(posicaox == espaco.getX()  + 60 && posicaoy == espaco.getY() - 120){
+						Espaco espacoAux = (Espaco) espaco.getComponent(0);
+						
+						//clicou num espaco que tem uma peca de mesma cor
+						if(espacoAux.getNome() == "branco"){
+							this.selecionada = false;
+							this.tabuleiro.destravaSelecao();
+						}
+						
+						//clicou numa peca de outra cor para atacar
+						else{
+							this.atacarPeca(pecaNaFrente,espaco,tabuleiro);
+						}
+				}
+				
+			}
+			else if(this.cor == Color.BLACK){
+				
+				//cavalo movimenta em l deitado para a esquerda comecando de cima
+				if(posicaox == espaco.getX()  - 120 && posicaoy == espaco.getY() + 60){
+					
+						Espaco espacoAux = (Espaco) espaco.getComponent(0);
+						
+						//clicou num espaco que tem uma peca de mesma cor
+						if(espacoAux.getNome() == "preto"){
+							this.selecionada = false;
+							this.tabuleiro.destravaSelecao();
+						}
+						
+						//clicou numa peca de outra cor para atacar
+						else{
+							this.atacarPeca(pecaNaFrente,espaco,tabuleiro);
+						}
+					
+				}
+				
+				//cavalo movimenta em l deitado para a direita comecando de cima
+				else if(posicaox == espaco.getX()  + 120 && posicaoy == espaco.getY() + 60){
+					
+						Espaco espacoAux = (Espaco) espaco.getComponent(0);
+						
+						//clicou num espaco que tem uma peca de mesma cor
+						if(espacoAux.getNome() == "preto"){
+							this.selecionada = false;
+							this.tabuleiro.destravaSelecao();
+						}
+						
+						//clicou numa peca de outra cor para atacar
+						else{
+							this.atacarPeca(pecaNaFrente,espaco,tabuleiro);
+						}
+					
+				}
+				
+				//cavalo movimenta em l deitado para a esquerda comecando de baixo
+				else if(posicaox == espaco.getX()  - 120 && posicaoy == espaco.getY() - 60){
+					
+						Espaco espacoAux = (Espaco) espaco.getComponent(0);
+						
+						//clicou num espaco que tem uma peca de mesma cor
+						if(espacoAux.getNome() == "preto"){
+							this.selecionada = false;
+							this.tabuleiro.destravaSelecao();
+						}
+						
+						//clicou numa peca de outra cor para atacar
+						else{
+							this.atacarPeca(pecaNaFrente,espaco,tabuleiro);
+						}
+				}
+				
+				//cavalo movimenta em l deitado para a direita começando de baixo
+				else if(posicaox == espaco.getX()  + 120 && posicaoy == espaco.getY() - 60){
+
+						Espaco espacoAux = (Espaco) espaco.getComponent(0);
+						
+						//clicou num espaco que tem uma peca de mesma cor
+						if(espacoAux.getNome() == "preto"){
+							this.selecionada = false;
+							this.tabuleiro.destravaSelecao();
+						}
+						
+						//clicou numa peca de outra cor para atacar
+						else{
+							this.atacarPeca(pecaNaFrente,espaco,tabuleiro);
+						}
+					
+				}
+				
+				//cavalo movimenta em l em pe para a esquerda comecando de cima
+				else if(posicaox == espaco.getX()  - 60 && posicaoy == espaco.getY() + 120){
+
+						Espaco espacoAux = (Espaco) espaco.getComponent(0);
+						
+						//clicou num espaco que tem uma peca de mesma cor
+						if(espacoAux.getNome() == "preto"){
+							this.selecionada = false;
+							this.tabuleiro.destravaSelecao();
+						}
+						
+						//clicou numa peca de outra cor para atacar
+						else{
+							this.atacarPeca(pecaNaFrente,espaco,tabuleiro);
+						}
+					
+				}
+				
+				//cavalo movimenta em l em pe para a direita comecando de cima
+				else if(posicaox == espaco.getX()  + 60 && posicaoy == espaco.getY() + 120){
+					
+						Espaco espacoAux = (Espaco) espaco.getComponent(0);
+						
+						//clicou num espaco que tem uma peca de mesma cor
+						if(espacoAux.getNome() == "preto"){
+							this.selecionada = false;
+							this.tabuleiro.destravaSelecao();
+						}
+						
+						//clicou numa peca de outra cor para atacar
+						else{
+							this.atacarPeca(pecaNaFrente,espaco,tabuleiro);
+						}
+					
+				}
+				
+				//cavalo movimenta em l em pe para a esquerda comecando de baixo
+				else if(posicaox == espaco.getX()  - 60 && posicaoy == espaco.getY() - 120){
+
+						Espaco espacoAux = (Espaco) espaco.getComponent(0);
+						
+						//clicou num espaco que tem uma peca de mesma cor
+						if(espacoAux.getNome() == "preto"){
+							this.selecionada = false;
+							this.tabuleiro.destravaSelecao();
+						}
+						
+						//clicou numa peca de outra cor para atacar
+						else{
+							this.atacarPeca(pecaNaFrente,espaco,tabuleiro);
+						}
+					
+				}
+				
+				//cavalo movimenta em l em pe para a direita comecando de baixo
+				else if(posicaox == espaco.getX()  + 60 && posicaoy == espaco.getY() - 120){
+						Espaco espacoAux = (Espaco) espaco.getComponent(0);
+						
+						//clicou num espaco que tem uma peca de mesma cor
+						if(espacoAux.getNome() == "preto"){
+							this.selecionada = false;
+							this.tabuleiro.destravaSelecao();
+						}
+						
+						//clicou numa peca de outra cor para atacar
+						else{
+							this.atacarPeca(pecaNaFrente,espaco,tabuleiro);
+						}
+				}
+			}
 		}
 				
 	}
 
-	public void atacarPeca() {
-
+	public void atacarPeca(JLabel pecaNaFrente,JButton espaco, JPanel tabuleiro) {
+		//clica no canto do espaco
+		if(espaco!=null && pecaNaFrente == null){
+			if(this.cor == Color.BLACK){
+				JLabel pecaComida = (JLabel) tabuleiro.getComponentAt(espaco.getX(),espaco.getY());
+				
+				tabuleiro.remove(pecaComida);
+				espaco.remove(0);
+				
+				icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
+		
+				
+				int posicaoAnteriorx = posicaox;
+				int posicaoAnteriory = posicaoy;
+				
+				this.posicaoy = espaco.getY();
+				this.posicaox = espaco.getX();
+				
+				tabuleiro.remove(espaco);
+				espaco.add(new Espaco("preto"));
+				tabuleiro.add(espaco);
+				JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
+				espacoAntigo.remove(0);
+				this.selecionada = false;
+				this.tabuleiro.destravaSelecao();
+				this.tabuleiro.repaint();
+			}
+			else if(this.cor == Color.WHITE){
+				JLabel pecaComida = (JLabel) tabuleiro.getComponentAt(espaco.getX(),espaco.getY());
+				
+				tabuleiro.remove(pecaComida);
+				espaco.remove(0);
+				
+				icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
+		
+				
+				int posicaoAnteriorx = posicaox;
+				int posicaoAnteriory = posicaoy;
+				
+				this.posicaoy = espaco.getY();
+				this.posicaox = espaco.getX();
+				
+				tabuleiro.remove(espaco);
+				espaco.add(new Espaco("branco"));
+				tabuleiro.add(espaco);
+				JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
+				espacoAntigo.remove(0);
+				this.selecionada = false;
+				this.tabuleiro.destravaSelecao();
+				this.tabuleiro.repaint();
+			}
+		}
+		//clica no JLabel
+		else if(pecaNaFrente != null){
+			if(this.cor == Color.BLACK){
+				
+				espaco = (JButton) tabuleiro.getComponentAt(pecaNaFrente.getX()+50, pecaNaFrente.getY()+50);
+				
+				int posicaoAtualX = pecaNaFrente.getX();
+				int posicaoAtualY = pecaNaFrente.getY();
+				
+				tabuleiro.remove(pecaNaFrente);
+				espaco.remove(0);
+				
+				icon.setBounds(posicaoAtualX, posicaoAtualY, 50,50);
+		
+				
+				int posicaoAnteriorx = posicaox;
+				int posicaoAnteriory = posicaoy;
+				
+				this.posicaoy = posicaoAtualY;
+				this.posicaox = posicaoAtualX;
+				
+				tabuleiro.remove(espaco);
+				espaco.add(new Espaco("preto"));
+				tabuleiro.add(espaco);
+				JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
+				espacoAntigo.remove(0);
+				this.selecionada = false;
+				this.tabuleiro.destravaSelecao();
+				this.tabuleiro.repaint();
+				
+			}
+			else if(this.cor == Color.WHITE){
+				espaco = (JButton) tabuleiro.getComponentAt(pecaNaFrente.getX()+50, pecaNaFrente.getY()+50);
+				
+				int posicaoAtualX = pecaNaFrente.getX();
+				int posicaoAtualY = pecaNaFrente.getY();
+				
+				tabuleiro.remove(pecaNaFrente);
+				espaco.remove(0);
+				
+				icon.setBounds(posicaoAtualX, posicaoAtualY, 50,50);
+		
+				
+				int posicaoAnteriorx = posicaox;
+				int posicaoAnteriory = posicaoy;
+				
+				this.posicaoy = posicaoAtualY;
+				this.posicaox = posicaoAtualX;
+				
+				tabuleiro.remove(espaco);
+				espaco.add(new Espaco("branco"));
+				tabuleiro.add(espaco);
+				JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
+				espacoAntigo.remove(0);
+				this.selecionada = false;
+				this.tabuleiro.destravaSelecao();
+				this.tabuleiro.repaint();
+			}
+		}
 	}
 	
 	public void mouseClicked(MouseEvent e){
