@@ -113,16 +113,15 @@ public class Rei extends Peca {
 					Torre t = (Torre)torre.getMouseListeners()[0];
 					if(t.getPosicaox() == 50 && t.getPosicaoy() == 470){
 						this.posicaox = 170;
-						t.setPosicaox(230);
+						t.setPosicaox(350);
 						JButton espacoAtualRei = (JButton)tabuleiro.getComponentAt(170, 470);
 						espacoAtualRei.add(new Espaco("branco"));
-						this.icon.setBounds(posicaox, posicaoy, 50, 470);
+						this.icon.setBounds(posicaox, posicaoy, 50, 50);
 						JLabel tower = t.getIcon();
-						JButton espacoAtualTorre = (JButton)tabuleiro.getComponentAt(230, 470);
-						JButton espaco = (JButton)tabuleiro.getComponentAt(170, 470);
-						//tabuleiro.remove(espaco);
+						JButton espacoAtualTorre = (JButton)tabuleiro.getComponentAt(210, 470);
+						tabuleiro.remove(espacoAtualTorre);
 						tower.setBounds(t.getPosicaox(), t.getPosicaoy(), 50, 50);
-						//tabuleiro.add(espaco);
+						tabuleiro.add(espacoAtualTorre);
 						espacoAtualTorre.add(new Espaco("branco"));
 						JButton espacoAntigoRei = (JButton)tabuleiro.getComponentAt(290, 470);
 						JButton espacoAntigoTorre = (JButton)tabuleiro.getComponentAt(50, 470);
