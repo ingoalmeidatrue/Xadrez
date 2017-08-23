@@ -1,4 +1,4 @@
-ï»¿import java.awt.Color;
+import java.awt.Color;
 import java.awt.LayoutManager;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,7 +18,7 @@ public class Tabuleiro extends JFrame {
 
 	private String espacos;
 	
-	private JButton botaoBranco, botaoPreto;
+	private JButton botao;
 	
 	//imagem do tabuleiro
 	private Icon imagemTabuleiro;
@@ -136,7 +136,7 @@ public class Tabuleiro extends JFrame {
 		
 		tabuleiro = new JPanel();
 		
-		//O layout do tabuleiro Ã© definido como nulo (por enquanto)
+		//O layout do tabuleiro é definido como nulo (por enquanto)
 		tabuleiro.setLayout(null);
 				
 		//define tamanho e posicao dos botoes
@@ -145,9 +145,9 @@ public class Tabuleiro extends JFrame {
 		botaoRegras.setBounds(550, 596, 100, 30);
 		botaoSair.setBounds(550, 629, 100, 30);
 				
-		//adiciona aÃ§Ã£o nos botoes ao clicar com o mouse neles
+		//adiciona ação nos botoes ao clicar com o mouse neles
 		botaoRegras.addActionListener(new ApareceJanelaRegras("Janela de regras"));
-		botaoInstrucoes.addActionListener(new ApareceJanelaInstrucoes("Janela de instruÃ§Ãµes"));
+		botaoInstrucoes.addActionListener(new ApareceJanelaInstrucoes("Janela de instruções"));
 		botaoSair.addActionListener(new FechaJogo());
 		botaoReiniciar.addActionListener(new ReiniciaJogo(this));		
 		tabuleiro.add(botaoReiniciar);
@@ -179,43 +179,43 @@ public class Tabuleiro extends JFrame {
 	}
 
 	void addCelulaBranca(Espaco espaco){
-		botaoBranco = new JButton ();
+		botao = new JButton ();
 		
-		botaoBranco.setIcon(new ImageIcon("image/white.png"));
-		botaoBranco.setBounds(xTabuleiro, yTabuleiro, 60, 60);
-		botaoBranco.setBorder(null);
-		botaoBranco.setName(null);
+		botao.setIcon(new ImageIcon("image/white.png"));
+		botao.setBounds(xTabuleiro, yTabuleiro, 60, 60);
+		botao.setBorder(null);
+		botao.setName("branco");
 
 		if(espaco.getNome() != null){
-			 botaoBranco.add(espaco);			
+			 botao.add(espaco);			
 		}
 		
-	     botaoBranco.setContentAreaFilled(false);
-	     Movimentacao mov = new Movimentacao(botaoBranco,this,tabuleiro);
-	     botaoBranco.addMouseListener(mov);
+	     botao.setContentAreaFilled(false);
+	     Movimentacao mov = new Movimentacao(botao,this,tabuleiro);
+	     botao.addMouseListener(mov);
 			 	
-		tabuleiro.add(botaoBranco);
+		tabuleiro.add(botao);
 	}
 	
 	void addCelulaPreta(Espaco espaco){
-		botaoPreto = new JButton ();
+		botao = new JButton ();
 		
 
 		
-		botaoPreto.setIcon(new ImageIcon("image/brown.png"));
-		botaoPreto.setBounds(xTabuleiro, yTabuleiro, 60, 60);
-		botaoPreto.setBorder(null);
-		botaoPreto.setName(null);
+		botao.setIcon(new ImageIcon("image/brown.png"));
+		botao.setBounds(xTabuleiro, yTabuleiro, 60, 60);
+		botao.setBorder(null);
+		botao.setName("preto");
 		
 		if(espaco.getNome() != null){
-			botaoPreto.add(espaco);			
+			botao.add(espaco);			
 		}
 		
-		botaoPreto.setContentAreaFilled(false);
-		Movimentacao mov = new Movimentacao(botaoPreto,this,tabuleiro);
-		botaoPreto.addMouseListener(mov);
+		botao.setContentAreaFilled(false);
+		Movimentacao mov = new Movimentacao(botao,this,tabuleiro);
+		botao.addMouseListener(mov);
 		
-		tabuleiro.add(botaoPreto);
+		tabuleiro.add(botao);
 	}
 
 	
@@ -281,7 +281,7 @@ public class Tabuleiro extends JFrame {
 						
 						imagemLabelCavalo2Branco.setBounds(xPecaBranca, yPecaBranca, 50, 50);
 						
-						Cavalo cavaloBranco = new Cavalo(xPecaPreta,yPecaPreta,Color.WHITE,imagemLabelCavalo2Branco,this);
+						Cavalo cavaloBranco = new Cavalo(xPecaPreta,yPecaPreta,Color.BLACK,imagemLabelCavalo2Branco,this);
 						pecas.add(cavaloBranco);
 						imagemLabelCavalo2Branco.addMouseListener(cavaloBranco);
 						
@@ -293,7 +293,7 @@ public class Tabuleiro extends JFrame {
 						
 						imagemLabelCavalo1Branco.setBounds(xPecaBranca, yPecaBranca, 50, 50);
 						
-						Cavalo cavaloBranco = new Cavalo(xPecaPreta,yPecaPreta,Color.WHITE,imagemLabelCavalo1Branco,this);
+						Cavalo cavaloBranco = new Cavalo(xPecaPreta,yPecaPreta,Color.BLACK,imagemLabelCavalo1Branco,this);
 						pecas.add(cavaloBranco);
 						imagemLabelCavalo1Branco.addMouseListener(cavaloBranco);
 						
@@ -660,6 +660,14 @@ public class Tabuleiro extends JFrame {
 	public static void main(String [] args){
 		new Tabuleiro();
 	}
+
+	public ArrayList<Peca> getPecasComidas() {
+		return pecasComidas;
+	}
+
+	public JButton getBotao() {
+		return botao;
+	}
+
+
 }
-
-
