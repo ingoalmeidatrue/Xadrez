@@ -47,30 +47,91 @@ public class Rei extends Peca {
 					if(t.getPosicaox() == 470 && t.getPosicaoy() == 50){
 						this.posicaox = 410;
 						t.setPosicaox(350);
+						JButton espacoAtualRei = (JButton)tabuleiro.getComponentAt(410, 50);
+						espacoAtualRei.add(new Espaco("preto"));
 						this.icon.setBounds(posicaox, posicaoy, 50, 50);
 						JLabel tower = t.getIcon();
-						JButton espaco = (JButton)tabuleiro.getComponentAt(350, 50);
-						tabuleiro.remove(espaco);
+						JButton espacoAtualTorre = (JButton)tabuleiro.getComponentAt(350, 50);
+						tabuleiro.remove(espacoAtualTorre);
 						tower.setBounds(t.getPosicaox(), t.getPosicaoy(), 50, 50);
-						tabuleiro.add(espaco);
+						tabuleiro.add(espacoAtualTorre);
+						espacoAtualTorre.add(new Espaco("preto"));
+						JButton espacoAntigoRei = (JButton)tabuleiro.getComponentAt(290, 50);
+						JButton espacoAntigoTorre = (JButton)tabuleiro.getComponentAt(470, 50);
+						espacoAntigoRei.remove(0);
+						espacoAntigoTorre.remove(0);
 						this.tabuleiro.atualizarTabuleiro();					
 					}
 				}
-				else if(tabuleiro.getComponentAt(230, 50) instanceof JButton && tabuleiro.getComponentAt(170, 50) instanceof JButton){
+				else if(tabuleiro.getComponentAt(230, 50) instanceof JButton  && tabuleiro.getComponentAt(170, 50) instanceof JButton && tabuleiro.getComponentAt(110, 50) instanceof JButton){
 					Torre t = (Torre)torre.getMouseListeners()[0];
-					if(t.getPosicaox() == 110 && t.getPosicaoy() == 50){
+					if(t.getPosicaox() == 50 && t.getPosicaoy() == 50){
 						this.posicaox = 170;
 						t.setPosicaox(230);
+						JButton espacoAtualRei = (JButton)tabuleiro.getComponentAt(170, 50);
+						espacoAtualRei.add(new Espaco("preto"));
 						this.icon.setBounds(posicaox, posicaoy, 50, 50);
 						JLabel tower = t.getIcon();
-						JButton espaco = (JButton)tabuleiro.getComponentAt(230, 50);
+						JButton espacoAtualTorre = (JButton)tabuleiro.getComponentAt(230, 50);
+						JButton espaco = (JButton)tabuleiro.getComponentAt(170, 50);
 						tabuleiro.remove(espaco);
 						tower.setBounds(t.getPosicaox(), t.getPosicaoy(), 50, 50);
 						tabuleiro.add(espaco);
+						espacoAtualTorre.add(new Espaco("preto"));
+						JButton espacoAntigoRei = (JButton)tabuleiro.getComponentAt(290, 50);
+						JButton espacoAntigoTorre = (JButton)tabuleiro.getComponentAt(50, 50);
+						espacoAntigoRei.remove(0);
+						espacoAntigoTorre.remove(0);
 						this.tabuleiro.atualizarTabuleiro();					
 					}
 				}
-			}		
+			}
+			else if(this.posicaox == 290 && this.posicaoy == 470 && this.cor == Color.WHITE){
+				System.out.println("entrei");
+				if(tabuleiro.getComponentAt(350, 470) instanceof JButton && tabuleiro.getComponentAt(410, 470) instanceof JButton){
+					Torre t = (Torre)torre.getMouseListeners()[0];
+					if(t.getPosicaox() == 470 && t.getPosicaoy() == 470){
+						this.posicaox = 410;
+						t.setPosicaox(350);
+						JButton espacoAtualRei = (JButton)tabuleiro.getComponentAt(410, 470);
+						espacoAtualRei.add(new Espaco("branco"));
+						this.icon.setBounds(posicaox, posicaoy, 50, 50);
+						JLabel tower = t.getIcon();
+						JButton espacoAtualTorre = (JButton)tabuleiro.getComponentAt(350, 470);
+						tabuleiro.remove(espacoAtualTorre);
+						tower.setBounds(t.getPosicaox(), t.getPosicaoy(), 50, 50);
+						tabuleiro.add(espacoAtualTorre);
+						espacoAtualTorre.add(new Espaco("branco"));
+						JButton espacoAntigoRei = (JButton)tabuleiro.getComponentAt(290, 470);
+						JButton espacoAntigoTorre = (JButton)tabuleiro.getComponentAt(470, 470);
+						espacoAntigoRei.remove(0);
+						espacoAntigoTorre.remove(0);
+						this.tabuleiro.atualizarTabuleiro();					
+					}
+				}
+				else if(tabuleiro.getComponentAt(230, 470) instanceof JButton  && tabuleiro.getComponentAt(170, 470) instanceof JButton && tabuleiro.getComponentAt(110, 470) instanceof JButton){
+					Torre t = (Torre)torre.getMouseListeners()[0];
+					if(t.getPosicaox() == 50 && t.getPosicaoy() == 470){
+						this.posicaox = 170;
+						t.setPosicaox(230);
+						JButton espacoAtualRei = (JButton)tabuleiro.getComponentAt(170, 470);
+						espacoAtualRei.add(new Espaco("branco"));
+						this.icon.setBounds(posicaox, posicaoy, 50, 470);
+						JLabel tower = t.getIcon();
+						JButton espacoAtualTorre = (JButton)tabuleiro.getComponentAt(230, 470);
+						JButton espaco = (JButton)tabuleiro.getComponentAt(170, 470);
+						//tabuleiro.remove(espaco);
+						tower.setBounds(t.getPosicaox(), t.getPosicaoy(), 50, 50);
+						//tabuleiro.add(espaco);
+						espacoAtualTorre.add(new Espaco("branco"));
+						JButton espacoAntigoRei = (JButton)tabuleiro.getComponentAt(290, 470);
+						JButton espacoAntigoTorre = (JButton)tabuleiro.getComponentAt(50, 470);
+						espacoAntigoRei.remove(0);
+						espacoAntigoTorre.remove(0);
+						this.tabuleiro.atualizarTabuleiro();					
+					}
+				}
+			}
 		}
 	}
 
@@ -78,7 +139,7 @@ public class Rei extends Peca {
 		if(this.cor == Color.BLACK && this.posicaox != 290 && this.posicaoy == 50){
 			this.roque = false;
 		}
-		else if(this.cor == Color.WHITE && this.posicaox != 290 && this.posicaoy == 50){
+		else if(this.cor == Color.WHITE && (this.posicaox != 290 || this.posicaoy != 470)){
 			this.roque = false;
 		}
 		if(espaco!=null && pecaNaFrente == null){
@@ -347,8 +408,9 @@ public class Rei extends Peca {
 			}
 		}
 		else if(pecaNaFrente!=null){
+			//Roque
 			if(pecaNaFrente.getMouseListeners()[0] instanceof Torre){
-				System.out.println("Entrei");
+				System.out.println("entrei1");
 				usarJogadaEspecial(pecaNaFrente, tabuleiro);
 			}
 			this.selecionada = false;
