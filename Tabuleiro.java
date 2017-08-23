@@ -281,7 +281,7 @@ public class Tabuleiro extends JFrame {
 						
 						imagemLabelCavalo2Branco.setBounds(xPecaBranca, yPecaBranca, 50, 50);
 						
-						Cavalo cavaloBranco = new Cavalo(xPecaPreta,yPecaPreta,Color.BLACK,imagemLabelCavalo2Branco,this);
+						Cavalo cavaloBranco = new Cavalo(xPecaPreta,yPecaPreta,Color.WHITE,imagemLabelCavalo2Branco,this);
 						pecas.add(cavaloBranco);
 						imagemLabelCavalo2Branco.addMouseListener(cavaloBranco);
 						
@@ -293,7 +293,7 @@ public class Tabuleiro extends JFrame {
 						
 						imagemLabelCavalo1Branco.setBounds(xPecaBranca, yPecaBranca, 50, 50);
 						
-						Cavalo cavaloBranco = new Cavalo(xPecaPreta,yPecaPreta,Color.BLACK,imagemLabelCavalo1Branco,this);
+						Cavalo cavaloBranco = new Cavalo(xPecaPreta,yPecaPreta,Color.WHITE,imagemLabelCavalo1Branco,this);
 						pecas.add(cavaloBranco);
 						imagemLabelCavalo1Branco.addMouseListener(cavaloBranco);
 						
