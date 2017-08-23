@@ -30,7 +30,7 @@ public class Peao extends Peca {
 	public void usarJogadaEspecial(JPanel tabuleiro) {
 		if(this.cor == Color.WHITE && posicaoy == 50){
 			this.pecaMorta = true;
-			this.tabuleiro.getPecasComidas().add(this);
+			this.tabuleiro.getPecasForaDoJogo().add(this);
 			Icon imgRainha = new ImageIcon("image/rainhaBranco.png");
 			JLabel imgRainhaEspecial = new JLabel(imgRainha);
 			Rainha rainhaEspecial = new Rainha(posicaox, posicaoy,this.cor,imgRainhaEspecial,this.tabuleiro);
@@ -48,7 +48,7 @@ public class Peao extends Peca {
 		}
 		else if(this.cor == Color.BLACK && posicaoy == 470){
 			this.pecaMorta = true;
-			this.tabuleiro.getPecasComidas().add(this);
+			this.tabuleiro.getPecasForaDoJogo().add(this);
 			Icon imgRainha = new ImageIcon("image/rainhaPreto.png");
 			JLabel imgRainhaEspecial = new JLabel(imgRainha);
 			Rainha rainhaEspecial = new Rainha(posicaox, posicaoy,this.cor,imgRainhaEspecial,this.tabuleiro);
@@ -350,6 +350,18 @@ public class Peao extends Peca {
 	}
 	public void setPodeSelecionar(boolean podeSelecionar) {
 		this.podeSelecionar = podeSelecionar;
+	}
+	public int getPosicaox() {
+		return posicaox;
+	}
+	public void setPosicaox(int posicaox) {
+		this.posicaox = posicaox;
+	}
+	public int getPosicaoy() {
+		return posicaoy;
+	}
+	public void setPosicaoy(int posicaoy) {
+		this.posicaoy = posicaoy;
 	}
 	
 }

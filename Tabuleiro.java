@@ -14,12 +14,20 @@ public class Tabuleiro extends JFrame {
 
 	private ArrayList<Peca> pecas = new ArrayList<Peca>();
 
-	private ArrayList<Peca> pecasComidas = new ArrayList<Peca>();
+	private ArrayList<Peca> pecasForaDoJogo = new ArrayList<Peca>();
 
 	private String espacos;
 	
 	private JButton botaoBranco, botaoPreto;
 	
+	public ArrayList<Peca> getPecasForaDoJogo() {
+		return pecasForaDoJogo;
+	}
+
+	public void setPecasForaDoJogo(ArrayList<Peca> pecasForaDoJogo) {
+		this.pecasForaDoJogo = pecasForaDoJogo;
+	}
+
 	//imagem do tabuleiro
 	private Icon imagemTabuleiro;
 	
