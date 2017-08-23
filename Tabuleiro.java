@@ -1,4 +1,4 @@
-import java.awt.Color;
+﻿import java.awt.Color;
 import java.awt.LayoutManager;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -660,9 +660,6 @@ public class Tabuleiro extends JFrame {
 	public static void main(String [] args){
 		new Tabuleiro();
 	}
-
-	public ArrayList<Peca> getPecasComidas() {
-		return pecasComidas;
-	}
-
 }
+
+
