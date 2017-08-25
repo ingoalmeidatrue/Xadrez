@@ -1,4 +1,4 @@
-﻿import java.awt.Color;
+import java.awt.Color;
 import java.awt.LayoutManager;
 import java.util.ArrayList;
 import java.util.Arrays;
