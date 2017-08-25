@@ -1,4 +1,4 @@
-﻿import java.awt.Color;
+import java.awt.Color;
 import java.awt.LayoutManager;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,24 +14,16 @@ public class Tabuleiro extends JFrame {
 
 	private ArrayList<Peca> pecas = new ArrayList<Peca>();
 
-	private ArrayList<Peca> pecasForaDoJogo = new ArrayList<Peca>();
+	private static ArrayList<Peca> pecasForaDoJogo = new ArrayList<Peca>();
 
 	private String espacos;
 	
 	private JButton botaoBranco, botaoPreto;
 	
-	public ArrayList<Peca> getPecasForaDoJogo() {
-		return pecasForaDoJogo;
-	}
-
-	public void setPecasForaDoJogo(ArrayList<Peca> pecasForaDoJogo) {
-		this.pecasForaDoJogo = pecasForaDoJogo;
-	}
-
 	//imagem do tabuleiro
 	private Icon imagemTabuleiro;
 	
-	//imagens das pecas pretas
+	//imagens das pecas pretass
 	private Icon imagemPeaoPreto;
 	private Icon imagemCavalo1Preto;
 	private Icon imagemCavalo2Preto;
@@ -99,6 +91,9 @@ public class Tabuleiro extends JFrame {
 	//botao de sair
 	private JButton botaoSair;
 	
+	//botao das pecas comidas
+	private JButton botaoPecas;
+	
 	//coordenadas iniciais
 	int xTabuleiro = 50, yTabuleiro = 50, xPecaPreta = 50, yPecaPreta = 50,xPecaBranca = 50,yPecaBranca = 410;
 	
@@ -115,7 +110,7 @@ public class Tabuleiro extends JFrame {
 		botaoSair = new JButton("Sair");
 		botaoInstrucoes = new JButton("Instrucoes");
 		botaoRegras = new JButton("Regras");
-		
+		botaoPecas = new JButton("Cemitério");
 		
 		//criando nova instancia de imagem do tabuleiro
 		imagemTabuleiro = new ImageIcon("image/board_chess.png");
@@ -152,17 +147,19 @@ public class Tabuleiro extends JFrame {
 		botaoInstrucoes.setBounds(550, 563, 100, 30);
 		botaoRegras.setBounds(550, 596, 100, 30);
 		botaoSair.setBounds(550, 629, 100, 30);
+		botaoPecas.setBounds(550,245,100,70);
 				
 		//adiciona ação nos botoes ao clicar com o mouse neles
 		botaoRegras.addActionListener(new ApareceJanelaRegras("Janela de regras"));
 		botaoInstrucoes.addActionListener(new ApareceJanelaInstrucoes("Janela de instruções"));
 		botaoSair.addActionListener(new FechaJogo());
-		botaoReiniciar.addActionListener(new ReiniciaJogo(this));		
+		botaoReiniciar.addActionListener(new ReiniciaJogo(this));
+		botaoPecas.addActionListener(new AparecePecasComidas("Peças fora do jogo"));
 		tabuleiro.add(botaoReiniciar);
 		tabuleiro.add(botaoInstrucoes);
 		tabuleiro.add(botaoRegras);
 		tabuleiro.add(botaoSair);
-				
+		tabuleiro.add(botaoPecas);	
 				
 		montarTabuleiro();
 				
@@ -289,7 +286,7 @@ public class Tabuleiro extends JFrame {
 						
 						imagemLabelCavalo2Branco.setBounds(xPecaBranca, yPecaBranca, 50, 50);
 						
-						Cavalo cavaloBranco = new Cavalo(xPecaPreta,yPecaPreta,Color.WHITE,imagemLabelCavalo2Branco,this);
+						Cavalo cavaloBranco = new Cavalo(xPecaPreta,yPecaPreta,Color.BLACK,imagemLabelCavalo2Branco,this);
 						pecas.add(cavaloBranco);
 						imagemLabelCavalo2Branco.addMouseListener(cavaloBranco);
 						
@@ -301,7 +298,7 @@ public class Tabuleiro extends JFrame {
 						
 						imagemLabelCavalo1Branco.setBounds(xPecaBranca, yPecaBranca, 50, 50);
 						
-						Cavalo cavaloBranco = new Cavalo(xPecaPreta,yPecaPreta,Color.WHITE,imagemLabelCavalo1Branco,this);
+						Cavalo cavaloBranco = new Cavalo(xPecaPreta,yPecaPreta,Color.BLACK,imagemLabelCavalo1Branco,this);
 						pecas.add(cavaloBranco);
 						imagemLabelCavalo1Branco.addMouseListener(cavaloBranco);
 						
@@ -558,7 +555,7 @@ public class Tabuleiro extends JFrame {
 	}
 
 	public void atualizarTabuleiro() {
-		this.repaint();
+
 	}
 
 	public void reiniciarTabuleiro() {
@@ -664,10 +661,15 @@ public class Tabuleiro extends JFrame {
 		
 		super.repaint();
 	}
+	public static ArrayList<Peca> getPecasForaDoJogo() {
+		return pecasForaDoJogo;
+	}
+
+	public void setPecasForaDoJogo(ArrayList<Peca> pecasForaDoJogo) {
+		this.pecasForaDoJogo = pecasForaDoJogo;
+	}
 	
 	public static void main(String [] args){
 		new Tabuleiro();
 	}
 }
-
-
