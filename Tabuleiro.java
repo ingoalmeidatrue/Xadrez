@@ -16,6 +16,9 @@ public class Tabuleiro extends JFrame {
 
 	private ArrayList<Peca> pecasComidas = new ArrayList<Peca>();
 
+	/**
+	 * 
+	 */
 	private String espacos;
 	
 	private JButton botaoBranco, botaoPreto;

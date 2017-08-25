@@ -469,4 +469,21 @@ public void mouseClicked(MouseEvent e){
 	public void setPodeSelecionar(boolean podeSelecionar) {
 		this.podeSelecionar = podeSelecionar;
 	}
+
+	public int getPosicaox() {
+		return posicaox;
+	}
+
+	public void setPosicaox(int posicaox) {
+		this.posicaox = posicaox;
+	}
+
+	public int getPosicaoy() {
+		return posicaoy;
+	}
+
+	public void setPosicaoy(int posicaoy) {
+		this.posicaoy = posicaoy;
+	}
+	
 }
