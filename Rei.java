@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -41,6 +42,7 @@ public class Rei extends Peca {
 
 	public void usarJogadaEspecial(JLabel torre, JPanel tabuleiro) {
 		if(this.roque){
+			//Troca o rei preto com a torre a direita
 			if(this.posicaox == 290 && this.posicaoy == 50 && this.cor == Color.BLACK){
 				if(tabuleiro.getComponentAt(350, 50) instanceof JButton && tabuleiro.getComponentAt(410, 50) instanceof JButton){
 					Torre t = (Torre)torre.getMouseListeners()[0];
@@ -63,6 +65,7 @@ public class Rei extends Peca {
 						this.tabuleiro.atualizarTabuleiro();					
 					}
 				}
+				//Troca o rei preto com a torre a esquerda
 				else if(tabuleiro.getComponentAt(230, 50) instanceof JButton  && tabuleiro.getComponentAt(170, 50) instanceof JButton && tabuleiro.getComponentAt(110, 50) instanceof JButton){
 					Torre t = (Torre)torre.getMouseListeners()[0];
 					if(t.getPosicaox() == 50 && t.getPosicaoy() == 50){
@@ -86,8 +89,8 @@ public class Rei extends Peca {
 					}
 				}
 			}
+			//Troca o rei branco com a torre a direita
 			else if(this.posicaox == 290 && this.posicaoy == 470 && this.cor == Color.WHITE){
-				System.out.println("entrei");
 				if(tabuleiro.getComponentAt(350, 470) instanceof JButton && tabuleiro.getComponentAt(410, 470) instanceof JButton){
 					Torre t = (Torre)torre.getMouseListeners()[0];
 					if(t.getPosicaox() == 470 && t.getPosicaoy() == 470){
@@ -109,16 +112,19 @@ public class Rei extends Peca {
 						this.tabuleiro.atualizarTabuleiro();					
 					}
 				}
+				//Troca o rei branco com a torre a esquerda
 				else if(tabuleiro.getComponentAt(230, 470) instanceof JButton  && tabuleiro.getComponentAt(170, 470) instanceof JButton && tabuleiro.getComponentAt(110, 470) instanceof JButton){
 					Torre t = (Torre)torre.getMouseListeners()[0];
 					if(t.getPosicaox() == 50 && t.getPosicaoy() == 470){
 						this.posicaox = 170;
-						t.setPosicaox(350);
+						t.setPosicaox(230);
 						JButton espacoAtualRei = (JButton)tabuleiro.getComponentAt(170, 470);
 						espacoAtualRei.add(new Espaco("branco"));
+						tabuleiro.remove(espacoAtualRei);
 						this.icon.setBounds(posicaox, posicaoy, 50, 50);
+						tabuleiro.add(espacoAtualRei);
 						JLabel tower = t.getIcon();
-						JButton espacoAtualTorre = (JButton)tabuleiro.getComponentAt(210, 470);
+						JButton espacoAtualTorre = (JButton)tabuleiro.getComponentAt(230, 470);
 						tabuleiro.remove(espacoAtualTorre);
 						tower.setBounds(t.getPosicaox(), t.getPosicaoy(), 50, 50);
 						tabuleiro.add(espacoAtualTorre);
@@ -463,4 +469,21 @@ public class Rei extends Peca {
 	public void atacarPeca() {
 
 	}
+
+	public int getPosicaox() {
+		return posicaox;
+	}
+
+	public void setPosicaox(int posicaox) {
+		this.posicaox = posicaox;
+	}
+
+	public int getPosicaoy() {
+		return posicaoy;
+	}
+
+	public void setPosicaoy(int posicaoy) {
+		this.posicaoy = posicaoy;
+	}
+	
 }
