@@ -1,4 +1,4 @@
-ï»¿import java.awt.Color;
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
@@ -69,11 +69,11 @@ public class Peao extends Peca {
 	
 	public void movimentarPeca(JLabel pecaNaFrente,JButton espaco, JPanel tabuleiro) {
 			if(pecaMorta){
-				JOptionPane.showMessageDialog(null,"Esta peÃ§a esta fora do jogo","Movimento Invalido",JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null,"Esta peça esta fora do jogo","Movimento Invalido",JOptionPane.INFORMATION_MESSAGE);
 				this.selecionada = false;
 				this.tabuleiro.destravaSelecao();
 			}
-			//Realiza o movimento caso tenha clicado num espaÃ§o
+			//Realiza o movimento caso tenha clicado num espaço
 			else if(espaco!=null && pecaNaFrente == null){
 				if(this.cor == Color.WHITE){
 					if((posicaox + 60 == espaco.getX() || posicaox-60 == espaco.getX()) && posicaoy-60 == espaco.getY()){
@@ -199,7 +199,7 @@ public class Peao extends Peca {
 				atacarPeca(pecaNaFrente,null,tabuleiro);
 				usarJogadaEspecial(tabuleiro);
 			}
-				//Se tiver uma peÃ§a na frente, deseleciona
+				//Se tiver uma peça na frente, deseleciona
 				else if(pecaNaFrente!=null){
 					this.selecionada = false;
 					this.tabuleiro.destravaSelecao();

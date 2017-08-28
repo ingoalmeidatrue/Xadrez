@@ -666,7 +666,12 @@ public class Tabuleiro extends JFrame {
 	}
 
 	public JButton getBotao() {
+		System.out.println(botao.getName());
 		return botao;
+	}
+	
+	public JPanel getPainel(){
+		return tabuleiro;
 	}
 
 
