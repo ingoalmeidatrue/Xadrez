@@ -547,7 +547,7 @@ public class Tabuleiro extends JFrame {
 			}
 		}
 	}
-	public void destravaSelecao(boolean moved){
+	public void destravaSelecao(boolean moved,Color cor){
 		if(moved){
 			for(int i=0; i<pecas.size();i++){
 				Peca p = pecas.get(i);
