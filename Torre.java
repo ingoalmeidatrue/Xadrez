@@ -23,22 +23,6 @@ public class Torre extends Peca {
 			
 	//imagem da peca
 	private JLabel icon;
-		
-	public int getPosicaox() {
-		return posicaox;
-	}
-
-	public void setPosicaox(int posicaox) {
-		this.posicaox = posicaox;
-	}
-
-	public int getPosicaoy() {
-		return posicaoy;
-	}
-
-	public void setPosicaoy(int posicaoy) {
-		this.posicaoy = posicaoy;
-	}
 
 	public Torre(int posicaox, int posicaoy, Color cor, JLabel img, Tabuleiro tabuleiro){
 				this.posicaox = posicaox;

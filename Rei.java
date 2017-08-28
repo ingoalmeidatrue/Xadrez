@@ -1336,16 +1336,7 @@ public class Rei extends Peca {
 			this.selecionada = false;
 			this.tabuleiro.destravaSelecao();
 		}
-		else if(podeSelecionar){
-			
-			//se a cor do espaco for branca, highlight no branco
-			if(this.tabuleiro.getBotao().getName().equals("branco")){
-				System.out.println("entrou1");
-			}
-			else if(this.tabuleiro.getBotao().getName().equals("preto")){
-				System.out.println("entrou2");
-			}
-			
+		else if(podeSelecionar){	
 			this.selecionada = true;
 			tabuleiro.travaSelecao(this);
 			
