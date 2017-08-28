@@ -71,7 +71,7 @@ public class Peao extends Peca {
 			if(pecaMorta){
 				JOptionPane.showMessageDialog(null,"Esta peça esta fora do jogo","Movimento Invalido",JOptionPane.INFORMATION_MESSAGE);
 				this.selecionada = false;
-				this.tabuleiro.destravaSelecao();
+				this.tabuleiro.destravaSelecao(false);
 			}
 			//Realiza o movimento caso tenha clicado num espaço
 			else if(espaco!=null && pecaNaFrente == null){
@@ -91,7 +91,7 @@ public class Peao extends Peca {
 							JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaox, posicaoy+60);
 							espacoAntigo.remove(0);
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao();
+							this.tabuleiro.destravaSelecao(true);
 							this.tabuleiro.atualizarTabuleiro();
 						}
 						else if(posicaoy - 120 == espaco.getY() && posicaox == espaco.getX() && espaco.getComponentCount() == 0){
@@ -103,12 +103,12 @@ public class Peao extends Peca {
 							JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaox, posicaoy+120);
 							espacoAntigo.remove(0);
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao();
+							this.tabuleiro.destravaSelecao(true);
 							this.tabuleiro.atualizarTabuleiro();
 						}
 						else{
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao();
+							this.tabuleiro.destravaSelecao(false);
 						}
 					}
 					//2 movimento em diante
@@ -122,13 +122,13 @@ public class Peao extends Peca {
 							JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaox, posicaoy+60);
 							espacoAntigo.remove(0);
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao();
+							this.tabuleiro.destravaSelecao(true);
 							this.tabuleiro.atualizarTabuleiro();
 							usarJogadaEspecial(tabuleiro);
 						}
 						else{
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao();
+							this.tabuleiro.destravaSelecao(false);
 						}
 					}
 				}
@@ -149,7 +149,7 @@ public class Peao extends Peca {
 								JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaox, posicaoy-60);
 								espacoAntigo.remove(0);
 								this.selecionada = false;
-								this.tabuleiro.destravaSelecao();
+								this.tabuleiro.destravaSelecao(true);
 								this.tabuleiro.atualizarTabuleiro();
 							}
 							else if(posicaoy + 120 == espaco.getY() && posicaox == espaco.getX() && espaco.getComponentCount() == 0){
@@ -161,12 +161,12 @@ public class Peao extends Peca {
 								JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaox, posicaoy-120);
 								espacoAntigo.remove(0);
 								this.selecionada = false;
-								this.tabuleiro.destravaSelecao();
+								this.tabuleiro.destravaSelecao(true);
 								this.tabuleiro.atualizarTabuleiro();
 							}
 							else{
 								this.selecionada = false;
-								this.tabuleiro.destravaSelecao();
+								this.tabuleiro.destravaSelecao(false);
 							}
 						}
 						//2 movimento em diante
@@ -180,13 +180,13 @@ public class Peao extends Peca {
 								JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaox, posicaoy-60);
 								espacoAntigo.remove(0);
 								this.selecionada = false;
-								this.tabuleiro.destravaSelecao();
+								this.tabuleiro.destravaSelecao(true);
 								this.tabuleiro.atualizarTabuleiro();
 								usarJogadaEspecial(tabuleiro);
 							}
 							else{
 								this.selecionada = false;
-								this.tabuleiro.destravaSelecao();
+								this.tabuleiro.destravaSelecao(false);
 							}
 						}
 					}
@@ -202,7 +202,7 @@ public class Peao extends Peca {
 				//Se tiver uma peça na frente, deseleciona
 				else if(pecaNaFrente!=null){
 					this.selecionada = false;
-					this.tabuleiro.destravaSelecao();
+					this.tabuleiro.destravaSelecao(false);
 				}
 	}
 
@@ -229,7 +229,7 @@ public class Peao extends Peca {
 				tabuleiro.add(espaco);
 				espacoAntigo.remove(0);
 				this.selecionada = false;
-				this.tabuleiro.destravaSelecao();
+				this.tabuleiro.destravaSelecao(true);
 				this.tabuleiro.atualizarTabuleiro();
 			}
 			//Peao preto ataca a peca caso o espaco tenha sido clicado e contenha uma peca branca
@@ -253,7 +253,7 @@ public class Peao extends Peca {
 				tabuleiro.add(espaco);
 				espacoAntigo.remove(0);
 				this.selecionada = false;
-				this.tabuleiro.destravaSelecao();
+				this.tabuleiro.destravaSelecao(true);
 				this.tabuleiro.atualizarTabuleiro();
 			}
 		}
@@ -280,7 +280,7 @@ public class Peao extends Peca {
 				tabuleiro.add(espaconovo);
 				espacoAntigo.remove(0);
 				this.selecionada = false;
-				this.tabuleiro.destravaSelecao();
+				this.tabuleiro.destravaSelecao(true);
 				this.tabuleiro.atualizarTabuleiro();
 			}
 		}
@@ -307,13 +307,13 @@ public class Peao extends Peca {
 				tabuleiro.add(espaconovo);
 				espacoAntigo.remove(0);
 				this.selecionada = false;
-				this.tabuleiro.destravaSelecao();
+				this.tabuleiro.destravaSelecao(true);
 				this.tabuleiro.atualizarTabuleiro();
 			}
 		}
 		else{
 			this.selecionada = false;
-			this.tabuleiro.destravaSelecao();
+			this.tabuleiro.destravaSelecao(false);
 		}
 	}
 
@@ -321,7 +321,7 @@ public class Peao extends Peca {
 	public void mouseClicked(MouseEvent e){
 		if(this.selecionada){
 			this.selecionada = false;
-			this.tabuleiro.destravaSelecao();
+			this.tabuleiro.destravaSelecao(false);
 		}
 		else if(podeSelecionar){
 			this.selecionada = true;
