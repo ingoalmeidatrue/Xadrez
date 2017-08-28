@@ -864,7 +864,7 @@ public class Bispo extends Peca {
 		if(espaco!=null && pecaNaFrente == null){
 			if(this.cor == Color.BLACK){
 				JLabel pecaComida = (JLabel) tabuleiro.getComponentAt(espaco.getX(),espaco.getY());
-				
+				this.tabuleiro.getPecasForaDoJogo().add((Peca)pecaComida.getMouseListeners()[0]);
 				tabuleiro.remove(pecaComida);
 				espaco.remove(0);
 				
@@ -888,7 +888,7 @@ public class Bispo extends Peca {
 			}
 			else if(this.cor == Color.WHITE){
 				JLabel pecaComida = (JLabel) tabuleiro.getComponentAt(espaco.getX(),espaco.getY());
-				
+				this.tabuleiro.getPecasForaDoJogo().add((Peca)pecaComida.getMouseListeners()[0]);
 				tabuleiro.remove(pecaComida);
 				espaco.remove(0);
 				
@@ -916,7 +916,7 @@ public class Bispo extends Peca {
 			if(this.cor == Color.BLACK){
 				
 				espaco = (JButton) tabuleiro.getComponentAt(pecaNaFrente.getX()+50, pecaNaFrente.getY()+50);
-				
+				this.tabuleiro.getPecasForaDoJogo().add((Peca)pecaNaFrente.getMouseListeners()[0]);
 				int posicaoAtualX = pecaNaFrente.getX();
 				int posicaoAtualY = pecaNaFrente.getY();
 				
@@ -944,7 +944,7 @@ public class Bispo extends Peca {
 			}
 			else if(this.cor == Color.WHITE){
 				espaco = (JButton) tabuleiro.getComponentAt(pecaNaFrente.getX()+50, pecaNaFrente.getY()+50);
-				
+				this.tabuleiro.getPecasForaDoJogo().add((Peca)pecaNaFrente.getMouseListeners()[0]);
 				int posicaoAtualX = pecaNaFrente.getX();
 				int posicaoAtualY = pecaNaFrente.getY();
 				

@@ -225,6 +225,7 @@ public class Peao extends Peca {
 				}
 				tabuleiro.remove(espaco);
 				JLabel pecaComida = (JLabel)tabuleiro.getComponentAt(espaco.getX(), espaco.getY());
+				this.tabuleiro.getPecasForaDoJogo().add((Peca)pecaComida.getMouseListeners()[0]);
 				tabuleiro.remove(pecaComida);
 				tabuleiro.add(espaco);
 				espacoAntigo.remove(0);
@@ -249,6 +250,8 @@ public class Peao extends Peca {
 					espacoAntigo = (JButton) tabuleiro.getComponentAt(posicaox-60, posicaoy-60);
 				}
 				tabuleiro.remove(espaco);
+				System.out.println(pecaComida.getMouseListeners()[0]);
+				this.tabuleiro.getPecasForaDoJogo().add((Peca)pecaComida.getMouseListeners()[0]);
 				tabuleiro.remove(pecaComida);
 				tabuleiro.add(espaco);
 				espacoAntigo.remove(0);
@@ -276,6 +279,7 @@ public class Peao extends Peca {
 				}
 				tabuleiro.remove(espaconovo);
 				JLabel pecaComida = (JLabel)tabuleiro.getComponentAt(pecaNaFrente.getX(), pecaNaFrente.getY());
+				this.tabuleiro.getPecasForaDoJogo().add((Peca)pecaComida.getMouseListeners()[0]);
 				tabuleiro.remove(pecaComida);
 				tabuleiro.add(espaconovo);
 				espacoAntigo.remove(0);
@@ -303,6 +307,7 @@ public class Peao extends Peca {
 					espacoAntigo = (JButton) tabuleiro.getComponentAt(posicaox-60, posicaoy-60);
 				}
 				tabuleiro.remove(espaconovo);
+				this.tabuleiro.getPecasForaDoJogo().add((Peca)pecaComida.getMouseListeners()[0]); 
 				tabuleiro.remove(pecaComida);
 				tabuleiro.add(espaconovo);
 				espacoAntigo.remove(0);

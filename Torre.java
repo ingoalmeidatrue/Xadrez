@@ -914,7 +914,7 @@ public class Torre extends Peca {
 		if(espaco!=null && pecaNaFrente == null){
 			if(this.cor == Color.BLACK){
 				JLabel pecaComida = (JLabel) tabuleiro.getComponentAt(espaco.getX(),espaco.getY());
-				
+				this.tabuleiro.getPecasForaDoJogo().add((Peca)pecaComida.getMouseListeners()[0]);
 				tabuleiro.remove(pecaComida);
 				espaco.remove(0);
 				
@@ -938,7 +938,7 @@ public class Torre extends Peca {
 			}
 			else if(this.cor == Color.WHITE){
 				JLabel pecaComida = (JLabel) tabuleiro.getComponentAt(espaco.getX(),espaco.getY());
-				
+				this.tabuleiro.getPecasForaDoJogo().add((Peca)pecaComida.getMouseListeners()[0]);
 				tabuleiro.remove(pecaComida);
 				espaco.remove(0);
 				
@@ -966,7 +966,7 @@ public class Torre extends Peca {
 			if(this.cor == Color.BLACK){
 				
 				espaco = (JButton) tabuleiro.getComponentAt(pecaNaFrente.getX()+50, pecaNaFrente.getY()+50);
-				
+				this.tabuleiro.getPecasForaDoJogo().add((Peca)pecaNaFrente.getMouseListeners()[0]);
 				int posicaoAtualX = pecaNaFrente.getX();
 				int posicaoAtualY = pecaNaFrente.getY();
 				
@@ -994,7 +994,7 @@ public class Torre extends Peca {
 			}
 			else if(this.cor == Color.WHITE){
 				espaco = (JButton) tabuleiro.getComponentAt(pecaNaFrente.getX()+50, pecaNaFrente.getY()+50);
-				
+				this.tabuleiro.getPecasForaDoJogo().add((Peca)pecaNaFrente.getMouseListeners()[0]);
 				int posicaoAtualX = pecaNaFrente.getX();
 				int posicaoAtualY = pecaNaFrente.getY();
 				
@@ -1059,23 +1059,6 @@ public class Torre extends Peca {
 	public void setPodeSelecionar(boolean podeSelecionar) {
 		this.podeSelecionar = podeSelecionar;
 	}
-
-	public int getPosicaox() {
-		return posicaox;
-	}
-
-	public void setPosicaox(int posicaox) {
-		this.posicaox = posicaox;
-	}
-
-	public int getPosicaoy() {
-		return posicaoy;
-	}
-
-	public void setPosicaoy(int posicaoy) {
-		this.posicaoy = posicaoy;
-	}
-
 	public void setIcon(JLabel icon) {
 		this.icon = icon;
 	}

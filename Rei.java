@@ -1209,7 +1209,7 @@ public class Rei extends Peca {
 		if(espaco!=null && pecaNaFrente == null){
 			if(this.cor == Color.BLACK){
 				JLabel pecaComida = (JLabel) tabuleiro.getComponentAt(espaco.getX(),espaco.getY());
-				
+				this.tabuleiro.getPecasForaDoJogo().add((Peca)pecaComida.getMouseListeners()[0]);
 				tabuleiro.remove(pecaComida);
 				espaco.remove(0);
 				
@@ -1233,7 +1233,7 @@ public class Rei extends Peca {
 			}
 			else if(this.cor == Color.WHITE){
 				JLabel pecaComida = (JLabel) tabuleiro.getComponentAt(espaco.getX(),espaco.getY());
-				
+				this.tabuleiro.getPecasForaDoJogo().add((Peca)pecaNaFrente.getMouseListeners()[0]);
 				tabuleiro.remove(pecaComida);
 				espaco.remove(0);
 				
@@ -1261,7 +1261,7 @@ public class Rei extends Peca {
 			if(this.cor == Color.BLACK){
 				
 				espaco = (JButton) tabuleiro.getComponentAt(pecaNaFrente.getX()+50, pecaNaFrente.getY()+50);
-				
+				this.tabuleiro.getPecasForaDoJogo().add((Peca)pecaNaFrente.getMouseListeners()[0]);
 				int posicaoAtualX = pecaNaFrente.getX();
 				int posicaoAtualY = pecaNaFrente.getY();
 				
@@ -1289,7 +1289,7 @@ public class Rei extends Peca {
 			}
 			else if(this.cor == Color.WHITE){
 				espaco = (JButton) tabuleiro.getComponentAt(pecaNaFrente.getX()+50, pecaNaFrente.getY()+50);
-				
+				this.tabuleiro.getPecasForaDoJogo().add((Peca)pecaNaFrente.getMouseListeners()[0]);
 				int posicaoAtualX = pecaNaFrente.getX();
 				int posicaoAtualY = pecaNaFrente.getY();
 				
@@ -1337,15 +1337,6 @@ public class Rei extends Peca {
 			this.tabuleiro.destravaSelecao();
 		}
 		else if(podeSelecionar){
-			
-			//se a cor do espaco for branca, highlight no branco
-			if(this.tabuleiro.getBotao().getName().equals("branco")){
-				System.out.println("entrou1");
-			}
-			else if(this.tabuleiro.getBotao().getName().equals("preto")){
-				System.out.println("entrou2");
-			}
-			
 			this.selecionada = true;
 			tabuleiro.travaSelecao(this);
 			
