@@ -1,4 +1,4 @@
-﻿import java.awt.Color;
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
@@ -363,5 +363,4 @@ public class Peao extends Peca {
 	public void setPosicaoy(int posicaoy) {
 		this.posicaoy = posicaoy;
 	}
-	
 }
