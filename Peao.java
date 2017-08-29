@@ -1,4 +1,4 @@
-import java.awt.Color;
+ï»¿import java.awt.Color;
 import java.awt.Container;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
@@ -30,7 +30,7 @@ public class Peao extends Peca {
 	public void usarJogadaEspecial(JPanel tabuleiro) {
 		if(this.cor == Color.WHITE && posicaoy == 50){
 			this.pecaMorta = true;
-			this.tabuleiro.getPecasComidas().add(this);
+			this.tabuleiro.getPecasForaDoJogo().add(this);
 			Icon imgRainha = new ImageIcon("image/rainhaBranco.png");
 			JLabel imgRainhaEspecial = new JLabel(imgRainha);
 			Rainha rainhaEspecial = new Rainha(posicaox, posicaoy,this.cor,imgRainhaEspecial,this.tabuleiro);
@@ -48,7 +48,7 @@ public class Peao extends Peca {
 		}
 		else if(this.cor == Color.BLACK && posicaoy == 470){
 			this.pecaMorta = true;
-			this.tabuleiro.getPecasComidas().add(this);
+			this.tabuleiro.getPecasForaDoJogo().add(this);
 			Icon imgRainha = new ImageIcon("image/rainhaPreto.png");
 			JLabel imgRainhaEspecial = new JLabel(imgRainha);
 			Rainha rainhaEspecial = new Rainha(posicaox, posicaoy,this.cor,imgRainhaEspecial,this.tabuleiro);
@@ -69,11 +69,11 @@ public class Peao extends Peca {
 	
 	public void movimentarPeca(JLabel pecaNaFrente,JButton espaco, JPanel tabuleiro) {
 			if(pecaMorta){
-				JOptionPane.showMessageDialog(null,"Esta peça esta fora do jogo","Movimento Invalido",JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null,"Esta peÃ§a esta fora do jogo","Movimento Invalido",JOptionPane.INFORMATION_MESSAGE);
 				this.selecionada = false;
 				this.tabuleiro.destravaSelecao();
 			}
-			//Realiza o movimento caso tenha clicado num espaço
+			//Realiza o movimento caso tenha clicado num espaÃ§o
 			else if(espaco!=null && pecaNaFrente == null){
 				if(this.cor == Color.WHITE){
 					if((posicaox + 60 == espaco.getX() || posicaox-60 == espaco.getX()) && posicaoy-60 == espaco.getY()){
@@ -199,7 +199,7 @@ public class Peao extends Peca {
 				atacarPeca(pecaNaFrente,null,tabuleiro);
 				usarJogadaEspecial(tabuleiro);
 			}
-				//Se tiver uma peça na frente, deseleciona
+				//Se tiver uma peÃ§a na frente, deseleciona
 				else if(pecaNaFrente!=null){
 					this.selecionada = false;
 					this.tabuleiro.destravaSelecao();
@@ -350,6 +350,18 @@ public class Peao extends Peca {
 	}
 	public void setPodeSelecionar(boolean podeSelecionar) {
 		this.podeSelecionar = podeSelecionar;
+	}
+	public int getPosicaox() {
+		return posicaox;
+	}
+	public void setPosicaox(int posicaox) {
+		this.posicaox = posicaox;
+	}
+	public int getPosicaoy() {
+		return posicaoy;
+	}
+	public void setPosicaoy(int posicaoy) {
+		this.posicaoy = posicaoy;
 	}
 	
 }

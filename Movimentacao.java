@@ -92,5 +92,4 @@ public class Movimentacao extends MouseAdapter {
 		this.pecaBarra = pecaBarra;
 	}
 	
-	
 }

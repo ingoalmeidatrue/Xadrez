@@ -94,6 +94,13 @@ public class ApareceJanelaRegras implements ActionListener{
 		scrollPaneLayout.setVerticalScrollBarPolicy(ScrollPaneLayout.VERTICAL_SCROLLBAR_AS_NEEDED);
 		scrollPane.setLayout(scrollPaneLayout);
 		ajuda.getContentPane().add(this.scrollPane,BorderLayout.CENTER);
-		ajuda.setSize(500, 500);   
+		ajuda.setSize(500, 500);
+	   // ajuda.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	   /* ajuda.addWindowListener(
+         new WindowAdapter() {
+                public void windowClosing(WindowEvent e){                                        
+                    System.exit(0);                                
+                }
+            }); */ //talvez colocar no tabuleiro para melhorar o desempenho     
 	}
 }
