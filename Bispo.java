@@ -2,6 +2,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.MouseEvent;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -122,6 +123,8 @@ public class Bispo extends Peca {
 	
 	
 	public void movimentarPeca(JLabel pecaNaFrente,JButton espaco, JPanel tabuleiro) {
+		this.desativaHighlight();
+		
 		//clicou no canto do espaco
 		if(espaco!=null && pecaNaFrente == null){
 			if(this.cor == Color.WHITE){
@@ -134,7 +137,8 @@ public class Bispo extends Peca {
 								if(verificaEspacoSuperiorEsquerda(espaco,tabuleiro)){
 									//eh um movimento
 									if(espaco.getComponentCount() == 0){
-								
+										
+										
 										icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
 									
 										int posicaoAnteriorx = posicaox;
@@ -158,6 +162,7 @@ public class Bispo extends Peca {
 										
 										//clicou num espaco que tem uma peca de mesma cor
 										if(espacoAux.getNome() == "branco"){
+											
 											this.selecionada = false;
 											this.tabuleiro.destravaSelecao();
 										}
@@ -170,12 +175,16 @@ public class Bispo extends Peca {
 								}
 								//tem uma peca no caminho do bispo
 								else{
+									
+									
 									this.selecionada = false;
 									this.tabuleiro.destravaSelecao();
 								}
 							}
 							//o bispo nao clicou em sua diagonal
 							else{
+								
+								
 								this.selecionada = false;
 								this.tabuleiro.destravaSelecao();
 							}
@@ -190,6 +199,7 @@ public class Bispo extends Peca {
 							if(verificaEspacoSuperiorDireita(espaco,tabuleiro)){
 								//eh um movimento
 								if(espaco.getComponentCount() == 0){
+									
 									icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
 								
 									int posicaoAnteriorx = posicaox;
@@ -213,6 +223,8 @@ public class Bispo extends Peca {
 									
 									//clicou num espaco que tem uma peca de mesma cor
 									if(espacoAux.getNome() == "branco"){
+										
+										
 										this.selecionada = false;
 										this.tabuleiro.destravaSelecao();
 									}
@@ -225,6 +237,8 @@ public class Bispo extends Peca {
 							}
 							//tem uma peca no caminho do bispo
 							else{
+								
+								
 								this.selecionada = false;
 								this.tabuleiro.destravaSelecao();
 							}
@@ -232,6 +246,8 @@ public class Bispo extends Peca {
 						}
 						//o bispo nao clicou em sua diagonal
 						else{
+							
+							
 							this.selecionada = false;
 							this.tabuleiro.destravaSelecao();
 						}
@@ -246,6 +262,8 @@ public class Bispo extends Peca {
 							if(verificaEspacoInferiorEsquerda(espaco,tabuleiro)){
 								//eh um movimento
 								if(espaco.getComponentCount() == 0){
+									
+									
 									icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
 								
 									int posicaoAnteriorx = posicaox;
@@ -269,6 +287,8 @@ public class Bispo extends Peca {
 									
 									//clicou num espaco que tem uma peca de mesma cor
 									if(espacoAux.getNome() == "branco"){
+										
+										
 										this.selecionada = false;
 										this.tabuleiro.destravaSelecao();
 									}
@@ -282,12 +302,16 @@ public class Bispo extends Peca {
 							}
 							//tem uma peca no caminho do bispo
 							else{
+								
+								
 								this.selecionada = false;
 								this.tabuleiro.destravaSelecao();
 							}
 						}
 						//o bispo nao clicou em sua diagonal
 						else{
+							
+							
 							this.selecionada = false;
 							this.tabuleiro.destravaSelecao();
 						}
@@ -302,6 +326,8 @@ public class Bispo extends Peca {
 								if(verificaEspacoInferiorDireita(espaco,tabuleiro)){
 									//eh um movimento
 									if(espaco.getComponentCount() == 0){
+										
+										
 										icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
 									
 										int posicaoAnteriorx = posicaox;
@@ -325,6 +351,8 @@ public class Bispo extends Peca {
 										
 										//clicou num espaco que tem uma peca de mesma cor
 										if(espacoAux.getNome() == "branco"){
+											
+											
 											this.selecionada = false;
 											this.tabuleiro.destravaSelecao();
 										}
@@ -337,15 +365,24 @@ public class Bispo extends Peca {
 								}
 								//tem uma peca no caminho do bispo
 								else{
+									
+									
 									this.selecionada = false;
 									this.tabuleiro.destravaSelecao();
 								}
 							}
 							//o bispo nao clicou em sua diagonal
 							else{
+								
+								
 								this.selecionada = false;
 								this.tabuleiro.destravaSelecao();
 							}
+						}
+						else{
+							
+							this.selecionada = false;
+							this.tabuleiro.destravaSelecao();
 						}
 			}
 			else if(this.cor == Color.BLACK){
@@ -359,7 +396,8 @@ public class Bispo extends Peca {
 							if(verificaEspacoSuperiorEsquerda(espaco,tabuleiro)){
 								//eh um movimento
 								if(espaco.getComponentCount() == 0){
-							
+									
+									
 									icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
 								
 									int posicaoAnteriorx = posicaox;
@@ -383,6 +421,8 @@ public class Bispo extends Peca {
 									
 									//clicou num espaco que tem uma peca de mesma cor
 									if(espacoAux.getNome() == "preto"){
+										
+										
 										this.selecionada = false;
 										this.tabuleiro.destravaSelecao();
 									}
@@ -395,12 +435,16 @@ public class Bispo extends Peca {
 							}
 							//tem uma peca no caminho do bispo
 							else{
+								
+								
 								this.selecionada = false;
 								this.tabuleiro.destravaSelecao();
 							}
 						}
 						//o bispo nao clicou em sua diagonal
 						else{
+							
+							
 							this.selecionada = false;
 							this.tabuleiro.destravaSelecao();
 						}
@@ -415,6 +459,8 @@ public class Bispo extends Peca {
 						if(verificaEspacoSuperiorDireita(espaco,tabuleiro)){
 							//eh um movimento
 							if(espaco.getComponentCount() == 0){
+								
+								
 								icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
 							
 								int posicaoAnteriorx = posicaox;
@@ -438,6 +484,8 @@ public class Bispo extends Peca {
 								
 								//clicou num espaco que tem uma peca de mesma cor
 								if(espacoAux.getNome() == "preto"){
+									
+									
 									this.selecionada = false;
 									this.tabuleiro.destravaSelecao();
 								}
@@ -450,6 +498,8 @@ public class Bispo extends Peca {
 						}
 						//tem uma peca no caminho do bispo
 						else{
+							
+							
 							this.selecionada = false;
 							this.tabuleiro.destravaSelecao();
 						}
@@ -457,6 +507,8 @@ public class Bispo extends Peca {
 					}
 					//o bispo nao clicou em sua diagonal
 					else{
+					
+						
 						this.selecionada = false;
 						this.tabuleiro.destravaSelecao();
 					}
@@ -471,6 +523,8 @@ public class Bispo extends Peca {
 						if(verificaEspacoInferiorEsquerda(espaco,tabuleiro)){
 							//eh um movimento
 							if(espaco.getComponentCount() == 0){
+								
+								
 								icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
 							
 								int posicaoAnteriorx = posicaox;
@@ -494,6 +548,8 @@ public class Bispo extends Peca {
 								
 								//clicou num espaco que tem uma peca de mesma cor
 								if(espacoAux.getNome() == "preto"){
+									
+									
 									this.selecionada = false;
 									this.tabuleiro.destravaSelecao();
 								}
@@ -507,12 +563,16 @@ public class Bispo extends Peca {
 						}
 						//tem uma peca no caminho do bispo
 						else{
+							
+							
 							this.selecionada = false;
 							this.tabuleiro.destravaSelecao();
 						}
 					}
 					//o bispo nao clicou em sua diagonal
 					else{
+						
+						
 						this.selecionada = false;
 						this.tabuleiro.destravaSelecao();
 					}
@@ -527,6 +587,8 @@ public class Bispo extends Peca {
 							if(verificaEspacoInferiorDireita(espaco,tabuleiro)){
 								//eh um movimento
 								if(espaco.getComponentCount() == 0){
+									
+									
 									icon.setBounds(espaco.getX(), espaco.getY(), 50,50);
 								
 									int posicaoAnteriorx = posicaox;
@@ -550,6 +612,8 @@ public class Bispo extends Peca {
 									
 									//clicou num espaco que tem uma peca de mesma cor
 									if(espacoAux.getNome() == "preto"){
+										
+										
 										this.selecionada = false;
 										this.tabuleiro.destravaSelecao();
 									}
@@ -562,16 +626,25 @@ public class Bispo extends Peca {
 							}
 							//tem uma peca no caminho do bispo
 							else{
+								
+								
 								this.selecionada = false;
 								this.tabuleiro.destravaSelecao();
 							}
 						}
 						//o bispo nao clicou em sua diagonal
 						else{
+							
+							
 							this.selecionada = false;
 							this.tabuleiro.destravaSelecao();
 						}
-					}
+				}
+				else{
+					
+					this.selecionada = false;
+					this.tabuleiro.destravaSelecao();
+				}
 			}
 		}
 		//clicou no JLabel
@@ -592,6 +665,8 @@ public class Bispo extends Peca {
 								
 								//clicou num espaco que tem uma peca de mesma cor
 								if(espacoAux.getNome() == "branco"){
+									
+									
 									this.selecionada = false;
 									this.tabuleiro.destravaSelecao();
 								}
@@ -603,12 +678,16 @@ public class Bispo extends Peca {
 							}
 							//tem uma peca no caminho do bispo
 							else{
+								
+								
 								this.selecionada = false;
 								this.tabuleiro.destravaSelecao();
 							}
 						}
 						//o bispo nao clicou em sua diagonal
 						else{
+							
+							
 							this.selecionada = false;
 							this.tabuleiro.destravaSelecao();
 						}
@@ -625,6 +704,8 @@ public class Bispo extends Peca {
 							
 							//clicou num espaco que tem uma peca de mesma cor
 							if(espacoAux.getNome() == "branco"){
+								
+								
 								this.selecionada = false;
 								this.tabuleiro.destravaSelecao();
 							}
@@ -636,12 +717,16 @@ public class Bispo extends Peca {
 						}
 						//tem uma peca no caminho do bispo
 						else{
+							
+							
 							this.selecionada = false;
 							this.tabuleiro.destravaSelecao();
 						}
 					}
 					//o bispo nao clicou em sua diagonal
 					else{
+						
+						
 						this.selecionada = false;
 						this.tabuleiro.destravaSelecao();
 					}
@@ -658,6 +743,8 @@ public class Bispo extends Peca {
 							
 							//clicou num espaco que tem uma peca de mesma cor
 							if(espacoAux.getNome() == "branco"){
+								
+								
 								this.selecionada = false;
 								this.tabuleiro.destravaSelecao();
 							}
@@ -669,12 +756,15 @@ public class Bispo extends Peca {
 						}
 						//tem uma peca no caminho do bispo
 						else{
+							
 							this.selecionada = false;
 							this.tabuleiro.destravaSelecao();
 						}
 					}
 					//o bispo nao clicou em sua diagonal
 					else{
+						
+						
 						this.selecionada = false;
 						this.tabuleiro.destravaSelecao();
 					}
@@ -691,6 +781,8 @@ public class Bispo extends Peca {
 								
 								//clicou num espaco que tem uma peca de mesma cor
 								if(espacoAux.getNome() == "branco"){
+									
+									
 									this.selecionada = false;
 									this.tabuleiro.destravaSelecao();
 								}
@@ -702,17 +794,23 @@ public class Bispo extends Peca {
 							}
 							//tem uma peca no caminho do bispo
 							else{
+								
+								
 								this.selecionada = false;
 								this.tabuleiro.destravaSelecao();
 							}
 						}
 						//o bispo nao clicou em sua diagonal
 						else{
+							
+							
 							this.selecionada = false;
 							this.tabuleiro.destravaSelecao();
 						}
 				}
 				else{
+					
+					
 					this.selecionada = false;
 					this.tabuleiro.destravaSelecao();
 				}				
@@ -730,6 +828,8 @@ public class Bispo extends Peca {
 								
 								//clicou num espaco que tem uma peca de mesma cor
 								if(espacoAux.getNome() == "preto"){
+									
+									
 									this.selecionada = false;
 									this.tabuleiro.destravaSelecao();
 								}
@@ -741,12 +841,16 @@ public class Bispo extends Peca {
 							}
 							//tem uma peca no caminho do bispo
 							else{
+								
+								
 								this.selecionada = false;
 								this.tabuleiro.destravaSelecao();
 							}
 						}
 						//o bispo nao clicou em sua diagonal
 						else{
+							
+							
 							this.selecionada = false;
 							this.tabuleiro.destravaSelecao();
 						}
@@ -763,6 +867,8 @@ public class Bispo extends Peca {
 							
 							//clicou num espaco que tem uma peca de mesma cor
 							if(espacoAux.getNome() == "preto"){
+								
+								
 								this.selecionada = false;
 								this.tabuleiro.destravaSelecao();
 							}
@@ -774,12 +880,16 @@ public class Bispo extends Peca {
 						}
 						//tem uma peca no caminho do bispo
 						else{
+							
+							
 							this.selecionada = false;
 							this.tabuleiro.destravaSelecao();
 						}
 					}
 					//o bispo nao clicou em sua diagonal
 					else{
+						
+						
 						this.selecionada = false;
 						this.tabuleiro.destravaSelecao();
 					}
@@ -796,6 +906,8 @@ public class Bispo extends Peca {
 							
 							//clicou num espaco que tem uma peca de mesma cor
 							if(espacoAux.getNome() == "preto"){
+								
+								
 								this.selecionada = false;
 								this.tabuleiro.destravaSelecao();
 							}
@@ -807,12 +919,16 @@ public class Bispo extends Peca {
 						}
 						//tem uma peca no caminho do bispo
 						else{
+							
+							
 							this.selecionada = false;
 							this.tabuleiro.destravaSelecao();
 						}
 					}
 					//o bispo nao clicou em sua diagonal
 					else{
+						
+						
 						this.selecionada = false;
 						this.tabuleiro.destravaSelecao();
 					}
@@ -829,6 +945,8 @@ public class Bispo extends Peca {
 								
 								//clicou num espaco que tem uma peca de mesma cor
 								if(espacoAux.getNome() == "preto"){
+									
+									
 									this.selecionada = false;
 									this.tabuleiro.destravaSelecao();
 								}
@@ -840,17 +958,22 @@ public class Bispo extends Peca {
 							}
 							//tem uma peca no caminho do bispo
 							else{
+								
+								
 								this.selecionada = false;
 								this.tabuleiro.destravaSelecao();
 							}
 						}
 						//o bispo nao clicou em sua diagonal
 						else{
+							
+							
 							this.selecionada = false;
 							this.tabuleiro.destravaSelecao();
 						}
 				}
 				else{
+					
 					this.selecionada = false;
 					this.tabuleiro.destravaSelecao();
 				}
@@ -863,6 +986,8 @@ public class Bispo extends Peca {
 		//clica no canto do espaco
 		if(espaco!=null && pecaNaFrente == null){
 			if(this.cor == Color.BLACK){
+				
+				
 				JLabel pecaComida = (JLabel) tabuleiro.getComponentAt(espaco.getX(),espaco.getY());
 				
 				tabuleiro.remove(pecaComida);
@@ -887,6 +1012,8 @@ public class Bispo extends Peca {
 				this.tabuleiro.repaint();
 			}
 			else if(this.cor == Color.WHITE){
+				
+				
 				JLabel pecaComida = (JLabel) tabuleiro.getComponentAt(espaco.getX(),espaco.getY());
 				
 				tabuleiro.remove(pecaComida);
@@ -914,6 +1041,7 @@ public class Bispo extends Peca {
 		//clica no JLabel
 		else if(pecaNaFrente != null){
 			if(this.cor == Color.BLACK){
+				
 				
 				espaco = (JButton) tabuleiro.getComponentAt(pecaNaFrente.getX()+50, pecaNaFrente.getY()+50);
 				
@@ -943,6 +1071,8 @@ public class Bispo extends Peca {
 				
 			}
 			else if(this.cor == Color.WHITE){
+				
+				
 				espaco = (JButton) tabuleiro.getComponentAt(pecaNaFrente.getX()+50, pecaNaFrente.getY()+50);
 				
 				int posicaoAtualX = pecaNaFrente.getX();
@@ -974,11 +1104,13 @@ public class Bispo extends Peca {
 	
 public void mouseClicked(MouseEvent e){
 		
-		if(this.selecionada){			
+		if(this.selecionada){
+			this.desativaHighlight();
 			this.selecionada = false;
 			this.tabuleiro.destravaSelecao();
 		}
 		else if(podeSelecionar){
+			this.ativaHighlight();
 			this.selecionada = true;
 			tabuleiro.travaSelecao(this);
 			
@@ -1024,6 +1156,44 @@ public void mouseClicked(MouseEvent e){
 
 	public void setPosicaoy(int posicaoy) {
 		this.posicaoy = posicaoy;
+	}
+	
+	public void ativaHighlight(){
+		//ativa o highlight
+		//verifica se o espaco clicado eh branco
+		if(this.tabuleiro.getPainel().getComponentAt(posicaox+50, posicaoy+50).getName().equals("branco")){	
+			
+			JButton espacoHighlight = (JButton) this.tabuleiro.getPainel().getComponentAt(posicaox+50, posicaoy+50);
+			
+			espacoHighlight.setIcon(new ImageIcon("image/whiteHighlight.png"));
+		}
+		
+		//verifica se o espaco clicado eh preto
+		else if(this.tabuleiro.getPainel().getComponentAt(posicaox+50, posicaoy+50).getName().equals("preto")){
+			
+			JButton espacoHighlight = (JButton) this.tabuleiro.getPainel().getComponentAt(posicaox+50, posicaoy+50);
+			
+			espacoHighlight.setIcon(new ImageIcon("image/brownHighlight.png"));
+		}
+	}
+	
+	public void desativaHighlight(){
+		//desativa o highlight
+		//verifica se o espaco clicado eh branco
+		if(this.tabuleiro.getPainel().getComponentAt(posicaox+50, posicaoy+50).getName().equals("branco")){	
+			
+			JButton espacoHighlight = (JButton) this.tabuleiro.getPainel().getComponentAt(posicaox+50, posicaoy+50);
+			
+			espacoHighlight.setIcon(new ImageIcon("image/white.png"));
+		}
+		
+		//verifica se o espaco clicado eh preto
+		else if(this.tabuleiro.getPainel().getComponentAt(posicaox+50, posicaoy+50).getName().equals("preto")){
+			
+			JButton espacoHighlight = (JButton) this.tabuleiro.getPainel().getComponentAt(posicaox+50, posicaoy+50);
+			
+			espacoHighlight.setIcon(new ImageIcon("image/brown.png"));
+		}
 	}
 	
 }
