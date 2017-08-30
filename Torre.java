@@ -9,6 +9,8 @@ public class Torre extends Peca {
 	//posicao da peca selecionada
 	private int posicaox;
 	private int posicaoy;
+	private int posicaoxIni;
+	private int posicaoyIni;
 			
 	private Tabuleiro tabuleiro;
 			
@@ -18,6 +20,21 @@ public class Torre extends Peca {
 	//booleana que diz se existe ou nao alguma peca selecionada
 	private boolean podeSelecionar = true;
 			
+	public int getPosicaoxIni() {
+		return posicaoxIni;
+	}
+
+	public void setPosicaoxIni(int posicaoxIni) {
+		this.posicaoxIni = posicaoxIni;
+	}
+
+	public int getPosicaoyIni() {
+		return posicaoyIni;
+	}
+
+	public void setPosicaoyIni(int posicaoyIni) {
+		this.posicaoyIni = posicaoyIni;
+	}
 	//booleana que diz se a peca esta selecionada
 	private boolean selecionada = false;
 			

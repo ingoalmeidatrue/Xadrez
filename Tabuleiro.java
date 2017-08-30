@@ -233,7 +233,7 @@ public class Tabuleiro extends JFrame {
 					imagemLabelPeaoBranco = new JLabel(imagemPeaoBranco);
 					imagemLabelPeaoBranco.setBounds(xPecaBranca, yPecaBranca, 50, 50);
 					
-					Peao PeaoBranco = new Peao(xPecaBranca,yPecaBranca,Color.WHITE,imagemLabelPeaoBranco,this);
+					Peao PeaoBranco = new Peao(xPecaBranca,yPecaBranca,xPecaBranca-10,yPecaBranca-10,Color.WHITE,imagemLabelPeaoBranco,this);
 					pecas.add(PeaoBranco);
 					imagemLabelPeaoBranco.addMouseListener(PeaoBranco);
 					
@@ -559,6 +559,7 @@ public class Tabuleiro extends JFrame {
 	}
 
 	public void reiniciarTabuleiro() {
+		this.pecasForaDoJogo.clear();
 		xTabuleiro = 50; 
 		yTabuleiro = 50; 
 		xPecaPreta = 50; 

@@ -11,6 +11,24 @@ public class Rei extends Peca {
 	//posicao da peca selecionada
 	private int posicaox;
 	private int posicaoy;
+	private int posicaoxIni;
+	public int getPosicaoxIni() {
+		return posicaoxIni;
+	}
+
+	public void setPosicaoxIni(int posicaoxIni) {
+		this.posicaoxIni = posicaoxIni;
+	}
+
+	public int getPosicaoyIni() {
+		return posicaoyIni;
+	}
+
+	public void setPosicaoyIni(int posicaoyIni) {
+		this.posicaoyIni = posicaoyIni;
+	}
+
+	private int posicaoyIni;
 	private boolean roque = true;
 	
 	private Tabuleiro tabuleiro;

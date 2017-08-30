@@ -13,16 +13,32 @@ import javax.swing.JPanel;
 public class Peao extends Peca {
 	private int posicaox;
 	private int posicaoy;
+	private int posicaoxIni;
+	private int posicaoyIni;
 	private Tabuleiro tabuleiro;
 	private Color cor;
 	private boolean podeSelecionar = true;
 	private boolean selecionada = false;
+	public int getPosicaoxIni() {
+		return posicaoxIni;
+	}
+	public void setPosicaoxIni(int posicaoxIni) {
+		this.posicaoxIni = posicaoxIni;
+	}
+	public int getPosicaoyIni() {
+		return posicaoyIni;
+	}
+	public void setPosicaoyIni(int posicaoyIni) {
+		this.posicaoyIni = posicaoyIni;
+	}
 	private JLabel icon;
 	private boolean pecaMorta = false;
 	
-	public Peao(int posicaox, int posicaoy, Color cor, JLabel img, Tabuleiro tabuleiro){
+	public Peao(int posicaox, int posicaoy, int posicaoxIni,int PosicaoYini, Color cor, JLabel img, Tabuleiro tabuleiro){
 		this.posicaox = posicaox;
 		this.posicaoy = posicaoy;
+		this.posicaoxIni = posicaoxIni;
+		this.posicaoyIni = posicaoyIni;
 		this.cor = cor;
 		this.icon = img;
 		this.tabuleiro = tabuleiro;
@@ -41,8 +57,8 @@ public class Peao extends Peca {
 			imgRainhaEspecial.setBounds(posicaox, posicaoy, 50, 50);
 			tabuleiro.add(imgRainhaEspecial);
 			tabuleiro.add(espaco);
-			posicaox = 0;
-			posicaoy = 0;
+			posicaox = 50;
+			posicaoy = 50;
 			icon.setBounds(posicaox, posicaoy, 0, 0);
 			this.tabuleiro.atualizarTabuleiro();
 		}
