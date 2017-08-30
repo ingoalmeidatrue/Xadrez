@@ -555,7 +555,6 @@ public class Rei extends Peca {
 						//tem uma peca no espaco clicado
 						else{
 							Espaco espacoAux = (Espaco) espaco.getComponent(0);
-							
 							//clicou num espaco que tem uma peca de mesma cor
 							if(espacoAux.getNome() == "branco"){
 								
@@ -586,6 +585,22 @@ public class Rei extends Peca {
 						}
 					}
 					else{
+						//verifica se o espaco clicado eh branco
+						if(this.tabuleiro.getPainel().getComponentAt(posicaox+50, posicaoy+50).getName().equals("branco")){	
+							
+							JButton espacoHighlight = (JButton) this.tabuleiro.getPainel().getComponentAt(posicaox+50, posicaoy+50);
+							
+							espacoHighlight.setIcon(new ImageIcon("image/white.png"));
+						}
+						
+						//verifica se o espaco clicado eh preto
+						else if(this.tabuleiro.getPainel().getComponentAt(posicaox+50, posicaoy+50).getName().equals("preto")){
+							
+							JButton espacoHighlight = (JButton) this.tabuleiro.getPainel().getComponentAt(posicaox+50, posicaoy+50);
+							
+							espacoHighlight.setIcon(new ImageIcon("image/brown.png"));
+						}
+						
 						this.selecionada = false;
 						this.tabuleiro.destravaSelecao();
 					}
@@ -1656,6 +1671,23 @@ public class Rei extends Peca {
 						
 						//clicou num espaco que tem uma peca de mesma cor
 						if(espacoAux.getNome() == "branco"){
+							
+							//verifica se o espaco clicado eh branco
+							if(this.tabuleiro.getPainel().getComponentAt(posicaox+50, posicaoy+50).getName().equals("branco")){	
+								
+								JButton espacoHighlight = (JButton) this.tabuleiro.getPainel().getComponentAt(posicaox+50, posicaoy+50);
+								
+								espacoHighlight.setIcon(new ImageIcon("image/white.png"));
+							}
+							
+							//verifica se o espaco clicado eh preto
+							else if(this.tabuleiro.getPainel().getComponentAt(posicaox+50, posicaoy+50).getName().equals("preto")){
+								
+								JButton espacoHighlight = (JButton) this.tabuleiro.getPainel().getComponentAt(posicaox+50, posicaoy+50);
+								
+								espacoHighlight.setIcon(new ImageIcon("image/brown.png"));
+							}
+							
 							this.selecionada = false;
 							this.tabuleiro.destravaSelecao();
 						}
