@@ -23,6 +23,22 @@ public class Torre extends Peca {
 			
 	//imagem da peca
 	private JLabel icon;
+		
+	public int getPosicaox() {
+		return posicaox;
+	}
+
+	public void setPosicaox(int posicaox) {
+		this.posicaox = posicaox;
+	}
+
+	public int getPosicaoy() {
+		return posicaoy;
+	}
+
+	public void setPosicaoy(int posicaoy) {
+		this.posicaoy = posicaoy;
+	}
 
 	public Torre(int posicaox, int posicaoy, Color cor, JLabel img, Tabuleiro tabuleiro){
 				this.posicaox = posicaox;
@@ -135,7 +151,7 @@ public class Torre extends Peca {
 							JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 							espacoAntigo.remove(0);
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao(true);
+							this.tabuleiro.destravaSelecao();
 							this.tabuleiro.repaint();
 						}
 						//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
@@ -145,7 +161,7 @@ public class Torre extends Peca {
 							//clicou num espaco que tem uma peca de mesma cor
 							if(espacoAux.getNome() == "branco"){
 								this.selecionada = false;
-								this.tabuleiro.destravaSelecao(false);
+								this.tabuleiro.destravaSelecao();
 							}
 							
 							//clicou numa peca de outra cor para atacar
@@ -157,7 +173,7 @@ public class Torre extends Peca {
 					//tem uma peca no caminho da torre
 					else{
 						this.selecionada = false;
-						this.tabuleiro.destravaSelecao(false);
+						this.tabuleiro.destravaSelecao();
 					}
 				}
 		
@@ -181,7 +197,7 @@ public class Torre extends Peca {
 							JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 							espacoAntigo.remove(0);
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao(true);
+							this.tabuleiro.destravaSelecao();
 							this.tabuleiro.repaint();
 						}
 						//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
@@ -191,7 +207,7 @@ public class Torre extends Peca {
 							//clicou num espaco que tem uma peca de mesma cor
 							if(espacoAux.getNome() == "branco"){
 								this.selecionada = false;
-								this.tabuleiro.destravaSelecao(false);
+								this.tabuleiro.destravaSelecao();
 							}
 							
 							//clicou numa peca de outra cor para atacar
@@ -203,7 +219,7 @@ public class Torre extends Peca {
 					//tem uma peca no caminho da torre
 					else{
 						this.selecionada = false;
-						this.tabuleiro.destravaSelecao(false);
+						this.tabuleiro.destravaSelecao();
 					}
 				}
 	
@@ -227,7 +243,7 @@ public class Torre extends Peca {
 							JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 							espacoAntigo.remove(0);
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao(true);
+							this.tabuleiro.destravaSelecao();
 							this.tabuleiro.repaint();
 						}
 						//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
@@ -237,7 +253,7 @@ public class Torre extends Peca {
 							//clicou num espaco que tem uma peca de mesma cor
 							if(espacoAux.getNome() == "branco"){
 								this.selecionada = false;
-								this.tabuleiro.destravaSelecao(false);
+								this.tabuleiro.destravaSelecao();
 							}
 							
 							//clicou numa peca de outra cor para atacar
@@ -249,7 +265,7 @@ public class Torre extends Peca {
 					//tem uma peca no caminho da torre
 					else{
 						this.selecionada = false;
-						this.tabuleiro.destravaSelecao(false);
+						this.tabuleiro.destravaSelecao();
 					}
 				}
 	
@@ -273,7 +289,7 @@ public class Torre extends Peca {
 							JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 							espacoAntigo.remove(0);
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao(true);
+							this.tabuleiro.destravaSelecao();
 							this.tabuleiro.repaint();
 						}
 						//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
@@ -283,7 +299,7 @@ public class Torre extends Peca {
 							//clicou num espaco que tem uma peca de mesma cor
 							if(espacoAux.getNome() == "branco"){
 								this.selecionada = false;
-								this.tabuleiro.destravaSelecao(false);
+								this.tabuleiro.destravaSelecao();
 							}
 							
 							//clicou numa peca de outra cor para atacar
@@ -295,7 +311,7 @@ public class Torre extends Peca {
 					//tem uma peca no caminho da torre
 					else{
 						this.selecionada = false;
-						this.tabuleiro.destravaSelecao(false);
+						this.tabuleiro.destravaSelecao();
 					}
 				}
 		}
@@ -322,7 +338,7 @@ public class Torre extends Peca {
 						JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 						espacoAntigo.remove(0);
 						this.selecionada = false;
-						this.tabuleiro.destravaSelecao(true);
+						this.tabuleiro.destravaSelecao();
 						this.tabuleiro.repaint();
 					}
 					//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
@@ -332,7 +348,7 @@ public class Torre extends Peca {
 						//clicou num espaco que tem uma peca de mesma cor
 						if(espacoAux.getNome() == "preto"){
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao(false);
+							this.tabuleiro.destravaSelecao();
 						}
 						
 						//clicou numa peca de outra cor para atacar
@@ -344,7 +360,7 @@ public class Torre extends Peca {
 				//tem uma peca no caminho da torre
 				else{
 					this.selecionada = false;
-					this.tabuleiro.destravaSelecao(false);
+					this.tabuleiro.destravaSelecao();
 				}
 
 			}
@@ -371,7 +387,7 @@ public class Torre extends Peca {
 						JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 						espacoAntigo.remove(0);
 						this.selecionada = false;
-						this.tabuleiro.destravaSelecao(true);
+						this.tabuleiro.destravaSelecao();
 						this.tabuleiro.repaint();
 					}
 					//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
@@ -381,7 +397,7 @@ public class Torre extends Peca {
 						//clicou num espaco que tem uma peca de mesma cor
 						if(espacoAux.getNome() == "preto"){
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao(false);
+							this.tabuleiro.destravaSelecao();
 						}
 						
 						//clicou numa peca de outra cor para atacar
@@ -394,7 +410,7 @@ public class Torre extends Peca {
 				//tem uma peca no caminho da torre
 				else{
 					this.selecionada = false;
-					this.tabuleiro.destravaSelecao(false);
+					this.tabuleiro.destravaSelecao();
 				}
 				
 			}
@@ -421,7 +437,7 @@ public class Torre extends Peca {
 						JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 						espacoAntigo.remove(0);
 						this.selecionada = false;
-						this.tabuleiro.destravaSelecao(true);
+						this.tabuleiro.destravaSelecao();
 						this.tabuleiro.repaint();
 					}
 					//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
@@ -431,7 +447,7 @@ public class Torre extends Peca {
 						//clicou num espaco que tem uma peca de mesma cor
 						if(espacoAux.getNome() == "preto"){
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao(false);
+							this.tabuleiro.destravaSelecao();
 						}
 						
 						//clicou numa peca de outra cor para atacar
@@ -444,7 +460,7 @@ public class Torre extends Peca {
 				//tem uma peca no caminho da torre
 				else{
 					this.selecionada = false;
-					this.tabuleiro.destravaSelecao(false);
+					this.tabuleiro.destravaSelecao();
 				}
 	
 			}
@@ -470,7 +486,7 @@ public class Torre extends Peca {
 						JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 						espacoAntigo.remove(0);
 						this.selecionada = false;
-						this.tabuleiro.destravaSelecao(true);
+						this.tabuleiro.destravaSelecao();
 						this.tabuleiro.repaint();
 					}
 					//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
@@ -480,7 +496,7 @@ public class Torre extends Peca {
 						//clicou num espaco que tem uma peca de mesma cor
 						if(espacoAux.getNome() == "preto"){
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao(false);
+							this.tabuleiro.destravaSelecao();
 						}
 						
 						//clicou numa peca de outra cor para atacar
@@ -493,7 +509,7 @@ public class Torre extends Peca {
 				//tem uma peca no caminho da torre
 				else{
 					this.selecionada = false;
-					this.tabuleiro.destravaSelecao(false);
+					this.tabuleiro.destravaSelecao();
 				}
 
 			}
@@ -525,7 +541,7 @@ public class Torre extends Peca {
 						JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 						espacoAntigo.remove(0);
 						this.selecionada = false;
-						this.tabuleiro.destravaSelecao(true);
+						this.tabuleiro.destravaSelecao();
 						this.tabuleiro.repaint();
 					}
 					//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
@@ -535,7 +551,7 @@ public class Torre extends Peca {
 						//clicou num espaco que tem uma peca de mesma cor
 						if(espacoAux.getNome() == "branco"){
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao(false);
+							this.tabuleiro.destravaSelecao();
 						}
 						
 						//clicou numa peca de outra cor para atacar
@@ -547,7 +563,7 @@ public class Torre extends Peca {
 				//tem uma peca no caminho da torre
 				else{
 					this.selecionada = false;
-					this.tabuleiro.destravaSelecao(false);
+					this.tabuleiro.destravaSelecao();
 				}
 			}
 	
@@ -571,7 +587,7 @@ public class Torre extends Peca {
 						JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 						espacoAntigo.remove(0);
 						this.selecionada = false;
-						this.tabuleiro.destravaSelecao(true);
+						this.tabuleiro.destravaSelecao();
 						this.tabuleiro.repaint();
 					}
 					//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
@@ -581,7 +597,7 @@ public class Torre extends Peca {
 						//clicou num espaco que tem uma peca de mesma cor
 						if(espacoAux.getNome() == "branco"){
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao(false);
+							this.tabuleiro.destravaSelecao();
 						}
 						
 						//clicou numa peca de outra cor para atacar
@@ -593,7 +609,7 @@ public class Torre extends Peca {
 				//tem uma peca no caminho da torre
 				else{
 					this.selecionada = false;
-					this.tabuleiro.destravaSelecao(false);
+					this.tabuleiro.destravaSelecao();
 				}
 			}
 
@@ -617,7 +633,7 @@ public class Torre extends Peca {
 						JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 						espacoAntigo.remove(0);
 						this.selecionada = false;
-						this.tabuleiro.destravaSelecao(true);
+						this.tabuleiro.destravaSelecao();
 						this.tabuleiro.repaint();
 					}
 					//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
@@ -627,7 +643,7 @@ public class Torre extends Peca {
 						//clicou num espaco que tem uma peca de mesma cor
 						if(espacoAux.getNome() == "branco"){
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao(false);
+							this.tabuleiro.destravaSelecao();
 						}
 						
 						//clicou numa peca de outra cor para atacar
@@ -639,7 +655,7 @@ public class Torre extends Peca {
 				//tem uma peca no caminho da torre
 				else{
 					this.selecionada = false;
-					this.tabuleiro.destravaSelecao(false);
+					this.tabuleiro.destravaSelecao();
 				}
 			}
 
@@ -663,7 +679,7 @@ public class Torre extends Peca {
 						JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 						espacoAntigo.remove(0);
 						this.selecionada = false;
-						this.tabuleiro.destravaSelecao(true);
+						this.tabuleiro.destravaSelecao();
 						this.tabuleiro.repaint();
 					}
 					//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
@@ -673,7 +689,7 @@ public class Torre extends Peca {
 						//clicou num espaco que tem uma peca de mesma cor
 						if(espacoAux.getNome() == "branco"){
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao(false);
+							this.tabuleiro.destravaSelecao();
 						}
 						
 						//clicou numa peca de outra cor para atacar
@@ -685,7 +701,7 @@ public class Torre extends Peca {
 				//tem uma peca no caminho da torre
 				else{
 					this.selecionada = false;
-					this.tabuleiro.destravaSelecao(false);
+					this.tabuleiro.destravaSelecao();
 				}
 			}
 		}
@@ -712,7 +728,7 @@ public class Torre extends Peca {
 						JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 						espacoAntigo.remove(0);
 						this.selecionada = false;
-						this.tabuleiro.destravaSelecao(true);
+						this.tabuleiro.destravaSelecao();
 						this.tabuleiro.repaint();
 					}
 					//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
@@ -722,7 +738,7 @@ public class Torre extends Peca {
 						//clicou num espaco que tem uma peca de mesma cor
 						if(espacoAux.getNome() == "preto"){
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao(false);
+							this.tabuleiro.destravaSelecao();
 						}
 						
 						//clicou numa peca de outra cor para atacar
@@ -734,7 +750,7 @@ public class Torre extends Peca {
 				//tem uma peca no caminho da torre
 				else{
 					this.selecionada = false;
-					this.tabuleiro.destravaSelecao(false);
+					this.tabuleiro.destravaSelecao();
 				}
 	
 			}
@@ -761,7 +777,7 @@ public class Torre extends Peca {
 						JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 						espacoAntigo.remove(0);
 						this.selecionada = false;
-						this.tabuleiro.destravaSelecao(true);
+						this.tabuleiro.destravaSelecao();
 						this.tabuleiro.repaint();
 					}
 					//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
@@ -771,7 +787,7 @@ public class Torre extends Peca {
 						//clicou num espaco que tem uma peca de mesma cor
 						if(espacoAux.getNome() == "preto"){
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao(false);
+							this.tabuleiro.destravaSelecao();
 						}
 						
 						//clicou numa peca de outra cor para atacar
@@ -784,7 +800,7 @@ public class Torre extends Peca {
 				//tem uma peca no caminho da torre
 				else{
 					this.selecionada = false;
-					this.tabuleiro.destravaSelecao(false);
+					this.tabuleiro.destravaSelecao();
 				}
 				
 			}
@@ -811,7 +827,7 @@ public class Torre extends Peca {
 						JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 						espacoAntigo.remove(0);
 						this.selecionada = false;
-						this.tabuleiro.destravaSelecao(true);
+						this.tabuleiro.destravaSelecao();
 						this.tabuleiro.repaint();
 					}
 					//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
@@ -821,7 +837,7 @@ public class Torre extends Peca {
 						//clicou num espaco que tem uma peca de mesma cor
 						if(espacoAux.getNome() == "preto"){
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao(false);
+							this.tabuleiro.destravaSelecao();
 						}
 						
 						//clicou numa peca de outra cor para atacar
@@ -834,7 +850,7 @@ public class Torre extends Peca {
 				//tem uma peca no caminho da torre
 				else{
 					this.selecionada = false;
-					this.tabuleiro.destravaSelecao(false);
+					this.tabuleiro.destravaSelecao();
 				}
 	
 			}
@@ -860,7 +876,7 @@ public class Torre extends Peca {
 						JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 						espacoAntigo.remove(0);
 						this.selecionada = false;
-						this.tabuleiro.destravaSelecao(true);
+						this.tabuleiro.destravaSelecao();
 						this.tabuleiro.repaint();
 					}
 					//ou ataca peca, ou clicou num espaco que tem peca de mesma cor
@@ -870,7 +886,7 @@ public class Torre extends Peca {
 						//clicou num espaco que tem uma peca de mesma cor
 						if(espacoAux.getNome() == "preto"){
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao(false);
+							this.tabuleiro.destravaSelecao();
 						}
 						
 						//clicou numa peca de outra cor para atacar
@@ -883,7 +899,7 @@ public class Torre extends Peca {
 				//tem uma peca no caminho da torre
 				else{
 					this.selecionada = false;
-					this.tabuleiro.destravaSelecao(false);
+					this.tabuleiro.destravaSelecao();
 				}
 	
 			}
@@ -917,7 +933,7 @@ public class Torre extends Peca {
 				JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 				espacoAntigo.remove(0);
 				this.selecionada = false;
-				this.tabuleiro.destravaSelecao(true);
+				this.tabuleiro.destravaSelecao();
 				this.tabuleiro.repaint();
 			}
 			else if(this.cor == Color.WHITE){
@@ -941,7 +957,7 @@ public class Torre extends Peca {
 				JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 				espacoAntigo.remove(0);
 				this.selecionada = false;
-				this.tabuleiro.destravaSelecao(true);
+				this.tabuleiro.destravaSelecao();
 				this.tabuleiro.repaint();
 			}
 		}
@@ -972,7 +988,7 @@ public class Torre extends Peca {
 				JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 				espacoAntigo.remove(0);
 				this.selecionada = false;
-				this.tabuleiro.destravaSelecao(true);
+				this.tabuleiro.destravaSelecao();
 				this.tabuleiro.repaint();
 				
 			}
@@ -1000,7 +1016,7 @@ public class Torre extends Peca {
 				JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 				espacoAntigo.remove(0);
 				this.selecionada = false;
-				this.tabuleiro.destravaSelecao(false);
+				this.tabuleiro.destravaSelecao();
 				this.tabuleiro.repaint();
 			}
 		}
@@ -1010,7 +1026,7 @@ public class Torre extends Peca {
 		
 		if(this.selecionada){			
 			this.selecionada = false;
-			this.tabuleiro.destravaSelecao(false);
+			this.tabuleiro.destravaSelecao();
 		}
 		else if(podeSelecionar){
 			this.selecionada = true;

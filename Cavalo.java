@@ -58,7 +58,7 @@ public class Cavalo extends Peca {
 						JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 						espacoAntigo.remove(0);
 						this.selecionada = false;
-						this.tabuleiro.destravaSelecao(true,this.cor);
+						this.tabuleiro.destravaSelecao();
 						this.tabuleiro.repaint();
 					}
 					else{
@@ -67,7 +67,7 @@ public class Cavalo extends Peca {
 						//clicou num espaco que tem uma peca de mesma cor
 						if(espacoAux.getNome() == "branco"){
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao(false,this.cor);
+							this.tabuleiro.destravaSelecao();
 						}
 						
 						//clicou numa peca de outra cor para atacar
@@ -95,7 +95,7 @@ public class Cavalo extends Peca {
 						JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 						espacoAntigo.remove(0);
 						this.selecionada = false;
-						this.tabuleiro.destravaSelecao(true,this.cor);
+						this.tabuleiro.destravaSelecao();
 						this.tabuleiro.repaint();
 					}
 					else{
@@ -104,7 +104,7 @@ public class Cavalo extends Peca {
 						//clicou num espaco que tem uma peca de mesma cor
 						if(espacoAux.getNome() == "branco"){
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao(false,this.cor);
+							this.tabuleiro.destravaSelecao();
 						}
 						
 						//clicou numa peca de outra cor para atacar
@@ -132,7 +132,7 @@ public class Cavalo extends Peca {
 						JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 						espacoAntigo.remove(0);
 						this.selecionada = false;
-						this.tabuleiro.destravaSelecao(true,this.cor);
+						this.tabuleiro.destravaSelecao();
 						this.tabuleiro.repaint();
 					}
 					else{
@@ -141,7 +141,7 @@ public class Cavalo extends Peca {
 						//clicou num espaco que tem uma peca de mesma cor
 						if(espacoAux.getNome() == "branco"){
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao(false,this.cor);
+							this.tabuleiro.destravaSelecao();
 						}
 						
 						//clicou numa peca de outra cor para atacar
@@ -169,7 +169,7 @@ public class Cavalo extends Peca {
 						JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 						espacoAntigo.remove(0);
 						this.selecionada = false;
-						this.tabuleiro.destravaSelecao(true,this.cor);
+						this.tabuleiro.destravaSelecao();
 						this.tabuleiro.repaint();
 					}
 					else{
@@ -178,7 +178,7 @@ public class Cavalo extends Peca {
 						//clicou num espaco que tem uma peca de mesma cor
 						if(espacoAux.getNome() == "branco"){
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao(false,this.cor);
+							this.tabuleiro.destravaSelecao();
 						}
 						
 						//clicou numa peca de outra cor para atacar
@@ -206,7 +206,7 @@ public class Cavalo extends Peca {
 						JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 						espacoAntigo.remove(0);
 						this.selecionada = false;
-						this.tabuleiro.destravaSelecao(true,this.cor);
+						this.tabuleiro.destravaSelecao();
 						this.tabuleiro.repaint();
 					}
 					else{
@@ -215,7 +215,7 @@ public class Cavalo extends Peca {
 						//clicou num espaco que tem uma peca de mesma cor
 						if(espacoAux.getNome() == "branco"){
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao(false,this.cor);
+							this.tabuleiro.destravaSelecao();
 						}
 						
 						//clicou numa peca de outra cor para atacar
@@ -243,7 +243,7 @@ public class Cavalo extends Peca {
 						JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 						espacoAntigo.remove(0);
 						this.selecionada = false;
-						this.tabuleiro.destravaSelecao(true,this.cor);
+						this.tabuleiro.destravaSelecao();
 						this.tabuleiro.repaint();
 					}
 					else{
@@ -252,7 +252,7 @@ public class Cavalo extends Peca {
 						//clicou num espaco que tem uma peca de mesma cor
 						if(espacoAux.getNome() == "branco"){
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao(false,this.cor);
+							this.tabuleiro.destravaSelecao();
 						}
 						
 						//clicou numa peca de outra cor para atacar
@@ -281,7 +281,7 @@ public class Cavalo extends Peca {
 						JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 						espacoAntigo.remove(0);
 						this.selecionada = false;
-						this.tabuleiro.destravaSelecao(true,this.cor);
+						this.tabuleiro.destravaSelecao();
 						this.tabuleiro.repaint();
 					}
 					else{
@@ -290,7 +290,7 @@ public class Cavalo extends Peca {
 						//clicou num espaco que tem uma peca de mesma cor
 						if(espacoAux.getNome() == "branco"){
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao(false,this.cor);
+							this.tabuleiro.destravaSelecao();
 						}
 						
 						//clicou numa peca de outra cor para atacar
@@ -317,7 +317,7 @@ public class Cavalo extends Peca {
 						JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 						espacoAntigo.remove(0);
 						this.selecionada = false;
-						this.tabuleiro.destravaSelecao(true,this.cor);
+						this.tabuleiro.destravaSelecao();
 						this.tabuleiro.repaint();
 					}
 					else{
@@ -326,7 +326,7 @@ public class Cavalo extends Peca {
 						//clicou num espaco que tem uma peca de mesma cor
 						if(espacoAux.getNome() == "branco"){
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao(false,this.cor);
+							this.tabuleiro.destravaSelecao();
 						}
 						
 						//clicou numa peca de outra cor para atacar
@@ -357,7 +357,7 @@ public class Cavalo extends Peca {
 						JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 						espacoAntigo.remove(0);
 						this.selecionada = false;
-						this.tabuleiro.destravaSelecao(true,this.cor);
+						this.tabuleiro.destravaSelecao();
 						this.tabuleiro.repaint();
 					}
 					else{
@@ -366,7 +366,7 @@ public class Cavalo extends Peca {
 						//clicou num espaco que tem uma peca de mesma cor
 						if(espacoAux.getNome() == "preto"){
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao(false,this.cor);
+							this.tabuleiro.destravaSelecao();
 						}
 						
 						//clicou numa peca de outra cor para atacar
@@ -394,7 +394,7 @@ public class Cavalo extends Peca {
 						JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 						espacoAntigo.remove(0);
 						this.selecionada = false;
-						this.tabuleiro.destravaSelecao(true,this.cor);
+						this.tabuleiro.destravaSelecao();
 						this.tabuleiro.repaint();
 					}
 					else{
@@ -403,7 +403,7 @@ public class Cavalo extends Peca {
 						//clicou num espaco que tem uma peca de mesma cor
 						if(espacoAux.getNome() == "preto"){
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao(false,this.cor);
+							this.tabuleiro.destravaSelecao();
 						}
 						
 						//clicou numa peca de outra cor para atacar
@@ -431,7 +431,7 @@ public class Cavalo extends Peca {
 						JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 						espacoAntigo.remove(0);
 						this.selecionada = false;
-						this.tabuleiro.destravaSelecao(true,this.cor);
+						this.tabuleiro.destravaSelecao();
 						this.tabuleiro.repaint();
 					}
 					else{
@@ -440,7 +440,7 @@ public class Cavalo extends Peca {
 						//clicou num espaco que tem uma peca de mesma cor
 						if(espacoAux.getNome() == "preto"){
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao(false,this.cor);
+							this.tabuleiro.destravaSelecao();
 						}
 						
 						//clicou numa peca de outra cor para atacar
@@ -468,7 +468,7 @@ public class Cavalo extends Peca {
 						JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 						espacoAntigo.remove(0);
 						this.selecionada = false;
-						this.tabuleiro.destravaSelecao(true,this.cor);
+						this.tabuleiro.destravaSelecao();
 						this.tabuleiro.repaint();
 					}
 					else{
@@ -477,7 +477,7 @@ public class Cavalo extends Peca {
 						//clicou num espaco que tem uma peca de mesma cor
 						if(espacoAux.getNome() == "preto"){
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao(false,this.cor);
+							this.tabuleiro.destravaSelecao();
 						}
 						
 						//clicou numa peca de outra cor para atacar
@@ -505,7 +505,7 @@ public class Cavalo extends Peca {
 						JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 						espacoAntigo.remove(0);
 						this.selecionada = false;
-						this.tabuleiro.destravaSelecao(true,this.cor);
+						this.tabuleiro.destravaSelecao();
 						this.tabuleiro.repaint();
 					}
 					else{
@@ -514,7 +514,7 @@ public class Cavalo extends Peca {
 						//clicou num espaco que tem uma peca de mesma cor
 						if(espacoAux.getNome() == "preto"){
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao(false,this.cor);
+							this.tabuleiro.destravaSelecao();
 						}
 						
 						//clicou numa peca de outra cor para atacar
@@ -542,7 +542,7 @@ public class Cavalo extends Peca {
 						JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 						espacoAntigo.remove(0);
 						this.selecionada = false;
-						this.tabuleiro.destravaSelecao(true,this.cor);
+						this.tabuleiro.destravaSelecao();
 						this.tabuleiro.repaint();
 					}
 					else{
@@ -551,7 +551,7 @@ public class Cavalo extends Peca {
 						//clicou num espaco que tem uma peca de mesma cor
 						if(espacoAux.getNome() == "preto"){
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao(false,this.cor);
+							this.tabuleiro.destravaSelecao();
 						}
 						
 						//clicou numa peca de outra cor para atacar
@@ -579,7 +579,7 @@ public class Cavalo extends Peca {
 						JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 						espacoAntigo.remove(0);
 						this.selecionada = false;
-						this.tabuleiro.destravaSelecao(true,this.cor);
+						this.tabuleiro.destravaSelecao();
 						this.tabuleiro.repaint();
 					}
 					else{
@@ -588,7 +588,7 @@ public class Cavalo extends Peca {
 						//clicou num espaco que tem uma peca de mesma cor
 						if(espacoAux.getNome() == "preto"){
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao(false,this.cor);
+							this.tabuleiro.destravaSelecao();
 						}
 						
 						//clicou numa peca de outra cor para atacar
@@ -616,7 +616,7 @@ public class Cavalo extends Peca {
 						JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 						espacoAntigo.remove(0);
 						this.selecionada = false;
-						this.tabuleiro.destravaSelecao(true,this.cor);
+						this.tabuleiro.destravaSelecao();
 						this.tabuleiro.repaint();
 					}
 					else{
@@ -625,7 +625,7 @@ public class Cavalo extends Peca {
 						//clicou num espaco que tem uma peca de mesma cor
 						if(espacoAux.getNome() == "preto"){
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao(false,this.cor);
+							this.tabuleiro.destravaSelecao();
 						}
 						
 						//clicou numa peca de outra cor para atacar
@@ -649,7 +649,7 @@ public class Cavalo extends Peca {
 						//clicou num espaco que tem uma peca de mesma cor
 						if(espacoAux.getNome() == "branco"){
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao(false,this.cor);
+							this.tabuleiro.destravaSelecao();
 						}
 						
 						//clicou numa peca de outra cor para atacar
@@ -667,7 +667,7 @@ public class Cavalo extends Peca {
 						//clicou num espaco que tem uma peca de mesma cor
 						if(espacoAux.getNome() == "branco"){
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao(false,this.cor);
+							this.tabuleiro.destravaSelecao();
 						}
 						
 						//clicou numa peca de outra cor para atacar
@@ -685,7 +685,7 @@ public class Cavalo extends Peca {
 						//clicou num espaco que tem uma peca de mesma cor
 						if(espacoAux.getNome() == "branco"){
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao(false,this.cor);
+							this.tabuleiro.destravaSelecao();
 						}
 						
 						//clicou numa peca de outra cor para atacar
@@ -702,7 +702,7 @@ public class Cavalo extends Peca {
 						//clicou num espaco que tem uma peca de mesma cor
 						if(espacoAux.getNome() == "branco"){
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao(false,this.cor);
+							this.tabuleiro.destravaSelecao();
 						}
 						
 						//clicou numa peca de outra cor para atacar
@@ -720,7 +720,7 @@ public class Cavalo extends Peca {
 						//clicou num espaco que tem uma peca de mesma cor
 						if(espacoAux.getNome() == "branco"){
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao(false,this.cor);
+							this.tabuleiro.destravaSelecao();
 						}
 						
 						//clicou numa peca de outra cor para atacar
@@ -738,7 +738,7 @@ public class Cavalo extends Peca {
 						//clicou num espaco que tem uma peca de mesma cor
 						if(espacoAux.getNome() == "branco"){
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao(false,this.cor);
+							this.tabuleiro.destravaSelecao();
 						}
 						
 						//clicou numa peca de outra cor para atacar
@@ -756,7 +756,7 @@ public class Cavalo extends Peca {
 						//clicou num espaco que tem uma peca de mesma cor
 						if(espacoAux.getNome() == "branco"){
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao(false,this.cor);
+							this.tabuleiro.destravaSelecao();
 						}
 						
 						//clicou numa peca de outra cor para atacar
@@ -773,7 +773,7 @@ public class Cavalo extends Peca {
 						//clicou num espaco que tem uma peca de mesma cor
 						if(espacoAux.getNome() == "branco"){
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao(false,this.cor);
+							this.tabuleiro.destravaSelecao();
 						}
 						
 						//clicou numa peca de outra cor para atacar
@@ -793,7 +793,7 @@ public class Cavalo extends Peca {
 						//clicou num espaco que tem uma peca de mesma cor
 						if(espacoAux.getNome() == "preto"){
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao(false,this.cor);
+							this.tabuleiro.destravaSelecao();
 						}
 						
 						//clicou numa peca de outra cor para atacar
@@ -811,7 +811,7 @@ public class Cavalo extends Peca {
 						//clicou num espaco que tem uma peca de mesma cor
 						if(espacoAux.getNome() == "preto"){
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao(false,this.cor);
+							this.tabuleiro.destravaSelecao();
 						}
 						
 						//clicou numa peca de outra cor para atacar
@@ -829,7 +829,7 @@ public class Cavalo extends Peca {
 						//clicou num espaco que tem uma peca de mesma cor
 						if(espacoAux.getNome() == "preto"){
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao(false,this.cor);
+							this.tabuleiro.destravaSelecao();
 						}
 						
 						//clicou numa peca de outra cor para atacar
@@ -846,7 +846,7 @@ public class Cavalo extends Peca {
 						//clicou num espaco que tem uma peca de mesma cor
 						if(espacoAux.getNome() == "preto"){
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao(false,this.cor);
+							this.tabuleiro.destravaSelecao();
 						}
 						
 						//clicou numa peca de outra cor para atacar
@@ -864,7 +864,7 @@ public class Cavalo extends Peca {
 						//clicou num espaco que tem uma peca de mesma cor
 						if(espacoAux.getNome() == "preto"){
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao(false,this.cor);
+							this.tabuleiro.destravaSelecao();
 						}
 						
 						//clicou numa peca de outra cor para atacar
@@ -882,7 +882,7 @@ public class Cavalo extends Peca {
 						//clicou num espaco que tem uma peca de mesma cor
 						if(espacoAux.getNome() == "preto"){
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao(false,this.cor);
+							this.tabuleiro.destravaSelecao();
 						}
 						
 						//clicou numa peca de outra cor para atacar
@@ -900,7 +900,7 @@ public class Cavalo extends Peca {
 						//clicou num espaco que tem uma peca de mesma cor
 						if(espacoAux.getNome() == "preto"){
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao(false,this.cor);
+							this.tabuleiro.destravaSelecao();
 						}
 						
 						//clicou numa peca de outra cor para atacar
@@ -917,7 +917,7 @@ public class Cavalo extends Peca {
 						//clicou num espaco que tem uma peca de mesma cor
 						if(espacoAux.getNome() == "preto"){
 							this.selecionada = false;
-							this.tabuleiro.destravaSelecao(false,this.cor);
+							this.tabuleiro.destravaSelecao();
 						}
 						
 						//clicou numa peca de outra cor para atacar
@@ -954,7 +954,7 @@ public class Cavalo extends Peca {
 				JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 				espacoAntigo.remove(0);
 				this.selecionada = false;
-				this.tabuleiro.destravaSelecao(true,this.cor);
+				this.tabuleiro.destravaSelecao();
 				this.tabuleiro.repaint();
 			}
 			else if(this.cor == Color.WHITE){
@@ -978,7 +978,7 @@ public class Cavalo extends Peca {
 				JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 				espacoAntigo.remove(0);
 				this.selecionada = false;
-				this.tabuleiro.destravaSelecao(true,this.cor);
+				this.tabuleiro.destravaSelecao();
 				this.tabuleiro.repaint();
 			}
 		}
@@ -1009,7 +1009,7 @@ public class Cavalo extends Peca {
 				JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 				espacoAntigo.remove(0);
 				this.selecionada = false;
-				this.tabuleiro.destravaSelecao(true,this.cor);
+				this.tabuleiro.destravaSelecao();
 				this.tabuleiro.repaint();
 				
 			}
@@ -1037,7 +1037,7 @@ public class Cavalo extends Peca {
 				JButton espacoAntigo = (JButton)tabuleiro.getComponentAt(posicaoAnteriorx, posicaoAnteriory);
 				espacoAntigo.remove(0);
 				this.selecionada = false;
-				this.tabuleiro.destravaSelecao(true,this.cor);
+				this.tabuleiro.destravaSelecao();
 				this.tabuleiro.repaint();
 			}
 		}
@@ -1047,7 +1047,7 @@ public class Cavalo extends Peca {
 		
 		if(this.selecionada){			
 			this.selecionada = false;
-			this.tabuleiro.destravaSelecao(false,this.cor);
+			this.tabuleiro.destravaSelecao();
 		}
 		else if(podeSelecionar){
 			this.selecionada = true;
