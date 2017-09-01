@@ -13,16 +13,32 @@ import javax.swing.JPanel;
 public class Peao extends Peca {
 	private int posicaox;
 	private int posicaoy;
+	private int posicaoxIni;
+	private int posicaoyIni;
 	private Tabuleiro tabuleiro;
 	private Color cor;
 	private boolean podeSelecionar = true;
 	private boolean selecionada = false;
+	public int getPosicaoxIni() {
+		return posicaoxIni;
+	}
+	public void setPosicaoxIni(int posicaoxIni) {
+		this.posicaoxIni = posicaoxIni;
+	}
+	public int getPosicaoyIni() {
+		return posicaoyIni;
+	}
+	public void setPosicaoyIni(int posicaoyIni) {
+		this.posicaoyIni = posicaoyIni;
+	}
 	private JLabel icon;
 	private boolean pecaMorta = false;
 	
 	public Peao(int posicaox, int posicaoy, Color cor, JLabel img, Tabuleiro tabuleiro){
 		this.posicaox = posicaox;
 		this.posicaoy = posicaoy;
+		this.posicaoxIni = posicaox - 40;
+		this.posicaoyIni = posicaoy - 40;
 		this.cor = cor;
 		this.icon = img;
 		this.tabuleiro = tabuleiro;
@@ -41,8 +57,8 @@ public class Peao extends Peca {
 			imgRainhaEspecial.setBounds(posicaox, posicaoy, 50, 50);
 			tabuleiro.add(imgRainhaEspecial);
 			tabuleiro.add(espaco);
-			posicaox = 0;
-			posicaoy = 0;
+			posicaox = 50;
+			posicaoy = 50;
 			icon.setBounds(posicaox, posicaoy, 0, 0);
 			this.tabuleiro.atualizarTabuleiro();
 		}
@@ -225,6 +241,7 @@ public class Peao extends Peca {
 				}
 				tabuleiro.remove(espaco);
 				JLabel pecaComida = (JLabel)tabuleiro.getComponentAt(espaco.getX(), espaco.getY());
+				this.tabuleiro.getPecasForaDoJogo().add((Peca)pecaComida.getMouseListeners()[0]);
 				tabuleiro.remove(pecaComida);
 				tabuleiro.add(espaco);
 				espacoAntigo.remove(0);
@@ -249,6 +266,7 @@ public class Peao extends Peca {
 					espacoAntigo = (JButton) tabuleiro.getComponentAt(posicaox-60, posicaoy-60);
 				}
 				tabuleiro.remove(espaco);
+				this.tabuleiro.getPecasForaDoJogo().add((Peca)pecaComida.getMouseListeners()[0]);
 				tabuleiro.remove(pecaComida);
 				tabuleiro.add(espaco);
 				espacoAntigo.remove(0);
@@ -276,6 +294,7 @@ public class Peao extends Peca {
 				}
 				tabuleiro.remove(espaconovo);
 				JLabel pecaComida = (JLabel)tabuleiro.getComponentAt(pecaNaFrente.getX(), pecaNaFrente.getY());
+				this.tabuleiro.getPecasForaDoJogo().add((Peca)pecaComida.getMouseListeners()[0]);
 				tabuleiro.remove(pecaComida);
 				tabuleiro.add(espaconovo);
 				espacoAntigo.remove(0);
@@ -303,6 +322,7 @@ public class Peao extends Peca {
 					espacoAntigo = (JButton) tabuleiro.getComponentAt(posicaox-60, posicaoy-60);
 				}
 				tabuleiro.remove(espaconovo);
+				this.tabuleiro.getPecasForaDoJogo().add((Peca)pecaComida.getMouseListeners()[0]); 
 				tabuleiro.remove(pecaComida);
 				tabuleiro.add(espaconovo);
 				espacoAntigo.remove(0);
