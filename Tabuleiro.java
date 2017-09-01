@@ -516,37 +516,43 @@ public class Tabuleiro extends JFrame {
 	
 	public void travaSelecao(Peca peca){
 		for(int i=0; i<pecas.size();i++){
-			if(pecas.get(i)instanceof Peao && pecas.get(i) != peca){
-				Peao p = (Peao)pecas.get(i);
-				p.setPodeSelecionar(false);
+			if(pecas.get(i).getCor() == peca.getCor()){
+				if(pecas.get(i)instanceof Peao && pecas.get(i) != peca){
+					Peao p = (Peao)pecas.get(i);
+					p.setPodeSelecionar(false);
+				}
+				else if(pecas.get(i)instanceof Rei && pecas.get(i) != peca){
+					Rei rei = (Rei)pecas.get(i);
+					rei.setPodeSelecionar(false);
+				}
+				else if(pecas.get(i)instanceof Bispo && pecas.get(i) != peca){
+					Bispo bispo = (Bispo)pecas.get(i);
+					bispo.setPodeSelecionar(false);
+				}
+				else if(pecas.get(i)instanceof Rainha && pecas.get(i) != peca){
+					Rainha rainha = (Rainha)pecas.get(i);
+					rainha.setPodeSelecionar(false);
+				}
+				else if(pecas.get(i)instanceof Torre && pecas.get(i) != peca){
+					Torre torre = (Torre)pecas.get(i);
+					torre.setPodeSelecionar(false);
+				}
+				else if(pecas.get(i)instanceof Cavalo && pecas.get(i) != peca){
+					Cavalo cavalo = (Cavalo)pecas.get(i);
+					cavalo.setPodeSelecionar(false);
+				}
 			}
-			else if(pecas.get(i)instanceof Rei && pecas.get(i) != peca){
-				Rei rei = (Rei)pecas.get(i);
-				rei.setPodeSelecionar(false);
+			else{
+				pecas.get(i).setPodeSelecionar(false);
 			}
-			else if(pecas.get(i)instanceof Bispo && pecas.get(i) != peca){
-				Bispo bispo = (Bispo)pecas.get(i);
-				bispo.setPodeSelecionar(false);
-			}
-			else if(pecas.get(i)instanceof Rainha && pecas.get(i) != peca){
-				Rainha rainha = (Rainha)pecas.get(i);
-				rainha.setPodeSelecionar(false);
-			}
-			else if(pecas.get(i)instanceof Torre && pecas.get(i) != peca){
-				Torre torre = (Torre)pecas.get(i);
-				torre.setPodeSelecionar(false);
-			}
-			else if(pecas.get(i)instanceof Cavalo && pecas.get(i) != peca){
-				Cavalo cavalo = (Cavalo)pecas.get(i);
-				cavalo.setPodeSelecionar(false);
-			}
-			
 		}
 	}
-	public void destravaSelecao(){
-		for(int i=0; i<pecas.size();i++){
+	public void destravaSelecao(boolean moved,Color cor){
+		if(moved){
+			for(int i=0; i<pecas.size();i++){
 				Peca p = pecas.get(i);
 				p.setPodeSelecionar(true);
+			}			
 		}
 	}
 	
@@ -555,7 +561,7 @@ public class Tabuleiro extends JFrame {
 	}
 
 	public void atualizarTabuleiro() {
-
+		this.janelaJogo.repaint();
 	}
 
 	public void reiniciarTabuleiro() {
