@@ -28,12 +28,17 @@ public abstract class Peca extends MouseAdapter {
 		this.selecionada = selecionada;
 	}
 
-	public boolean isPodeSelecionar() {
+	public boolean podeSelecionar() {
 		return podeSelecionar;
 	}
 
 	public void setPodeSelecionar(boolean podeSelecionar) {
 		this.podeSelecionar = podeSelecionar;
 	}
+
+	public Color getCor() {
+		return cor;
+	}
+	
 	
 }
