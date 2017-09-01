@@ -110,7 +110,7 @@ public class Tabuleiro extends JFrame {
 		botaoSair = new JButton("Sair");
 		botaoInstrucoes = new JButton("Instrucoes");
 		botaoRegras = new JButton("Regras");
-		botaoPecas = new JButton("Cemiterio");
+		botaoPecas = new JButton("Cemitério");
 		
 		//criando nova instancia de imagem do tabuleiro
 		imagemTabuleiro = new ImageIcon("image/board_chess.png");
