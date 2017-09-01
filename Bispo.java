@@ -47,6 +47,8 @@ public class Bispo extends Peca {
 	public Bispo(int posicaox, int posicaoy, Color cor, JLabel img, Tabuleiro tabuleiro){
 			this.posicaox = posicaox;
 			this.posicaoy = posicaoy;
+			this.posicaoxIni = posicaox - 40;
+			this.posicaoyIni = posicaoy - 40;
 			this.cor = cor;
 			this.icon = img;
 			this.tabuleiro = tabuleiro;

@@ -110,7 +110,7 @@ public class Tabuleiro extends JFrame {
 		botaoSair = new JButton("Sair");
 		botaoInstrucoes = new JButton("Instrucoes");
 		botaoRegras = new JButton("Regras");
-		botaoPecas = new JButton("Cemitério");
+		botaoPecas = new JButton("Cemiterio");
 		
 		//criando nova instancia de imagem do tabuleiro
 		imagemTabuleiro = new ImageIcon("image/board_chess.png");
@@ -151,10 +151,10 @@ public class Tabuleiro extends JFrame {
 				
 		//adiciona ação nos botoes ao clicar com o mouse neles
 		botaoRegras.addActionListener(new ApareceJanelaRegras("Janela de regras"));
-		botaoInstrucoes.addActionListener(new ApareceJanelaInstrucoes("Janela de instruções"));
+		botaoInstrucoes.addActionListener(new ApareceJanelaInstrucoes("Janela de instru��es"));
 		botaoSair.addActionListener(new FechaJogo());
 		botaoReiniciar.addActionListener(new ReiniciaJogo(this));
-		botaoPecas.addActionListener(new AparecePecasComidas("Peças fora do jogo"));
+		botaoPecas.addActionListener(new AparecePecasComidas("Pe�as fora do jogo"));
 		tabuleiro.add(botaoReiniciar);
 		tabuleiro.add(botaoInstrucoes);
 		tabuleiro.add(botaoRegras);
@@ -233,7 +233,7 @@ public class Tabuleiro extends JFrame {
 					imagemLabelPeaoBranco = new JLabel(imagemPeaoBranco);
 					imagemLabelPeaoBranco.setBounds(xPecaBranca, yPecaBranca, 50, 50);
 					
-					Peao PeaoBranco = new Peao(xPecaBranca,yPecaBranca,xPecaBranca-10,yPecaBranca-10,Color.WHITE,imagemLabelPeaoBranco,this);
+					Peao PeaoBranco = new Peao(xPecaBranca,yPecaBranca,Color.WHITE,imagemLabelPeaoBranco,this);
 					pecas.add(PeaoBranco);
 					imagemLabelPeaoBranco.addMouseListener(PeaoBranco);
 					
