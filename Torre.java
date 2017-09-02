@@ -1,7 +1,6 @@
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -68,6 +67,9 @@ public class Torre extends Peca {
 				this.tabuleiro = tabuleiro;
 	}
 
+	public void usarJogadaEspecial() {
+
+	}
 	
 	private boolean verificaEspacoSuperior(JButton espaco,JPanel tabuleiro){
 	    	int posicaoAuxX = posicaox,posicaoAuxY = posicaoy;
@@ -144,7 +146,6 @@ public class Torre extends Peca {
 	}
 	
 	public void movimentarPeca(JLabel pecaNaFrente,JButton espaco, JPanel tabuleiro) {
-		this.desativaHighlight();
 		if(espaco!=null && pecaNaFrente == null){
 			if(this.cor == Color.WHITE){
 	
@@ -1042,13 +1043,11 @@ public class Torre extends Peca {
 	
 	public void mouseClicked(MouseEvent e){
 		
-		if(this.selecionada){	
-			this.desativaHighlight();
+		if(this.selecionada){			
 			this.selecionada = false;
 			this.tabuleiro.destravaSelecao();
 		}
 		else if(podeSelecionar){
-			this.ativaHighlight();
 			this.selecionada = true;
 			tabuleiro.travaSelecao(this);
 			
@@ -1081,44 +1080,6 @@ public class Torre extends Peca {
 	}
 	public void setIcon(JLabel icon) {
 		this.icon = icon;
-	}
-
-	public void desativaHighlight(){
-		//desativa o highlight
-		//verifica se o espaco clicado eh branco
-		if(this.tabuleiro.getPainel().getComponentAt(posicaox+50, posicaoy+50).getName().equals("branco")){	
-			
-			JButton espacoHighlight = (JButton) this.tabuleiro.getPainel().getComponentAt(posicaox+50, posicaoy+50);
-			
-			espacoHighlight.setIcon(new ImageIcon("image/white.png"));
-		}
-		
-		//verifica se o espaco clicado eh preto
-		else if(this.tabuleiro.getPainel().getComponentAt(posicaox+50, posicaoy+50).getName().equals("preto")){
-			
-			JButton espacoHighlight = (JButton) this.tabuleiro.getPainel().getComponentAt(posicaox+50, posicaoy+50);
-			
-			espacoHighlight.setIcon(new ImageIcon("image/brown.png"));
-		}
-	}
-	
-	public void ativaHighlight(){
-		//ativa o highlight
-		//verifica se o espaco clicado eh branco
-		if(this.tabuleiro.getPainel().getComponentAt(posicaox+50, posicaoy+50).getName().equals("branco")){	
-			
-			JButton espacoHighlight = (JButton) this.tabuleiro.getPainel().getComponentAt(posicaox+50, posicaoy+50);
-			
-			espacoHighlight.setIcon(new ImageIcon("image/whiteHighlight.png"));
-		}
-		
-		//verifica se o espaco clicado eh preto
-		else if(this.tabuleiro.getPainel().getComponentAt(posicaox+50, posicaoy+50).getName().equals("preto")){
-			
-			JButton espacoHighlight = (JButton) this.tabuleiro.getPainel().getComponentAt(posicaox+50, posicaoy+50);
-			
-			espacoHighlight.setIcon(new ImageIcon("image/brownHighlight.png"));
-		}
 	}
 	
 }

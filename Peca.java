@@ -11,6 +11,14 @@ public abstract class Peca extends MouseAdapter {
 	private Color cor;
 	private boolean selecionada = false;
 	private boolean podeSelecionar = true;
+	private boolean morta = false;
+	public boolean isMorta() {
+		return morta;
+	}
+
+	public void setMorta(boolean morta) {
+		this.morta = morta;
+	}
 
 	public void movimentarPeca() {
 

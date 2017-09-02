@@ -32,7 +32,7 @@ public class ApareceJanelaInstrucoes implements ActionListener{
 		this.scrollPane = new JScrollPane();
 		this.textomov = new JTextPane();
 		this.textomov.setEditable(false);
-		this.textomov.setText("A decidir");
+		this.textomov.setText("Para jogar esse xadrez temos algumas instruções: ");
 		GroupLayout layout = new GroupLayout(painel);
 		this.painel.setLayout(layout);
 		layout.setAutoCreateContainerGaps(true);

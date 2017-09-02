@@ -18,8 +18,7 @@ public class Tabuleiro extends JFrame {
 
 	private String espacos;
 	
-	private JButton botao;
-
+	private JButton botaoBranco, botaoPreto;
 	
 	//imagem do tabuleiro
 	private Icon imagemTabuleiro;
@@ -185,44 +184,43 @@ public class Tabuleiro extends JFrame {
 	}
 
 	void addCelulaBranca(Espaco espaco){
-		botao = new JButton ();
+		botaoBranco = new JButton ();
 		
-		botao.setIcon(new ImageIcon("image/white.png"));
-		botao.setBounds(xTabuleiro, yTabuleiro, 60, 60);
-		botao.setBorder(null);
-		botao.setName("branco");
+		botaoBranco.setIcon(new ImageIcon("image/white.png"));
+		botaoBranco.setBounds(xTabuleiro, yTabuleiro, 60, 60);
+		botaoBranco.setBorder(null);
+		botaoBranco.setName(null);
 
 		if(espaco.getNome() != null){
-			 botao.add(espaco);			
+			 botaoBranco.add(espaco);			
 		}
 		
-	     botao.setContentAreaFilled(false);
-	     Movimentacao mov = new Movimentacao(botao,this,tabuleiro);
-	     botao.addMouseListener(mov);
+	     botaoBranco.setContentAreaFilled(false);
+	     Movimentacao mov = new Movimentacao(botaoBranco,this,tabuleiro);
+	     botaoBranco.addMouseListener(mov);
 			 	
-		tabuleiro.add(botao);
+		tabuleiro.add(botaoBranco);
 	}
 	
 	void addCelulaPreta(Espaco espaco){
-		botao = new JButton ();
+		botaoPreto = new JButton ();
 		
 
 		
-		botao.setIcon(new ImageIcon("image/brown.png"));
-		botao.setBounds(xTabuleiro, yTabuleiro, 60, 60);
-		botao.setBorder(null);
-		botao.setName("preto");
+		botaoPreto.setIcon(new ImageIcon("image/brown.png"));
+		botaoPreto.setBounds(xTabuleiro, yTabuleiro, 60, 60);
+		botaoPreto.setBorder(null);
+		botaoPreto.setName(null);
 		
 		if(espaco.getNome() != null){
-			botao.add(espaco);			
+			botaoPreto.add(espaco);			
 		}
 		
-		botao.setContentAreaFilled(false);
-		Movimentacao mov = new Movimentacao(botao,this,tabuleiro);
-		botao.addMouseListener(mov);
+		botaoPreto.setContentAreaFilled(false);
+		Movimentacao mov = new Movimentacao(botaoPreto,this,tabuleiro);
+		botaoPreto.addMouseListener(mov);
 		
-		tabuleiro.add(botao);
-
+		tabuleiro.add(botaoPreto);
 	}
 
 	
@@ -561,9 +559,7 @@ public class Tabuleiro extends JFrame {
 	}
 
 	public void reiniciarTabuleiro() {
-
 		this.pecasForaDoJogo.clear();
-
 		xTabuleiro = 50; 
 		yTabuleiro = 50; 
 		xPecaPreta = 50; 
@@ -674,15 +670,6 @@ public class Tabuleiro extends JFrame {
 		this.pecasForaDoJogo = pecasForaDoJogo;
 	}
 	
-	public JButton getBotao(){
-		return botao;
-	}
-	
-	public JPanel getPainel(){
-		return tabuleiro;
-	}
-	
-
 	public static void main(String [] args){
 		new Tabuleiro();
 	}
