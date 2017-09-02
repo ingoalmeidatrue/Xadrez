@@ -1086,5 +1086,5 @@ public void mouseClicked(MouseEvent e){
 			espacoHighlight.setIcon(new ImageIcon("image/brownHighlight.png"));
 		}
 	}
-	
+
 }

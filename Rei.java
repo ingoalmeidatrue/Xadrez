@@ -162,7 +162,6 @@ public class Rei extends Peca {
 
 	public void movimentarPeca(JLabel pecaNaFrente,JButton espaco, JPanel tabuleiro) {
 		this.desativaHighlight();
-		
 		if(this.cor == Color.BLACK && this.posicaox != 290 && this.posicaoy == 50){
 			this.roque = false;
 		}
@@ -1340,6 +1339,8 @@ public class Rei extends Peca {
 				this.selecionada = false;
 				this.tabuleiro.destravaSelecao();
 			}
+			this.selecionada = false;
+			this.tabuleiro.destravaSelecao();
 		}
 		else if(pecaNaFrente!=null){
 			//Roque
@@ -1411,6 +1412,7 @@ public class Rei extends Peca {
 	public void setPosicaoy(int posicaoy) {
 		this.posicaoy = posicaoy;
 	}
+
 	
 	public void desativaHighlight(){
 		//desativa o highlight

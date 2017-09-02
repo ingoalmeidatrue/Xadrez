@@ -19,6 +19,7 @@ public class Tabuleiro extends JFrame {
 	private String espacos;
 	
 	private JButton botao;
+
 	
 	//imagem do tabuleiro
 	private Icon imagemTabuleiro;
@@ -110,7 +111,7 @@ public class Tabuleiro extends JFrame {
 		botaoSair = new JButton("Sair");
 		botaoInstrucoes = new JButton("Instrucoes");
 		botaoRegras = new JButton("Regras");
-		botaoPecas = new JButton("CemitÃ©rio");
+		botaoPecas = new JButton("Cemitério");
 		
 		//criando nova instancia de imagem do tabuleiro
 		imagemTabuleiro = new ImageIcon("image/board_chess.png");
@@ -221,6 +222,7 @@ public class Tabuleiro extends JFrame {
 		botao.addMouseListener(mov);
 		
 		tabuleiro.add(botao);
+
 	}
 
 	
@@ -559,6 +561,9 @@ public class Tabuleiro extends JFrame {
 	}
 
 	public void reiniciarTabuleiro() {
+
+		this.pecasForaDoJogo.clear();
+
 		xTabuleiro = 50; 
 		yTabuleiro = 50; 
 		xPecaPreta = 50; 
@@ -677,6 +682,7 @@ public class Tabuleiro extends JFrame {
 		return tabuleiro;
 	}
 	
+
 	public static void main(String [] args){
 		new Tabuleiro();
 	}

@@ -1082,6 +1082,7 @@ public class Torre extends Peca {
 	public void setIcon(JLabel icon) {
 		this.icon = icon;
 	}
+
 	public void desativaHighlight(){
 		//desativa o highlight
 		//verifica se o espaco clicado eh branco

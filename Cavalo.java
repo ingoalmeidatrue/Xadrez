@@ -12,7 +12,7 @@ public class Cavalo extends Peca {
 	private int posicaoy;
 	private int posicaoxIni;
 	private int posicaoyIni;
-	
+
 	public int getPosicaoxIni() {
 		return posicaoxIni;
 	}

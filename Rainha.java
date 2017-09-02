@@ -2074,7 +2074,6 @@ public class Rainha extends Peca {
 			espacoHighlight.setIcon(new ImageIcon("image/brownHighlight.png"));
 		}
 	}
-	
 }
 
 
