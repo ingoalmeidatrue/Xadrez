@@ -1,7 +1,6 @@
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -60,8 +59,6 @@ public class Cavalo extends Peca {
 	
 
 	public void movimentarPeca(JLabel pecaNaFrente,JButton espaco, JPanel tabuleiro) {
-		this.desativaHighlight();
-		
 		if(espaco!=null && pecaNaFrente == null){
 		
 			if(this.cor == Color.WHITE){
@@ -178,7 +175,7 @@ public class Cavalo extends Peca {
 					}
 				}
 				
-				//cavalo movimenta em l deitado para a direita começando de baixo
+				//cavalo movimenta em l deitado para a direita comeÃ§ando de baixo
 				else if(posicaox == espaco.getX()  + 120 && posicaoy == espaco.getY() - 60){
 					
 					if(espaco.getComponentCount() == 0){
@@ -477,7 +474,7 @@ public class Cavalo extends Peca {
 					}
 				}
 				
-				//cavalo movimenta em l deitado para a direita começando de baixo
+				//cavalo movimenta em l deitado para a direita comeÃ§ando de baixo
 				else if(posicaox == espaco.getX()  + 120 && posicaoy == espaco.getY() - 60){
 					
 					if(espaco.getComponentCount() == 0){
@@ -721,7 +718,7 @@ public class Cavalo extends Peca {
 						}
 				}
 				
-				//cavalo movimenta em l deitado para a direita começando de baixo
+				//cavalo movimenta em l deitado para a direita comeÃ§ando de baixo
 				else if(posicaox == espaco.getX()  + 120 && posicaoy == espaco.getY() - 60){
 
 						Espaco espacoAux = (Espaco) espaco.getComponent(0);
@@ -865,7 +862,7 @@ public class Cavalo extends Peca {
 						}
 				}
 				
-				//cavalo movimenta em l deitado para a direita começando de baixo
+				//cavalo movimenta em l deitado para a direita comeÃ§ando de baixo
 				else if(posicaox == espaco.getX()  + 120 && posicaoy == espaco.getY() - 60){
 
 						Espaco espacoAux = (Espaco) espaco.getComponent(0);
@@ -1083,7 +1080,6 @@ public class Cavalo extends Peca {
 			this.tabuleiro.destravaSelecao();
 		}
 		else if(podeSelecionar){
-			this.ativaHighlight();
 			this.selecionada = true;
 			tabuleiro.travaSelecao(this);
 			
@@ -1140,42 +1136,5 @@ public class Cavalo extends Peca {
 		this.posicaoy = posicaoy;
 	}
 	
-	public void desativaHighlight(){
-		//desativa o highlight
-		//verifica se o espaco clicado eh branco
-		if(this.tabuleiro.getPainel().getComponentAt(posicaox+50, posicaoy+50).getName().equals("branco")){	
-			
-			JButton espacoHighlight = (JButton) this.tabuleiro.getPainel().getComponentAt(posicaox+50, posicaoy+50);
-			
-			espacoHighlight.setIcon(new ImageIcon("image/white.png"));
-		}
-		
-		//verifica se o espaco clicado eh preto
-		else if(this.tabuleiro.getPainel().getComponentAt(posicaox+50, posicaoy+50).getName().equals("preto")){
-			
-			JButton espacoHighlight = (JButton) this.tabuleiro.getPainel().getComponentAt(posicaox+50, posicaoy+50);
-			
-			espacoHighlight.setIcon(new ImageIcon("image/brown.png"));
-		}
-	}
-	
-	public void ativaHighlight(){
-		//ativa o highlight
-		//verifica se o espaco clicado eh branco
-		if(this.tabuleiro.getPainel().getComponentAt(posicaox+50, posicaoy+50).getName().equals("branco")){	
-			
-			JButton espacoHighlight = (JButton) this.tabuleiro.getPainel().getComponentAt(posicaox+50, posicaoy+50);
-			
-			espacoHighlight.setIcon(new ImageIcon("image/whiteHighlight.png"));
-		}
-		
-		//verifica se o espaco clicado eh preto
-		else if(this.tabuleiro.getPainel().getComponentAt(posicaox+50, posicaoy+50).getName().equals("preto")){
-			
-			JButton espacoHighlight = (JButton) this.tabuleiro.getPainel().getComponentAt(posicaox+50, posicaoy+50);
-			
-			espacoHighlight.setIcon(new ImageIcon("image/brownHighlight.png"));
-		}
-	}
 	
 }

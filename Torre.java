@@ -1,7 +1,6 @@
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -68,6 +67,9 @@ public class Torre extends Peca {
 				this.tabuleiro = tabuleiro;
 	}
 
+	public void usarJogadaEspecial() {
+
+	}
 	
 	private boolean verificaEspacoSuperior(JButton espaco,JPanel tabuleiro){
 	    	int posicaoAuxX = posicaox,posicaoAuxY = posicaoy;
@@ -144,14 +146,13 @@ public class Torre extends Peca {
 	}
 	
 	public void movimentarPeca(JLabel pecaNaFrente,JButton espaco, JPanel tabuleiro) {
-		this.desativaHighlight();
 		if(espaco!=null && pecaNaFrente == null){
 			if(this.cor == Color.WHITE){
 	
 				//Torre branca movimenta para cima
 				if(espaco.getY() < posicaoy && espaco.getX() == posicaox){
 				
-					//verifica se existe alguma peça no caminho da torre
+					//verifica se existe alguma peÃ§a no caminho da torre
 					if(verificaEspacoSuperior(espaco,tabuleiro)){
 						
 						if(espaco.getComponentCount() == 0){
@@ -197,7 +198,7 @@ public class Torre extends Peca {
 		
 				//torre branca movimenta para baixo
 				else if(espaco.getY() > posicaoy && espaco.getX() == posicaox){
-					//verifica se existe alguma peça no caminho da torre
+					//verifica se existe alguma peÃ§a no caminho da torre
 					if(verificaEspacoInferior(espaco,tabuleiro)){
 		
 						if(espaco.getComponentCount() == 0){
@@ -243,7 +244,7 @@ public class Torre extends Peca {
 	
 				//torre branca movimenta para esquerda
 				else if(espaco.getY() == posicaoy && espaco.getX() < posicaox){
-					//verifica se existe alguma peça no caminho da torre
+					//verifica se existe alguma peÃ§a no caminho da torre
 					if(verificaEspacoLateralEsquerda(espaco,tabuleiro)){
 		
 						if(espaco.getComponentCount() == 0){
@@ -289,7 +290,7 @@ public class Torre extends Peca {
 	
 				//torre branca movimenta para a direita
 				else if(espaco.getY() == posicaoy && espaco.getX() > posicaox){
-					//verifica se existe alguma peça no caminho da torre
+					//verifica se existe alguma peÃ§a no caminho da torre
 					if(verificaEspacoLateralDireita(espaco,tabuleiro)){
 		
 						if(espaco.getComponentCount() == 0){
@@ -338,7 +339,7 @@ public class Torre extends Peca {
 	
 			//Torre preta movimenta para cima
 			if(espaco.getY() < posicaoy && espaco.getX() == posicaox){
-				//verifica se existe alguma peça no caminho da torre
+				//verifica se existe alguma peÃ§a no caminho da torre
 				if(verificaEspacoSuperior(espaco,tabuleiro)){
 								
 					if(espaco.getComponentCount() == 0){
@@ -386,7 +387,7 @@ public class Torre extends Peca {
 			//torre preta movimenta para baixo
 			else if(espaco.getY() > posicaoy && espaco.getX() == posicaox){
 				
-				//verifica se existe alguma peça no caminho da torre
+				//verifica se existe alguma peÃ§a no caminho da torre
 				if(verificaEspacoInferior(espaco,tabuleiro)){
 					
 					//eh um movimento
@@ -436,7 +437,7 @@ public class Torre extends Peca {
 			//torre branca movimenta para esquerda
 			else if(espaco.getY() == posicaoy && espaco.getX() < posicaox){
 				
-				//verifica se existe alguma peça no caminho da torre
+				//verifica se existe alguma peÃ§a no caminho da torre
 				if(verificaEspacoLateralEsquerda(espaco,tabuleiro)){
 					
 					//eh um movimento
@@ -486,7 +487,7 @@ public class Torre extends Peca {
 			//torre branca movimenta para a direita
 			else if(espaco.getY() == posicaoy && espaco.getX() > posicaox){
 				
-				//verifica se existe alguma peça no caminho da torre
+				//verifica se existe alguma peÃ§a no caminho da torre
 				if(verificaEspacoLateralDireita(espaco,tabuleiro)){
 		
 					if(espaco.getComponentCount() == 0){
@@ -541,7 +542,7 @@ public class Torre extends Peca {
 			//Torre branca movimenta para cima
 			if(espaco.getY() < posicaoy && espaco.getX() == posicaox){
 			
-				//verifica se existe alguma peça no caminho da torre
+				//verifica se existe alguma peÃ§a no caminho da torre
 				if(verificaEspacoSuperior(espaco,tabuleiro)){
 					
 					if(espaco.getComponentCount() == 0){
@@ -587,7 +588,7 @@ public class Torre extends Peca {
 	
 			//torre branca movimenta para baixo
 			else if(espaco.getY() > posicaoy && espaco.getX() == posicaox){
-				//verifica se existe alguma peça no caminho da torre
+				//verifica se existe alguma peÃ§a no caminho da torre
 				if(verificaEspacoInferior(espaco,tabuleiro)){
 	
 					if(espaco.getComponentCount() == 0){
@@ -633,7 +634,7 @@ public class Torre extends Peca {
 
 			//torre branca movimenta para esquerda
 			else if(espaco.getY() == posicaoy && espaco.getX() < posicaox){
-				//verifica se existe alguma peça no caminho da torre
+				//verifica se existe alguma peÃ§a no caminho da torre
 				if(verificaEspacoLateralEsquerda(espaco,tabuleiro)){
 	
 					if(espaco.getComponentCount() == 0){
@@ -679,7 +680,7 @@ public class Torre extends Peca {
 
 			//torre branca movimenta para a direita
 			else if(espaco.getY() == posicaoy && espaco.getX() > posicaox){
-				//verifica se existe alguma peça no caminho da torre
+				//verifica se existe alguma peÃ§a no caminho da torre
 				if(verificaEspacoLateralDireita(espaco,tabuleiro)){
 	
 					if(espaco.getComponentCount() == 0){
@@ -728,7 +729,7 @@ public class Torre extends Peca {
 	
 			//Torre preta movimenta para cima
 			if(espaco.getY() < posicaoy && espaco.getX() == posicaox){
-				//verifica se existe alguma peça no caminho da torre
+				//verifica se existe alguma peÃ§a no caminho da torre
 				if(verificaEspacoSuperior(espaco,tabuleiro)){
 								
 					if(espaco.getComponentCount() == 0){
@@ -776,7 +777,7 @@ public class Torre extends Peca {
 			//torre preta movimenta para baixo
 			else if(espaco.getY() > posicaoy && espaco.getX() == posicaox){
 				
-				//verifica se existe alguma peça no caminho da torre
+				//verifica se existe alguma peÃ§a no caminho da torre
 				if(verificaEspacoInferior(espaco,tabuleiro)){
 					
 					//eh um movimento
@@ -826,7 +827,7 @@ public class Torre extends Peca {
 			//torre branca movimenta para esquerda
 			else if(espaco.getY() == posicaoy && espaco.getX() < posicaox){
 				
-				//verifica se existe alguma peça no caminho da torre
+				//verifica se existe alguma peÃ§a no caminho da torre
 				if(verificaEspacoLateralEsquerda(espaco,tabuleiro)){
 					
 					//eh um movimento
@@ -876,7 +877,7 @@ public class Torre extends Peca {
 			//torre branca movimenta para a direita
 			else if(espaco.getY() == posicaoy && espaco.getX() > posicaox){
 				
-				//verifica se existe alguma peça no caminho da torre
+				//verifica se existe alguma peÃ§a no caminho da torre
 				if(verificaEspacoLateralDireita(espaco,tabuleiro)){
 		
 					if(espaco.getComponentCount() == 0){
@@ -1053,7 +1054,6 @@ public class Torre extends Peca {
 			this.tabuleiro.destravaSelecao();
 		}
 		else if(podeSelecionar){
-			this.ativaHighlight();
 			this.selecionada = true;
 			tabuleiro.travaSelecao(this);
 			
@@ -1086,44 +1086,6 @@ public class Torre extends Peca {
 	}
 	public void setIcon(JLabel icon) {
 		this.icon = icon;
-	}
-
-	public void desativaHighlight(){
-		//desativa o highlight
-		//verifica se o espaco clicado eh branco
-		if(this.tabuleiro.getPainel().getComponentAt(posicaox+50, posicaoy+50).getName().equals("branco")){	
-			
-			JButton espacoHighlight = (JButton) this.tabuleiro.getPainel().getComponentAt(posicaox+50, posicaoy+50);
-			
-			espacoHighlight.setIcon(new ImageIcon("image/white.png"));
-		}
-		
-		//verifica se o espaco clicado eh preto
-		else if(this.tabuleiro.getPainel().getComponentAt(posicaox+50, posicaoy+50).getName().equals("preto")){
-			
-			JButton espacoHighlight = (JButton) this.tabuleiro.getPainel().getComponentAt(posicaox+50, posicaoy+50);
-			
-			espacoHighlight.setIcon(new ImageIcon("image/brown.png"));
-		}
-	}
-	
-	public void ativaHighlight(){
-		//ativa o highlight
-		//verifica se o espaco clicado eh branco
-		if(this.tabuleiro.getPainel().getComponentAt(posicaox+50, posicaoy+50).getName().equals("branco")){	
-			
-			JButton espacoHighlight = (JButton) this.tabuleiro.getPainel().getComponentAt(posicaox+50, posicaoy+50);
-			
-			espacoHighlight.setIcon(new ImageIcon("image/whiteHighlight.png"));
-		}
-		
-		//verifica se o espaco clicado eh preto
-		else if(this.tabuleiro.getPainel().getComponentAt(posicaox+50, posicaoy+50).getName().equals("preto")){
-			
-			JButton espacoHighlight = (JButton) this.tabuleiro.getPainel().getComponentAt(posicaox+50, posicaoy+50);
-			
-			espacoHighlight.setIcon(new ImageIcon("image/brownHighlight.png"));
-		}
 	}
 	
 }

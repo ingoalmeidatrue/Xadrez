@@ -1,7 +1,6 @@
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -209,14 +208,13 @@ public class Rainha extends Peca {
 	}
 
 	public void movimentarPeca(JLabel pecaNaFrente,JButton espaco, JPanel tabuleiro) {
-		this.desativaHighlight();
 		if(espaco!=null && pecaNaFrente == null){
 			if(this.cor == Color.WHITE){
 				
 					//Rainha branca movimenta para cima
 					if(espaco.getY() < posicaoy && espaco.getX() == posicaox){
 					
-						//verifica se existe alguma peça no caminho
+						//verifica se existe alguma peÃ§a no caminho
 						if(verificaEspacoSuperior(espaco,tabuleiro)){
 					
 							if(espaco.getComponentCount() == 0){
@@ -263,7 +261,7 @@ public class Rainha extends Peca {
 					//rainha branca movimenta para baixo
 					else if(espaco.getY() > posicaoy && espaco.getX() == posicaox){
 						
-						//verifica se existe alguma peça no caminho
+						//verifica se existe alguma peÃ§a no caminho
 						if(verificaEspacoInferior(espaco,tabuleiro)){
 			
 							if(espaco.getComponentCount() == 0){
@@ -309,7 +307,7 @@ public class Rainha extends Peca {
 		
 					//rainha branca movimenta para esquerda
 					else if(espaco.getY() == posicaoy && espaco.getX() < posicaox){
-						//verifica se existe alguma peça no caminho
+						//verifica se existe alguma peÃ§a no caminho
 						if(verificaEspacoLateralEsquerda(espaco,tabuleiro)){
 			
 							if(espaco.getComponentCount() == 0){
@@ -355,7 +353,7 @@ public class Rainha extends Peca {
 		
 					//rainha branca movimenta para a direita
 					else if(espaco.getY() == posicaoy && espaco.getX() > posicaox){
-						//verifica se existe alguma peça no caminho
+						//verifica se existe alguma peÃ§a no caminho
 						if(verificaEspacoLateralDireita(espaco,tabuleiro)){
 			
 							if(espaco.getComponentCount() == 0){
@@ -405,7 +403,7 @@ public class Rainha extends Peca {
 							//verifica se clicou na mesma diagonal que a rainha esta
 							if((espaco.getX() - posicaox) == (espaco.getY() - posicaoy)){
 								
-								//verifica se existe alguma peça no caminho da rainha
+								//verifica se existe alguma peÃ§a no caminho da rainha
 								if(verificaEspacoSuperiorEsquerda(espaco,tabuleiro)){
 								
 									if(espaco.getComponentCount() == 0){
@@ -460,7 +458,7 @@ public class Rainha extends Peca {
 						
 						if((espaco.getX() - posicaox) == (posicaoy - espaco.getY())){
 							
-							//verifica se existe alguma peça no caminho da rainha
+							//verifica se existe alguma peÃ§a no caminho da rainha
 							if(verificaEspacoSuperiorDireita(espaco,tabuleiro)){
 							
 								if(espaco.getComponentCount() == 0){
@@ -515,7 +513,7 @@ public class Rainha extends Peca {
 					else if(espaco.getX() < posicaox && espaco.getY() > posicaoy){
 						if((posicaox - espaco.getX()) == (espaco.getY() - posicaoy)){
 							
-							//verifica se existe alguma peça no caminho da rainha
+							//verifica se existe alguma peÃ§a no caminho da rainha
 							if(verificaEspacoInferiorEsquerda(espaco,tabuleiro)){
 							
 								if(espaco.getComponentCount() == 0){
@@ -569,7 +567,7 @@ public class Rainha extends Peca {
 					else if(espaco.getX() > posicaox && espaco.getY() > posicaoy){
 							if((espaco.getX() - posicaox) == (espaco.getY() - posicaoy) ){
 								
-								//verifica se existe alguma peça no caminho da rainha
+								//verifica se existe alguma peÃ§a no caminho da rainha
 								if(verificaEspacoInferiorDireita(espaco,tabuleiro)){
 								
 									if(espaco.getComponentCount() == 0){
@@ -631,7 +629,7 @@ public class Rainha extends Peca {
 					//movimenta para cima
 					if(espaco.getY() < posicaoy && espaco.getX() == posicaox){
 					
-						//verifica se existe alguma peça no caminho
+						//verifica se existe alguma peÃ§a no caminho
 						if(verificaEspacoSuperior(espaco,tabuleiro)){
 					
 							if(espaco.getComponentCount() == 0){
@@ -677,7 +675,7 @@ public class Rainha extends Peca {
 			
 					//movimenta para baixo
 					else if(espaco.getY() > posicaoy && espaco.getX() == posicaox){
-						//verifica se existe alguma peça no caminho
+						//verifica se existe alguma peÃ§a no caminho
 						if(verificaEspacoInferior(espaco,tabuleiro)){
 			
 							if(espaco.getComponentCount() == 0){
@@ -724,7 +722,7 @@ public class Rainha extends Peca {
 					//movimenta para esquerda
 					else if(espaco.getY() == posicaoy && espaco.getX() < posicaox){
 						
-						//verifica se existe alguma peça no caminho
+						//verifica se existe alguma peÃ§a no caminho
 						if(verificaEspacoLateralEsquerda(espaco,tabuleiro)){
 			
 							if(espaco.getComponentCount() == 0){
@@ -771,7 +769,7 @@ public class Rainha extends Peca {
 					//movimenta para a direita
 					else if(espaco.getY() == posicaoy && espaco.getX() > posicaox){
 						
-						//verifica se existe alguma peça no caminho
+						//verifica se existe alguma peÃ§a no caminho
 						if(verificaEspacoLateralDireita(espaco,tabuleiro)){
 			
 							if(espaco.getComponentCount() == 0){
@@ -820,7 +818,7 @@ public class Rainha extends Peca {
 	
 						if((espaco.getX() - posicaox) == (espaco.getY() - posicaoy)){
 							
-							//verifica se existe alguma peça no caminho da rainha
+							//verifica se existe alguma peÃ§a no caminho da rainha
 							if(verificaEspacoSuperiorEsquerda(espaco,tabuleiro)){
 							
 								if(espaco.getComponentCount() == 0){
@@ -876,7 +874,7 @@ public class Rainha extends Peca {
 						
 						if((espaco.getX() - posicaox) == (posicaoy - espaco.getY())){
 													
-							//verifica se existe alguma peça no caminho da rainha
+							//verifica se existe alguma peÃ§a no caminho da rainha
 							if(verificaEspacoSuperiorDireita(espaco,tabuleiro)){
 							
 								if(espaco.getComponentCount() == 0){
@@ -931,7 +929,7 @@ public class Rainha extends Peca {
 						
 						if((posicaox - espaco.getX()) == (espaco.getY() - posicaoy)){
 							
-							//verifica se existe alguma peça no caminho da rainha
+							//verifica se existe alguma peÃ§a no caminho da rainha
 							if(verificaEspacoInferiorEsquerda(espaco,tabuleiro)){
 							
 								if(espaco.getComponentCount() == 0){
@@ -986,7 +984,7 @@ public class Rainha extends Peca {
 	
 						if((espaco.getX() - posicaox) == (espaco.getY() - posicaoy)){
 							
-							//verifica se existe alguma peça no caminho da rainha
+							//verifica se existe alguma peÃ§a no caminho da rainha
 							if(verificaEspacoInferiorDireita(espaco,tabuleiro)){
 							
 								if(espaco.getComponentCount() == 0){
@@ -1045,7 +1043,7 @@ public class Rainha extends Peca {
 				//Rainha branca movimenta para cima
 				if(espaco.getY() < posicaoy && espaco.getX() == posicaox){
 				
-					//verifica se existe alguma peça no caminho
+					//verifica se existe alguma peÃ§a no caminho
 					if(verificaEspacoSuperior(espaco,tabuleiro)){
 				
 						if(espaco.getComponentCount() == 0){
@@ -1092,7 +1090,7 @@ public class Rainha extends Peca {
 				//rainha branca movimenta para baixo
 				else if(espaco.getY() > posicaoy && espaco.getX() == posicaox){
 					
-					//verifica se existe alguma peça no caminho
+					//verifica se existe alguma peÃ§a no caminho
 					if(verificaEspacoInferior(espaco,tabuleiro)){
 		
 						if(espaco.getComponentCount() == 0){
@@ -1138,7 +1136,7 @@ public class Rainha extends Peca {
 	
 				//rainha branca movimenta para esquerda
 				else if(espaco.getY() == posicaoy && espaco.getX() < posicaox){
-					//verifica se existe alguma peça no caminho
+					//verifica se existe alguma peÃ§a no caminho
 					if(verificaEspacoLateralEsquerda(espaco,tabuleiro)){
 		
 						if(espaco.getComponentCount() == 0){
@@ -1184,7 +1182,7 @@ public class Rainha extends Peca {
 	
 				//rainha branca movimenta para a direita
 				else if(espaco.getY() == posicaoy && espaco.getX() > posicaox){
-					//verifica se existe alguma peça no caminho
+					//verifica se existe alguma peÃ§a no caminho
 					if(verificaEspacoLateralDireita(espaco,tabuleiro)){
 		
 						if(espaco.getComponentCount() == 0){
@@ -1234,7 +1232,7 @@ public class Rainha extends Peca {
 						//verifica se clicou na mesma diagonal que a rainha esta
 						if((espaco.getX() - posicaox) == (espaco.getY() - posicaoy)){
 							
-							//verifica se existe alguma peça no caminho da rainha
+							//verifica se existe alguma peÃ§a no caminho da rainha
 							if(verificaEspacoSuperiorEsquerda(espaco,tabuleiro)){
 							
 								if(espaco.getComponentCount() == 0){
@@ -1289,7 +1287,7 @@ public class Rainha extends Peca {
 					
 					if((espaco.getX() - posicaox) == (posicaoy - espaco.getY())){
 						
-						//verifica se existe alguma peça no caminho da rainha
+						//verifica se existe alguma peÃ§a no caminho da rainha
 						if(verificaEspacoSuperiorDireita(espaco,tabuleiro)){
 						
 							if(espaco.getComponentCount() == 0){
@@ -1344,7 +1342,7 @@ public class Rainha extends Peca {
 				else if(espaco.getX() < posicaox && espaco.getY() > posicaoy){
 					if((posicaox - espaco.getX()) == (espaco.getY() - posicaoy)){
 						
-						//verifica se existe alguma peça no caminho da rainha
+						//verifica se existe alguma peÃ§a no caminho da rainha
 						if(verificaEspacoInferiorEsquerda(espaco,tabuleiro)){
 						
 							if(espaco.getComponentCount() == 0){
@@ -1398,7 +1396,7 @@ public class Rainha extends Peca {
 				else if(espaco.getX() > posicaox && espaco.getY() > posicaoy){
 						if((espaco.getX() - posicaox) == (espaco.getY() - posicaoy) ){
 							
-							//verifica se existe alguma peça no caminho da rainha
+							//verifica se existe alguma peÃ§a no caminho da rainha
 							if(verificaEspacoInferiorDireita(espaco,tabuleiro)){
 							
 								if(espaco.getComponentCount() == 0){
@@ -1460,7 +1458,7 @@ public class Rainha extends Peca {
 				//movimenta para cima
 				if(espaco.getY() < posicaoy && espaco.getX() == posicaox){
 				
-					//verifica se existe alguma peça no caminho
+					//verifica se existe alguma peÃ§a no caminho
 					if(verificaEspacoSuperior(espaco,tabuleiro)){
 				
 						if(espaco.getComponentCount() == 0){
@@ -1506,7 +1504,7 @@ public class Rainha extends Peca {
 		
 				//movimenta para baixo
 				else if(espaco.getY() > posicaoy && espaco.getX() == posicaox){
-					//verifica se existe alguma peça no caminho
+					//verifica se existe alguma peÃ§a no caminho
 					if(verificaEspacoInferior(espaco,tabuleiro)){
 		
 						if(espaco.getComponentCount() == 0){
@@ -1553,7 +1551,7 @@ public class Rainha extends Peca {
 				//movimenta para esquerda
 				else if(espaco.getY() == posicaoy && espaco.getX() < posicaox){
 					
-					//verifica se existe alguma peça no caminho
+					//verifica se existe alguma peÃ§a no caminho
 					if(verificaEspacoLateralEsquerda(espaco,tabuleiro)){
 		
 						if(espaco.getComponentCount() == 0){
@@ -1600,7 +1598,7 @@ public class Rainha extends Peca {
 				//movimenta para a direita
 				else if(espaco.getY() == posicaoy && espaco.getX() > posicaox){
 					
-					//verifica se existe alguma peça no caminho
+					//verifica se existe alguma peÃ§a no caminho
 					if(verificaEspacoLateralDireita(espaco,tabuleiro)){
 		
 						if(espaco.getComponentCount() == 0){
@@ -1649,7 +1647,7 @@ public class Rainha extends Peca {
 
 					if((espaco.getX() - posicaox) == (espaco.getY() - posicaoy)){
 						
-						//verifica se existe alguma peça no caminho da rainha
+						//verifica se existe alguma peÃ§a no caminho da rainha
 						if(verificaEspacoSuperiorEsquerda(espaco,tabuleiro)){
 						
 							if(espaco.getComponentCount() == 0){
@@ -1705,7 +1703,7 @@ public class Rainha extends Peca {
 					
 					if((espaco.getX() - posicaox) == (posicaoy - espaco.getY())){
 												
-						//verifica se existe alguma peça no caminho da rainha
+						//verifica se existe alguma peÃ§a no caminho da rainha
 						if(verificaEspacoSuperiorDireita(espaco,tabuleiro)){
 						
 							if(espaco.getComponentCount() == 0){
@@ -1760,7 +1758,7 @@ public class Rainha extends Peca {
 					
 					if((posicaox - espaco.getX()) == (espaco.getY() - posicaoy)){
 						
-						//verifica se existe alguma peça no caminho da rainha
+						//verifica se existe alguma peÃ§a no caminho da rainha
 						if(verificaEspacoInferiorEsquerda(espaco,tabuleiro)){
 						
 							if(espaco.getComponentCount() == 0){
@@ -1815,7 +1813,7 @@ public class Rainha extends Peca {
 
 					if((espaco.getX() - posicaox) == (espaco.getY() - posicaoy)){
 						
-						//verifica se existe alguma peça no caminho da rainha
+						//verifica se existe alguma peÃ§a no caminho da rainha
 						if(verificaEspacoInferiorDireita(espaco,tabuleiro)){
 						
 							if(espaco.getComponentCount() == 0){
@@ -2003,7 +2001,6 @@ public class Rainha extends Peca {
 			this.tabuleiro.destravaSelecao();
 		}
 		else if(podeSelecionar){
-			this.ativaHighlight();
 			this.selecionada = true;
 			tabuleiro.travaSelecao(this);
 			
@@ -2051,43 +2048,6 @@ public class Rainha extends Peca {
 		this.posicaoy = posicaoy;
 	}
 	
-	public void desativaHighlight(){
-		//desativa o highlight
-		//verifica se o espaco clicado eh branco
-		if(this.tabuleiro.getPainel().getComponentAt(posicaox+50, posicaoy+50).getName().equals("branco")){	
-			
-			JButton espacoHighlight = (JButton) this.tabuleiro.getPainel().getComponentAt(posicaox+50, posicaoy+50);
-			
-			espacoHighlight.setIcon(new ImageIcon("image/white.png"));
-		}
-		
-		//verifica se o espaco clicado eh preto
-		else if(this.tabuleiro.getPainel().getComponentAt(posicaox+50, posicaoy+50).getName().equals("preto")){
-			
-			JButton espacoHighlight = (JButton) this.tabuleiro.getPainel().getComponentAt(posicaox+50, posicaoy+50);
-			
-			espacoHighlight.setIcon(new ImageIcon("image/brown.png"));
-		}
-	}
-	
-	public void ativaHighlight(){
-		//ativa o highlight
-		//verifica se o espaco clicado eh branco
-		if(this.tabuleiro.getPainel().getComponentAt(posicaox+50, posicaoy+50).getName().equals("branco")){	
-			
-			JButton espacoHighlight = (JButton) this.tabuleiro.getPainel().getComponentAt(posicaox+50, posicaoy+50);
-			
-			espacoHighlight.setIcon(new ImageIcon("image/whiteHighlight.png"));
-		}
-		
-		//verifica se o espaco clicado eh preto
-		else if(this.tabuleiro.getPainel().getComponentAt(posicaox+50, posicaoy+50).getName().equals("preto")){
-			
-			JButton espacoHighlight = (JButton) this.tabuleiro.getPainel().getComponentAt(posicaox+50, posicaoy+50);
-			
-			espacoHighlight.setIcon(new ImageIcon("image/brownHighlight.png"));
-		}
-	}
 }
 
 
