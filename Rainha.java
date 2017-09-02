@@ -13,6 +13,7 @@ public class Rainha extends Peca {
 	private int posicaoy;
 	private int posicaoxIni;
 	private int posicaoyIni;
+	private boolean morta = false;
 			
 	public int getPosicaoxIni() {
 		return posicaoxIni;
@@ -1874,6 +1875,7 @@ public class Rainha extends Peca {
 			if(this.cor == Color.BLACK){
 				JLabel pecaComida = (JLabel) tabuleiro.getComponentAt(espaco.getX(),espaco.getY());
 				this.tabuleiro.getPecasForaDoJogo().add((Peca)pecaComida.getMouseListeners()[0]);
+				new PecaMorta().check(pecaComida.getMouseListeners()[0]);
 				tabuleiro.remove(pecaComida);
 				espaco.remove(0);
 				
@@ -1898,6 +1900,7 @@ public class Rainha extends Peca {
 			else if(this.cor == Color.WHITE){
 				JLabel pecaComida = (JLabel) tabuleiro.getComponentAt(espaco.getX(),espaco.getY());
 				this.tabuleiro.getPecasForaDoJogo().add((Peca)pecaComida.getMouseListeners()[0]);
+				new PecaMorta().check(pecaComida.getMouseListeners()[0]);
 				tabuleiro.remove(pecaComida);
 				espaco.remove(0);
 				
@@ -1926,6 +1929,7 @@ public class Rainha extends Peca {
 				
 				espaco = (JButton) tabuleiro.getComponentAt(pecaNaFrente.getX()+50, pecaNaFrente.getY()+50);
 				this.tabuleiro.getPecasForaDoJogo().add((Peca)pecaNaFrente.getMouseListeners()[0]);
+				new PecaMorta().check(pecaNaFrente.getMouseListeners()[0]);
 				int posicaoAtualX = pecaNaFrente.getX();
 				int posicaoAtualY = pecaNaFrente.getY();
 				
@@ -1954,6 +1958,7 @@ public class Rainha extends Peca {
 			else if(this.cor == Color.WHITE){
 				espaco = (JButton) tabuleiro.getComponentAt(pecaNaFrente.getX()+50, pecaNaFrente.getY()+50);
 				this.tabuleiro.getPecasForaDoJogo().add((Peca)pecaNaFrente.getMouseListeners()[0]);
+				new PecaMorta().check(pecaNaFrente.getMouseListeners()[0]);
 				int posicaoAtualX = pecaNaFrente.getX();
 				int posicaoAtualY = pecaNaFrente.getY();
 				
@@ -1981,9 +1986,18 @@ public class Rainha extends Peca {
 		}
 	}
 	
+	public boolean isMorta() {
+		return morta;
+	}
+
+	public void setMorta(boolean morta) {
+		this.morta = morta;
+	}
+
 	public void mouseClicked(MouseEvent e){
-		
-		if(this.selecionada){	
+		if(this.morta){
+		}
+		else if(this.selecionada){	
 			this.desativaHighlight();
 			this.selecionada = false;
 			this.tabuleiro.destravaSelecao();
