@@ -11,7 +11,25 @@ public class Rainha extends Peca {
 	//posicao da peca selecionada
 	private int posicaox;
 	private int posicaoy;
+	private int posicaoxIni;
+	private int posicaoyIni;
 			
+	public int getPosicaoxIni() {
+		return posicaoxIni;
+	}
+
+	public void setPosicaoxIni(int posicaoxIni) {
+		this.posicaoxIni = posicaoxIni;
+	}
+
+	public int getPosicaoyIni() {
+		return posicaoyIni;
+	}
+
+	public void setPosicaoyIni(int posicaoyIni) {
+		this.posicaoyIni = posicaoyIni;
+	}
+
 	private Tabuleiro tabuleiro;
 			
 	//cor da peca
@@ -30,6 +48,8 @@ public class Rainha extends Peca {
 	public Rainha(int posicaox, int posicaoy, Color cor, JLabel img, Tabuleiro tabuleiro){
 				this.posicaox = posicaox;
 				this.posicaoy = posicaoy;
+				this.posicaoxIni = posicaox - 40;
+				this.posicaoyIni = posicaoy - 40;
 				this.cor = cor;
 				this.icon = img;
 				this.tabuleiro = tabuleiro;
@@ -189,7 +209,6 @@ public class Rainha extends Peca {
 
 	public void movimentarPeca(JLabel pecaNaFrente,JButton espaco, JPanel tabuleiro) {
 		this.desativaHighlight();
-		
 		if(espaco!=null && pecaNaFrente == null){
 			if(this.cor == Color.WHITE){
 				
@@ -1854,7 +1873,7 @@ public class Rainha extends Peca {
 		if(espaco!=null && pecaNaFrente == null){
 			if(this.cor == Color.BLACK){
 				JLabel pecaComida = (JLabel) tabuleiro.getComponentAt(espaco.getX(),espaco.getY());
-				
+				this.tabuleiro.getPecasForaDoJogo().add((Peca)pecaComida.getMouseListeners()[0]);
 				tabuleiro.remove(pecaComida);
 				espaco.remove(0);
 				
@@ -1878,7 +1897,7 @@ public class Rainha extends Peca {
 			}
 			else if(this.cor == Color.WHITE){
 				JLabel pecaComida = (JLabel) tabuleiro.getComponentAt(espaco.getX(),espaco.getY());
-				
+				this.tabuleiro.getPecasForaDoJogo().add((Peca)pecaComida.getMouseListeners()[0]);
 				tabuleiro.remove(pecaComida);
 				espaco.remove(0);
 				
@@ -1906,7 +1925,7 @@ public class Rainha extends Peca {
 			if(this.cor == Color.BLACK){
 				
 				espaco = (JButton) tabuleiro.getComponentAt(pecaNaFrente.getX()+50, pecaNaFrente.getY()+50);
-				
+				this.tabuleiro.getPecasForaDoJogo().add((Peca)pecaNaFrente.getMouseListeners()[0]);
 				int posicaoAtualX = pecaNaFrente.getX();
 				int posicaoAtualY = pecaNaFrente.getY();
 				
@@ -1934,7 +1953,7 @@ public class Rainha extends Peca {
 			}
 			else if(this.cor == Color.WHITE){
 				espaco = (JButton) tabuleiro.getComponentAt(pecaNaFrente.getX()+50, pecaNaFrente.getY()+50);
-				
+				this.tabuleiro.getPecasForaDoJogo().add((Peca)pecaNaFrente.getMouseListeners()[0]);
 				int posicaoAtualX = pecaNaFrente.getX();
 				int posicaoAtualY = pecaNaFrente.getY();
 				
@@ -1964,7 +1983,7 @@ public class Rainha extends Peca {
 	
 	public void mouseClicked(MouseEvent e){
 		
-		if(this.selecionada){
+		if(this.selecionada){	
 			this.desativaHighlight();
 			this.selecionada = false;
 			this.tabuleiro.destravaSelecao();
@@ -2018,25 +2037,6 @@ public class Rainha extends Peca {
 		this.posicaoy = posicaoy;
 	}
 	
-	public void ativaHighlight(){
-		//ativa o highlight
-		//verifica se o espaco clicado eh branco
-		if(this.tabuleiro.getPainel().getComponentAt(posicaox+50, posicaoy+50).getName().equals("branco")){	
-			
-			JButton espacoHighlight = (JButton) this.tabuleiro.getPainel().getComponentAt(posicaox+50, posicaoy+50);
-			
-			espacoHighlight.setIcon(new ImageIcon("image/whiteHighlight.png"));
-		}
-		
-		//verifica se o espaco clicado eh preto
-		else if(this.tabuleiro.getPainel().getComponentAt(posicaox+50, posicaoy+50).getName().equals("preto")){
-			
-			JButton espacoHighlight = (JButton) this.tabuleiro.getPainel().getComponentAt(posicaox+50, posicaoy+50);
-			
-			espacoHighlight.setIcon(new ImageIcon("image/brownHighlight.png"));
-		}
-	}
-	
 	public void desativaHighlight(){
 		//desativa o highlight
 		//verifica se o espaco clicado eh branco
@@ -2053,6 +2053,25 @@ public class Rainha extends Peca {
 			JButton espacoHighlight = (JButton) this.tabuleiro.getPainel().getComponentAt(posicaox+50, posicaoy+50);
 			
 			espacoHighlight.setIcon(new ImageIcon("image/brown.png"));
+		}
+	}
+	
+	public void ativaHighlight(){
+		//ativa o highlight
+		//verifica se o espaco clicado eh branco
+		if(this.tabuleiro.getPainel().getComponentAt(posicaox+50, posicaoy+50).getName().equals("branco")){	
+			
+			JButton espacoHighlight = (JButton) this.tabuleiro.getPainel().getComponentAt(posicaox+50, posicaoy+50);
+			
+			espacoHighlight.setIcon(new ImageIcon("image/whiteHighlight.png"));
+		}
+		
+		//verifica se o espaco clicado eh preto
+		else if(this.tabuleiro.getPainel().getComponentAt(posicaox+50, posicaoy+50).getName().equals("preto")){
+			
+			JButton espacoHighlight = (JButton) this.tabuleiro.getPainel().getComponentAt(posicaox+50, posicaoy+50);
+			
+			espacoHighlight.setIcon(new ImageIcon("image/brownHighlight.png"));
 		}
 	}
 	

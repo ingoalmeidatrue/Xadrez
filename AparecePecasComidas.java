@@ -1,11 +1,14 @@
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import javax.swing.GroupLayout;
+import javax.swing.ImageIcon;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.Icon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -16,76 +19,83 @@ import javax.swing.ScrollPaneLayout;
 
 public class AparecePecasComidas implements ActionListener{
 	private JFrame ajuda;
-	private JScrollPane scrollPane;
-	private JTextPane textomov;
-	private JPanel painel;
+	private Icon imagemTabuleiro;
+	private JPanel painel = new JPanel();
+	private JScrollPane scrollPane = new JScrollPane();
+	private JLabel textomov = new JLabel();
+	private JLabel image = new JLabel();
 	public AparecePecasComidas(String titulo){
 		  this.ajuda = new JFrame(titulo);
 	    }
 	public void actionPerformed(ActionEvent actionEvent) {
 		this.montaJanela(); 
+		painel.setSize(1000,1000);
 		ajuda.setVisible(true);
 	}
 	private void montaJanela(){
-		this.painel = new JPanel();
-		this.scrollPane = new JScrollPane();
-		this.textomov = new JTextPane();
-		this.textomov.setEditable(false);
-		//this.textomov.setText("Pecas fora do jogo");
-		for(int  i = 0; Tabuleiro.getPecasForaDoJogo().size() > i;i++){
+		for(int  i = 0; i < Tabuleiro.getPecasForaDoJogo().size();i++){
 			if(Tabuleiro.getPecasForaDoJogo().get(i) instanceof Peao){
 				Peao p = (Peao)Tabuleiro.getPecasForaDoJogo().get(i);
 				JLabel peao = p.getIcon();
-				peao.setBounds(p.getPosicaox(),p.getPosicaoy(),50,50);
+				peao.setBounds(p.getPosicaoxIni(),p.getPosicaoyIni(),50,50);
+				painel.add(peao);
 			}
 			else if(Tabuleiro.getPecasForaDoJogo().get(i) instanceof Rei){
 				Rei r = (Rei)Tabuleiro.getPecasForaDoJogo().get(i);
 				JLabel rei = r.getIcon();
-				rei.setBounds(r.getPosicaox(),r.getPosicaoy(),50,50);
+				rei.setBounds(r.getPosicaoxIni(),r.getPosicaoyIni(),50,50);
+				painel.add(rei);
 			}
 			else if(Tabuleiro.getPecasForaDoJogo().get(i) instanceof Bispo){
 				Bispo b = (Bispo)Tabuleiro.getPecasForaDoJogo().get(i);
 				JLabel bispo = b.getIcon();
-				bispo.setBounds(b.getPosicaox(),b.getPosicaoy(),50,50);
+				bispo.setBounds(b.getPosicaoxIni(),b.getPosicaoyIni(),50,50);
+				painel.add(bispo);
 			}
 			else if(Tabuleiro.getPecasForaDoJogo().get(i) instanceof Rainha){
 				Rainha r = (Rainha)Tabuleiro.getPecasForaDoJogo().get(i);
 				JLabel rainha = r.getIcon();
-				rainha.setBounds(r.getPosicaox(),r.getPosicaoy(),50,50);
+				rainha.setBounds(r.getPosicaoxIni(),r.getPosicaoyIni(),50,50);
+				painel.add(rainha);
 			}
 			else if(Tabuleiro.getPecasForaDoJogo().get(i) instanceof Torre){
 				Torre t = (Torre)Tabuleiro.getPecasForaDoJogo().get(i);
 				JLabel torre = t.getIcon();
-				torre.setBounds(t.getPosicaox(),t.getPosicaoy(),50,50);
+				torre.setBounds(t.getPosicaoxIni(),t.getPosicaoyIni(),50,50);
+				painel.add(torre);
 			}
 			else if(Tabuleiro.getPecasForaDoJogo().get(i) instanceof Cavalo){
 				Cavalo c = (Cavalo)Tabuleiro.getPecasForaDoJogo().get(i);
 				JLabel cavalo = c.getIcon();
-				cavalo.setBounds(c.getPosicaox(),c.getPosicaoy(),50,50);
+				cavalo.setBounds(c.getPosicaoxIni(),c.getPosicaoyIni(),50,50);
+				painel.add(cavalo);
 			}
 		}
+		imagemTabuleiro = new ImageIcon("image/board_chess.png");
+		image.setIcon(imagemTabuleiro);
+		//image.setBounds(10,10,400,400);
+		painel.add(image);
 		GroupLayout layout = new GroupLayout(painel);
 		this.painel.setLayout(layout);
 		layout.setAutoCreateContainerGaps(true);
 		GroupLayout.SequentialGroup hGroup = layout.createSequentialGroup();
-		hGroup.addGroup(layout.createParallelGroup().addComponent(textomov));
+		hGroup.addGroup(layout.createParallelGroup().addComponent(image));
 		layout.setHorizontalGroup(hGroup);
 		GroupLayout.SequentialGroup vGroup = layout.createSequentialGroup();
-		vGroup.addGroup(layout.createParallelGroup(Alignment.BASELINE).addComponent(textomov));
+		vGroup.addGroup(layout.createParallelGroup(Alignment.BASELINE).addComponent(image));
 		layout.setVerticalGroup(vGroup);
 		scrollPane.setViewportView(painel);
 		ScrollPaneLayout scrollPaneLayout = new ScrollPaneLayout(); 
-		scrollPaneLayout.setHorizontalScrollBarPolicy(ScrollPaneLayout.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		scrollPaneLayout.setVerticalScrollBarPolicy(ScrollPaneLayout.VERTICAL_SCROLLBAR_AS_NEEDED);
+		scrollPaneLayout.setHorizontalScrollBarPolicy(ScrollPaneLayout.HORIZONTAL_SCROLLBAR_ALWAYS);
+		scrollPaneLayout.setVerticalScrollBarPolicy(ScrollPaneLayout.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane.setLayout(scrollPaneLayout);
 		ajuda.getContentPane().add(this.scrollPane,BorderLayout.CENTER);
-		ajuda.setSize(500, 500);
-	   // ajuda.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	   /* ajuda.addWindowListener(
-         new WindowAdapter() {
-                public void windowClosing(WindowEvent e){                                        
-                    System.exit(0);                                
+		ajuda.setSize(700, 700);
+	   //ajuda.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    ajuda.addWindowListener(new WindowAdapter() {
+                public void windowClosing(WindowEvent e){                                           
+                    ajuda.setVisible(false);
                 }
-            }); */ //talvez colocar no tabuleiro para melhorar o desempenho     
+            }); //talvez colocar no tabuleiro para melhorar o desempenho     
 	}
-}
+	}

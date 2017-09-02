@@ -19,14 +19,6 @@ public abstract class Peca extends MouseAdapter {
 	public void atacarPeca() {
 
 	}
-	
-	public void ativaHighlight(){
-		
-	}
-	
-	public void desativaHighlight(){
-		
-	}
 
 	public boolean isSelecionada() {
 		return selecionada;
